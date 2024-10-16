@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_lokasi', function (Blueprint $table) {
-            $table->increments('lokasi_id');
-            $table->string('lokasi_nama');
-            $table->string('lokasislug');
-            $table->string('lokasi_keterangan')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('tbl_barangkeluar')) {
+        Schema::create('tbl_bagian', function (Blueprint $table) {
+            $table->id('id_bagian'); // Primary key
+            $table->string('nama_bagian'); // Nama bagian
+            $table->timestamps(); // Timestamps untuk created_at dan updated_at
         });
+        }
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_lokasi');
+        Schema::dropIfExists('tbl_bagian');
     }
 };

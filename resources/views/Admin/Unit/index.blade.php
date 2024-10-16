@@ -7,7 +7,7 @@
         <div>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item text-gray">Admin</li>
-                <li class="breadcrumb-item active" aria-current="page">Unit Ti</li>
+                <li class="breadcrumb-item active" aria-current="page">Karyawan Ti</li>
             </ol>
         </div>
     </div>
@@ -34,7 +34,7 @@
                             class="table table-bordered text-nowrap border-bottom dataTable no-footer dtr-inline collapsed">
                             <thead>
                                 <th class="border-bottom-0" width="1%">No</th>
-                                <th class="border-bottom-0">Unit Ti</th>
+                                <th class="border-bottom-0">Karyawan Ti</th>
                                 <th class="border-bottom-0">No Telp</th>
                                 <th class="border-bottom-0">Alamat</th>
                                 <th class="border-bottom-0" width="1%">Action</th>

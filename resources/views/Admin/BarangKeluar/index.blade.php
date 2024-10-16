@@ -14,7 +14,6 @@
     </div>
     <!-- PAGE-HEADER END -->
 
-
     <!-- ROW -->
     <div class="row row-sm">
         <div class="col-lg-12">
@@ -40,7 +39,8 @@
                                 <th class="border-bottom-0">Kode Barang</th>
                                 <th class="border-bottom-0">Barang</th>
                                 <th class="border-bottom-0">Jumlah Keluar</th>
-                                <th class="border-bottom-0">Tujuan</th>
+                                <th class="border-bottom-0">Bagian</th> <!-- Ubah kolom Tujuan ke Bagian -->
+                                <th class="border-bottom-0">Nama Karyawan</th> <!-- Tambah kolom Nama Karyawan -->
                                 <th class="border-bottom-0" width="1%">Action</th>
                             </thead>
                             <tbody></tbody>
@@ -65,11 +65,12 @@
             $("input[name='bkkodeU']").val(data.bk_kode);
             $("input[name='kdbarangU']").val(data.barang_kode);
             $("input[name='jmlU']").val(data.bk_jumlah);
-            $("input[name='tujuanU']").val(data.bk_tujuan.replace(/_/g, ' '));
+            $("input[name='bk_namakaryawanU']").val(data.bk_namakaryawan); // Tambahkan input nama karyawan
+            $("select[name='bk_bagianU']").val(data.bk_bagian); // Pilih bagian di dropdown
 
             getbarangbyidU(data.barang_kode);
 
-            $("input[name='tglkeluarU").bootstrapdatepicker({
+            $("input[name='tglkeluarU']").bootstrapdatepicker({
                 format: 'yyyy-mm-dd',
                 autoclose: true
             }).bootstrapdatepicker("update", data.bk_tanggal);
@@ -147,8 +148,12 @@
                         name: 'bk_jumlah',
                     },
                     {
-                        data: 'tujuan',
-                        name: 'bk_tujuan',
+                        data: 'bagian', 
+                        name: 'bagian.nama_bagian',
+                    },
+                    {
+                        data: 'bk_namakaryawan', 
+                        name: 'bk_namakaryawan',
                     },
                     {
                         data: 'action',
@@ -255,5 +260,4 @@
         table.ajax.reload(null, false);
     }
 </script>
->>>>>>> 59e08260a93abb1e79c11568a4c34e1ba86c3ae3
 @endsection

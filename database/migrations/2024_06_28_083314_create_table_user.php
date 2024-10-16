@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_user')) {
         Schema::create('tbl_user', function (Blueprint $table) {
             $table->increments('user_id');
             $table->string('role_id');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('user_password');
             $table->timestamps();
         });
+        }
     }
 
     /**

@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_role', function (Blueprint $table) {
-            $table->increments('role_id');
-            $table->string('role_title');
-            $table->string('role_slug');
-            $table->text('role_desc')->nullable();
+        if (!Schema::hasTable('tbl_lokasi')) {
+        Schema::create('tbl_lokasi', function (Blueprint $table) {
+            $table->increments('lokasi_id');
+            $table->string('lokasi_nama');
+            $table->string('lokasislug');
+            $table->string('lokasi_keterangan')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_role');
+        Schema::dropIfExists('tbl_lokasi');
     }
 };

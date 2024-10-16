@@ -14,7 +14,13 @@ class BarangkeluarModel extends Model
         'bk_kode',
         'barang_kode',
         'bk_tanggal',
-        'bk_tujuan',
+        'bk_bagian',
+        'bk_namakaryawan',
         'bk_jumlah',
     ]; 
+    
+    public function bagian()
+    {
+        return $this->belongsTo(BagianModel::class, 'bk_bagian', 'id_bagian');
+    }
 }

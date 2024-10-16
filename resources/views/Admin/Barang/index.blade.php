@@ -69,7 +69,7 @@
         $("input[name='stokU']").val(data.barang_stok);
         $("input[name='jumlahU']").val(data.barang_jumlah.replace(/_/g, ' '));
         if(data.barang_gambar != 'image.png'){
-            $("#outputImgU").attr("src", "{{asset('storage/barang/')}}"+"/"+data.barang_gambar);    
+            $("#outputImgU").attr("src", "{{asset('storage/barang/')}}"+"/"+data.barang_gambar);
         }
     }
     function hapus(data) {

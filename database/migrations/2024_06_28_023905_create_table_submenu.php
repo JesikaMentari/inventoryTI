@@ -13,15 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_barangkeluar', function (Blueprint $table) {
-            $table->increments('bk_id');
-            $table->string('bk_kode');
-            $table->string('barang_kode');
-            $table->string('bk_tanggal');
-            $table->string('bk_tujuan')->nullable();
-            $table->string('bk_jumlah');
+        if (!Schema::hasTable('tbl_submenu')) {
+        Schema::create('tbl_submenu', function (Blueprint $table) {
+            $table->increments('submenu_id');
+            $table->string('menu_id');
+            $table->string('submenu_judul');
+            $table->string('submenu_slug');
+            $table->string('submenu_redirect');
+            $table->string('submenu_sort');
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_barangkeluar');
+        Schema::dropIfExists('tbl_submenu');
     }
 };

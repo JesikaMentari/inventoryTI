@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_menu', function (Blueprint $table) {
-            $table->increments('menu_id');
-            $table->string('menu_judul');
-            $table->string('menu_slug');
-            $table->string('menu_icon');
-            $table->string('menu_redirect');
-            $table->string('menu_sort');
-            $table->string('menu_type');
+        if (!Schema::hasTable('tbl_role')) {
+        Schema::create('tbl_role', function (Blueprint $table) {
+            $table->increments('role_id');
+            $table->string('role_title');
+            $table->string('role_slug');
+            $table->text('role_desc')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu');
+        Schema::dropIfExists('tbl_role');
     }
 };

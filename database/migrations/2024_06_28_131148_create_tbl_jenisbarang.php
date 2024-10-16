@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_web', function (Blueprint $table) {
-            $table->increments('web_id');
-            $table->string('web_nama');
-            $table->string('web_logo');
-            $table->string('web_deskripsi')->nullable();
+        if (!Schema::hasTable('tbl_jenisbarang')) {
+        Schema::create('tbl_jenisbarang', function (Blueprint $table) {
+            $table->increments('jenisbarang_id');
+            $table->string('jenisbarang_nama');
+            $table->string('jenisbarang_slug');
+            $table->string('jenisbarang_keterangan')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_web');
+        Schema::dropIfExists('tbl_jenisbarang');
     }
 };
