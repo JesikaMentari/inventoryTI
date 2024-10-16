@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jul 29, 2024 at 09:52 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 16 Okt 2024 pada 10.35
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Struktur dari tabel `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -35,22 +35,22 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data untuk tabel `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -64,17 +64,34 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2022_11_08_024215_create_tbl_web', 1),
 (9, '2022_11_15_131148_create_tbl_jenisbarang', 2),
 (10, '2022_11_15_173700_create_tbl_satuan', 3),
-(11, '2022_11_15_180434_create_tbl_lokasi', 4),
+(11, '2022_11_15_180434_create_tbl_merk', 4),
 (12, '2022_11_16_120018_create_tbl_appreance', 5),
 (13, '2022_11_25_141731_create_tbl_barang', 6),
-(14, '2022_11_26_011349_create_tbl_unit', 7),
+(14, '2022_11_26_011349_create_tbl_customer', 7),
 (16, '2022_11_28_151108_create_tbl_barangmasuk', 8),
-(17, '2022_11_30_115904_create_tbl_barangkeluar', 9);
+(17, '2022_11_30_115904_create_tbl_barangkeluar', 9),
+(18, '2024_06_19_000000_create_failed_jobs_table', 10),
+(19, '2024_06_28_011349_create_tbl_customer', 10),
+(20, '2024_06_28_023905_create_table_submenu', 10),
+(21, '2024_06_28_024215_create_tbl_web', 10),
+(22, '2024_06_28_041110_create_table_role', 10),
+(23, '2024_06_28_061811_create_menu_table', 10),
+(24, '2024_06_28_064417_create_tbl_akses', 10),
+(25, '2024_06_28_083314_create_table_user', 10),
+(26, '2024_06_28_115904_create_tbl_barangkeluar', 10),
+(27, '2024_06_28_131148_create_tbl_jenisbarang', 10),
+(28, '2024_06_28_141731_create_tbl_barang', 10),
+(29, '2024_06_28_151108_create_tbl_barangmasuk', 10),
+(30, '2024_06_28_15_180434_create_tbl_lokasi', 10),
+(31, '2024_06_28_16_120018_create_tbl_appreance', 10),
+(32, '2024_06_28_173700_create_tbl_satuan', 10),
+(33, '2024_10_16_034846_create_tbl_bagian_table', 10),
+(34, '2024_10_16_045412_update_tbl_barangkeluar_table', 11);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Struktur dari tabel `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -88,12 +105,12 @@ CREATE TABLE `personal_access_tokens` (
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_akses`
+-- Struktur dari tabel `tbl_akses`
 --
 
 CREATE TABLE `tbl_akses` (
@@ -105,13 +122,246 @@ CREATE TABLE `tbl_akses` (
   `akses_type` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_akses`
+-- Dumping data untuk tabel `tbl_akses`
 --
 
 INSERT INTO `tbl_akses` (`akses_id`, `menu_id`, `submenu_id`, `othermenu_id`, `role_id`, `akses_type`, `created_at`, `updated_at`) VALUES
+(296, '1667444041', NULL, NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(297, '1667444041', NULL, NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(298, '1667444041', NULL, NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(299, '1667444041', NULL, NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(300, '1668509889', NULL, NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(301, '1668509889', NULL, NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(302, '1668509889', NULL, NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(303, '1668509889', NULL, NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(304, '1668510437', NULL, NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(305, '1668510437', NULL, NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(306, '1668510437', NULL, NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(307, '1668510437', NULL, NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(308, '1668510568', NULL, NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(309, '1668510568', NULL, NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(310, '1668510568', NULL, NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(311, '1668510568', NULL, NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(312, NULL, '9', NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(313, NULL, '9', NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(314, NULL, '9', NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(315, NULL, '9', NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(320, NULL, '17', NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(321, NULL, '17', NULL, '2', 'create', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(322, NULL, '17', NULL, '2', 'update', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(323, NULL, '17', NULL, '2', 'delete', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(324, NULL, '10', NULL, '2', 'view', '2024-06-26 06:04:11', '2024-06-26 06:04:11'),
+(325, NULL, '10', NULL, '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(326, NULL, '10', NULL, '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(327, NULL, '10', NULL, '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(332, NULL, '18', NULL, '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(333, NULL, '18', NULL, '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(334, NULL, '18', NULL, '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(335, NULL, '18', NULL, '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(336, NULL, '19', NULL, '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(337, NULL, '19', NULL, '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(338, NULL, '19', NULL, '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(339, NULL, '19', NULL, '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(340, NULL, '20', NULL, '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(341, NULL, '20', NULL, '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(342, NULL, '20', NULL, '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(343, NULL, '20', NULL, '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(344, NULL, NULL, '1', '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(345, NULL, NULL, '2', '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(346, NULL, NULL, '3', '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(347, NULL, NULL, '4', '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(349, NULL, NULL, '6', '2', 'view', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(350, NULL, NULL, '1', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(351, NULL, NULL, '2', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(352, NULL, NULL, '3', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(353, NULL, NULL, '4', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(354, NULL, NULL, '5', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(355, NULL, NULL, '6', '2', 'create', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(356, NULL, NULL, '1', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(357, NULL, NULL, '2', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(358, NULL, NULL, '3', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(359, NULL, NULL, '4', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(360, NULL, NULL, '5', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(361, NULL, NULL, '6', '2', 'update', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(362, NULL, NULL, '1', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(363, NULL, NULL, '2', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(364, NULL, NULL, '3', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(365, NULL, NULL, '4', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(366, NULL, NULL, '5', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(367, NULL, NULL, '6', '2', 'delete', '2022-11-24 06:04:11', '2022-11-24 06:04:11'),
+(368, '1667444041', NULL, NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(369, '1667444041', NULL, NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(370, '1667444041', NULL, NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(371, '1667444041', NULL, NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(372, '1668509889', NULL, NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(373, '1668509889', NULL, NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(374, '1668509889', NULL, NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(375, '1668509889', NULL, NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(376, '1668510437', NULL, NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(377, '1668510437', NULL, NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(378, '1668510437', NULL, NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(379, '1668510437', NULL, NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(381, '1668510568', NULL, NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(382, '1668510568', NULL, NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(383, '1668510568', NULL, NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(384, NULL, '9', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(385, NULL, '9', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(386, NULL, '9', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(387, NULL, '9', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(392, NULL, '17', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(393, NULL, '17', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(394, NULL, '17', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(395, NULL, '17', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(396, NULL, '10', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(397, NULL, '10', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(398, NULL, '10', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(399, NULL, '10', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(404, NULL, '18', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(405, NULL, '18', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(406, NULL, '18', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(407, NULL, '18', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(408, NULL, '19', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(409, NULL, '19', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(410, NULL, '19', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(411, NULL, '19', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(412, NULL, '20', NULL, '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(413, NULL, '20', NULL, '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(414, NULL, '20', NULL, '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(415, NULL, '20', NULL, '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(417, NULL, NULL, '2', '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(418, NULL, NULL, '3', '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(419, NULL, NULL, '4', '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(420, NULL, NULL, '5', '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(421, NULL, NULL, '6', '3', 'view', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(422, NULL, NULL, '1', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(423, NULL, NULL, '2', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(424, NULL, NULL, '3', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(425, NULL, NULL, '4', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(426, NULL, NULL, '5', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(427, NULL, NULL, '6', '3', 'create', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(428, NULL, NULL, '1', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(429, NULL, NULL, '2', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(430, NULL, NULL, '3', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(431, NULL, NULL, '4', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(432, NULL, NULL, '5', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(433, NULL, NULL, '6', '3', 'update', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(434, NULL, NULL, '1', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(435, NULL, NULL, '2', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(436, NULL, NULL, '3', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(437, NULL, NULL, '4', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(438, NULL, NULL, '5', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(439, NULL, NULL, '6', '3', 'delete', '2022-11-24 06:08:11', '2022-11-24 06:08:11'),
+(444, '1669390641', NULL, NULL, '2', 'view', '2022-11-25 08:38:23', '2022-11-25 08:38:23'),
+(445, '1669390641', NULL, NULL, '2', 'create', '2022-11-25 08:38:31', '2022-11-25 08:38:31'),
+(446, '1669390641', NULL, NULL, '2', 'update', '2022-11-25 08:38:31', '2022-11-25 08:38:31'),
+(447, '1669390641', NULL, NULL, '2', 'delete', '2022-11-25 08:38:32', '2022-11-25 08:38:32'),
+(448, '1669390641', NULL, NULL, '3', 'view', '2022-11-25 08:38:49', '2022-11-25 08:38:49'),
+(449, '1669390641', NULL, NULL, '3', 'create', '2022-11-25 08:38:55', '2022-11-25 08:38:55'),
+(450, '1669390641', NULL, NULL, '3', 'update', '2022-11-25 08:38:55', '2022-11-25 08:38:55'),
+(451, '1669390641', NULL, NULL, '3', 'delete', '2022-11-25 08:38:57', '2022-11-25 08:38:57'),
+(464, NULL, '21', NULL, '2', 'view', '2022-11-30 05:58:28', '2022-11-30 05:58:28'),
+(465, NULL, '22', NULL, '2', 'view', '2022-11-30 05:58:29', '2022-11-30 05:58:29'),
+(466, NULL, '23', NULL, '2', 'view', '2022-11-30 05:58:31', '2022-11-30 05:58:31'),
+(467, NULL, '21', NULL, '2', 'create', '2022-11-30 05:59:04', '2022-11-30 05:59:04'),
+(468, NULL, '21', NULL, '2', 'update', '2022-11-30 05:59:05', '2022-11-30 05:59:05'),
+(469, NULL, '21', NULL, '2', 'delete', '2022-11-30 05:59:06', '2022-11-30 05:59:06'),
+(470, NULL, '22', NULL, '2', 'delete', '2022-11-30 05:59:07', '2022-11-30 05:59:07'),
+(471, NULL, '22', NULL, '2', 'update', '2022-11-30 05:59:08', '2022-11-30 05:59:08'),
+(472, NULL, '22', NULL, '2', 'create', '2022-11-30 05:59:09', '2022-11-30 05:59:09'),
+(473, NULL, '23', NULL, '2', 'create', '2022-11-30 05:59:10', '2022-11-30 05:59:10'),
+(474, NULL, '23', NULL, '2', 'update', '2022-11-30 05:59:11', '2022-11-30 05:59:11'),
+(475, NULL, '23', NULL, '2', 'delete', '2022-11-30 05:59:12', '2022-11-30 05:59:12'),
+(476, NULL, '21', NULL, '3', 'view', '2022-11-30 05:59:47', '2022-11-30 05:59:47'),
+(477, NULL, '22', NULL, '3', 'view', '2022-11-30 05:59:48', '2022-11-30 05:59:48'),
+(478, NULL, '23', NULL, '3', 'view', '2022-11-30 05:59:48', '2022-11-30 05:59:48'),
+(479, NULL, '21', NULL, '3', 'create', '2022-11-30 06:00:24', '2022-11-30 06:00:24'),
+(480, NULL, '21', NULL, '3', 'update', '2022-11-30 06:00:25', '2022-11-30 06:00:25'),
+(481, NULL, '21', NULL, '3', 'delete', '2022-11-30 06:00:26', '2022-11-30 06:00:26'),
+(482, NULL, '22', NULL, '3', 'delete', '2022-11-30 06:00:27', '2022-11-30 06:00:27'),
+(483, NULL, '22', NULL, '3', 'update', '2022-11-30 06:00:28', '2022-11-30 06:00:28'),
+(484, NULL, '22', NULL, '3', 'create', '2022-11-30 06:00:29', '2022-11-30 06:00:29'),
+(485, NULL, '23', NULL, '3', 'create', '2022-11-30 06:00:30', '2022-11-30 06:00:30'),
+(486, NULL, '23', NULL, '3', 'update', '2022-11-30 06:00:30', '2022-11-30 06:00:30'),
+(487, NULL, '23', NULL, '3', 'delete', '2022-11-30 06:00:31', '2022-11-30 06:00:31'),
+(488, '1667444041', NULL, NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(489, '1667444041', NULL, NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(490, '1667444041', NULL, NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(491, '1667444041', NULL, NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(493, '1668509889', NULL, NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(494, '1668509889', NULL, NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(495, '1668509889', NULL, NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(497, '1669390641', NULL, NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(498, '1669390641', NULL, NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(499, '1669390641', NULL, NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(501, '1668510437', NULL, NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(502, '1668510437', NULL, NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(503, '1668510437', NULL, NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(504, '1668510568', NULL, NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(505, '1668510568', NULL, NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(506, '1668510568', NULL, NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(507, '1668510568', NULL, NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(508, NULL, '9', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(509, NULL, '9', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(510, NULL, '9', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(511, NULL, '9', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(512, NULL, '17', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(513, NULL, '17', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(514, NULL, '17', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(515, NULL, '17', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(516, NULL, '21', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(517, NULL, '21', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(518, NULL, '21', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(519, NULL, '21', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(520, NULL, '10', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(521, NULL, '10', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(522, NULL, '10', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(523, NULL, '10', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(524, NULL, '18', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(525, NULL, '18', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(526, NULL, '18', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(527, NULL, '18', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(528, NULL, '22', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(529, NULL, '22', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(530, NULL, '22', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(531, NULL, '22', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(532, NULL, '19', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(533, NULL, '19', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(534, NULL, '19', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(535, NULL, '19', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(536, NULL, '23', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(537, NULL, '23', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(538, NULL, '23', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(539, NULL, '23', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(540, NULL, '20', NULL, '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(541, NULL, '20', NULL, '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(542, NULL, '20', NULL, '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(543, NULL, '20', NULL, '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(545, NULL, NULL, '2', '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(546, NULL, NULL, '3', '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(547, NULL, NULL, '4', '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(548, NULL, NULL, '5', '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(549, NULL, NULL, '6', '4', 'view', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(550, NULL, NULL, '1', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(551, NULL, NULL, '2', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(552, NULL, NULL, '3', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(553, NULL, NULL, '4', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(554, NULL, NULL, '5', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(555, NULL, NULL, '6', '4', 'create', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(556, NULL, NULL, '1', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(557, NULL, NULL, '2', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(558, NULL, NULL, '3', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(559, NULL, NULL, '4', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(560, NULL, NULL, '5', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(561, NULL, NULL, '6', '4', 'update', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(562, NULL, NULL, '1', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(563, NULL, NULL, '2', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(564, NULL, NULL, '3', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(565, NULL, NULL, '4', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(566, NULL, NULL, '5', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
+(567, NULL, NULL, '6', '4', 'delete', '2022-12-06 02:34:31', '2022-12-06 02:34:31'),
 (568, '1668510568', NULL, NULL, '3', 'view', '2024-07-17 05:40:12', '2024-07-17 05:40:12'),
 (652, '1667444041', NULL, NULL, '1', 'view', '2024-07-22 18:50:52', '2024-07-22 18:50:52'),
 (653, '1667444041', NULL, NULL, '1', 'create', '2024-07-22 18:50:52', '2024-07-22 18:50:52'),
@@ -197,7 +447,7 @@ INSERT INTO `tbl_akses` (`akses_id`, `menu_id`, `submenu_id`, `othermenu_id`, `r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_appreance`
+-- Struktur dari tabel `tbl_appreance`
 --
 
 CREATE TABLE `tbl_appreance` (
@@ -210,10 +460,10 @@ CREATE TABLE `tbl_appreance` (
   `appreance_sidestyle` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_appreance`
+-- Dumping data untuk tabel `tbl_appreance`
 --
 
 INSERT INTO `tbl_appreance` (`appreance_id`, `user_id`, `appreance_layout`, `appreance_theme`, `appreance_menu`, `appreance_header`, `appreance_sidestyle`, `created_at`, `updated_at`) VALUES
@@ -222,11 +472,80 @@ INSERT INTO `tbl_appreance` (`appreance_id`, `user_id`, `appreance_layout`, `app
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_barang`
+-- Struktur dari tabel `tbl_bagian`
+--
+
+CREATE TABLE `tbl_bagian` (
+  `id_bagian` bigint(20) UNSIGNED NOT NULL,
+  `nama_bagian` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `tbl_bagian`
+--
+
+INSERT INTO `tbl_bagian` (`id_bagian`, `nama_bagian`, `created_at`, `updated_at`) VALUES
+(1, 'Distrik Petani Mitra', NULL, NULL),
+(2, 'Kebun Sei Galuh', NULL, NULL),
+(3, 'Kebun Sei Garo', NULL, NULL),
+(4, 'Kebun Sei Pagar', NULL, NULL),
+(5, 'Kebun Tanjung Medan', NULL, NULL),
+(6, 'Kebun Tanah Putih', NULL, NULL),
+(7, 'TBS Sei Garo', NULL, NULL),
+(8, 'TBS Tanah Putih', NULL, NULL),
+(9, 'Kebun Lubuk Dalam', NULL, NULL),
+(10, 'Kebun Sei Buatan', NULL, NULL),
+(11, 'Kebun AirMolek 1', NULL, NULL),
+(12, 'Kebun AirMolek II', NULL, NULL),
+(13, 'TBS Sei Buatan', NULL, NULL),
+(14, 'Kebun Tandan', NULL, NULL),
+(15, 'Kebun Terantam', NULL, NULL),
+(16, 'Kebun Sei Kencana', NULL, NULL),
+(17, 'Kebun Sei Lindai', NULL, NULL),
+(18, 'Kebun Tamora', NULL, NULL),
+(19, 'Kebun Sei Batulangkah', NULL, NULL),
+(20, 'Kebun Sei Rokan', NULL, NULL),
+(21, 'Kebun Sei Intan', NULL, NULL),
+(22, 'Kebun Sei Siasam', NULL, NULL),
+(23, 'Kebun Sei Tapung', NULL, NULL),
+(24, 'Kebun Sei Berlian', NULL, NULL),
+(25, 'TBS Sei Tapung', NULL, NULL),
+(26, 'PKS Tanah Putih', NULL, NULL),
+(27, 'PKS Tjg Medan', NULL, NULL),
+(28, 'PKS Sei Galuh', NULL, NULL),
+(29, 'PKS Sei Pagar', NULL, NULL),
+(30, 'PKS Sei Garo', NULL, NULL),
+(31, 'PKS Sei Buatan', NULL, NULL),
+(32, 'PKS Lubuk Dalam', NULL, NULL),
+(33, 'PKS Tandan', NULL, NULL),
+(34, 'PKS Terantam', NULL, NULL),
+(35, 'PKS Sei Tapung', NULL, NULL),
+(36, 'PKS Sei Rokan', NULL, NULL),
+(37, 'PKS Sei Intan', NULL, NULL),
+(38, 'PKO Tandan', NULL, NULL),
+(39, 'PPKR Sei Lindai', NULL, NULL),
+(40, 'PPKR B.Selasih', NULL, NULL),
+(41, 'Hukum', NULL, NULL),
+(42, 'Keuangan', NULL, NULL),
+(43, 'PT. Nusa Lima Medika', NULL, NULL),
+(44, 'Pengadaan dan Teknologi Informasi', NULL, NULL),
+(45, 'Project Management Office', NULL, NULL),
+(46, 'Sumber Daya Manusia', NULL, NULL),
+(47, 'Satuan Pengawasan Internal', NULL, NULL),
+(48, 'Sekretariat Perusahaan', NULL, NULL),
+(49, 'Teknik dan Pengolahan', NULL, NULL),
+(50, 'Tanaman', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_barang`
 --
 
 CREATE TABLE `tbl_barang` (
-  `barang_id` int(255) NOT NULL,
+  `barang_id` int(11) NOT NULL,
   `jenisbarang_id` varchar(255) DEFAULT NULL,
   `satuan_id` varchar(255) DEFAULT NULL,
   `lokasi_id` varchar(255) DEFAULT NULL,
@@ -238,25 +557,201 @@ CREATE TABLE `tbl_barang` (
   `barang_gambar` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_barang`
+-- Dumping data untuk tabel `tbl_barang`
 --
 
 INSERT INTO `tbl_barang` (`barang_id`, `jenisbarang_id`, `satuan_id`, `lokasi_id`, `barang_kode`, `barang_nama`, `barang_slug`, `barang_jumlah`, `barang_stok`, `barang_gambar`, `created_at`, `updated_at`) VALUES
-(7, '12', '5', '2', 'BRG-1721217257018', 'Printer', 'printer', '33', '0', 'hE5SiWE4hFGk8wzjv1aEVOxxDf0LUpgf75KkLYTA.jpg', '2024-07-17 04:54:40', '2024-07-17 04:54:40'),
-(8, '11', '7', '7', 'BRG-1721273721761', 'Hp Samsung', 'hp-samsung', '6', '23', 'icoNiwTHktrxzZal15OAofeYtJV4PJ4eYPYyuzwW.jpg', '2024-07-17 20:35:43', '2024-07-17 20:37:21'),
-(9, '11', '7', '2', 'BRG-1721288827193', 'Printer Mini', 'printer-mini', '30', '30', 'image.png', '2024-07-18 00:47:45', '2024-07-18 00:49:23'),
-(10, '12', '5', '1', 'BRG-1721288884873', 'Laptop Asus', 'laptop-asus', '1', '0', 'image.png', '2024-07-18 00:48:31', '2024-07-18 00:48:31'),
-(11, '12', '5', '1', 'BRG-1721291560972', 'Laptop HP', 'laptop-hp', '1', '0', 'image.png', '2024-07-18 01:32:54', '2024-07-18 01:32:54'),
-(13, '11', '7', '2', 'BRG-1721792031094', 'Hp', 'hp', '2', '0', 'image.png', '2024-07-23 20:34:03', '2024-07-23 20:34:03'),
-(14, '13', '5', '7', 'BRG-1721805262779', 'Hp', 'hp', '344', '0', 'RZGrBv9CyBjyQyzP51McYhAs9q9bcnkFJ2rPDb3L.jpg', '2024-07-24 00:14:51', '2024-07-25 18:45:32');
+(29, '17', '5', '10', 'BRG-1728370457841', 'Dell 3BJHL44', 'dell-3bjhl44', '1', '0', 'VTeHnS1L62Qc0P0uMoedh9Vy3OzV96cyCpztqHx2.jpg', '2024-10-08 00:03:54', '2024-10-08 00:05:11'),
+(30, '17', '5', '10', 'BRG-1728370536198', 'Dell DFJHL44', 'dell-dfjhl44', '1', '0', 'oL8cRNJGLxlCdQLd3vxXRmTuhzw4DlU9ldL5MFYT.jpg', '2024-10-08 00:05:02', '2024-10-08 00:07:35'),
+(31, '17', '5', '10', 'BRG-1728371163934', 'Dell CFJHL44', 'dell-cfjhl44', '1', '0', 'XXuJ9fWMD5oRMB8OJ9T2ezJBKkFdKMPMUWgpWaPy.jpg', '2024-10-08 00:06:43', '2024-10-08 00:06:43'),
+(32, '17', '5', '10', 'BRG-1728371160412', 'Dell DCJHL44', 'dell-dcjhl44', '1', '0', 'i9THI4ie7umkXix8L7m1aH4Kqt03Mqmlh0CC2lEi.jpg', '2024-10-08 00:06:47', '2024-10-08 00:06:47'),
+(33, '17', '5', '10', 'BRG-1728371141812', 'Dell F9JHL44', 'dell-f9jhl44', '1', '0', 'UUH93TrW7LQYZxdw1CZOHpyfiJDWVG9BQr8lnAD4.jpg', '2024-10-08 00:07:03', '2024-10-08 00:07:49'),
+(34, '17', '5', '10', 'BRG-1728371321455', 'Dell 4CJHL44', 'dell-4cjhl44', '1', '0', 'q6B5Z72gNMVgTSVurdERge9FKB2uZkobPWcdtS2o.jpg', '2024-10-08 00:09:44', '2024-10-08 00:09:44'),
+(35, '17', '5', '10', 'BRG-1728371335148', 'Dell 5DJHL44', 'dell-5djhl44', '1', '0', 'PXZTIn4zKe9eVAA9CufBK4vuxAr9yjcohBXQAGWy.jpg', '2024-10-08 00:10:49', '2024-10-08 00:10:49'),
+(36, '17', '5', '10', 'BRG-1728371407279', 'Dell 6R48B44', 'dell-6r48b44', '1', '0', 'rS5OBX0wrkuLFdAtTGLhta17PkD7YNBLOCB0xutZ.jpg', '2024-10-08 00:10:57', '2024-10-08 00:10:57'),
+(37, '17', '5', '10', 'BRG-1728371409143', 'Dell 7FJHL44', 'dell-7fjhl44', '1', '0', '8ljnpbwKzXP43OslEgOzpBkiE5BydHAhQCBeDUmm.jpg', '2024-10-08 00:11:13', '2024-10-08 00:11:13'),
+(38, '17', '5', '10', 'BRG-1728371205343', 'Dell 7CJHL44', 'dell-7cjhl44', '1', '0', '5gecXir71zCJIo1UWU1Utr7u6kAdSGJJQ5PjNS7K.jpg', '2024-10-08 00:11:38', '2024-10-08 00:11:38'),
+(39, '17', '5', '10', 'BRG-1728370986609', 'Dell 39JHL44', 'dell-39jhl44', '1', '0', 'hcPiWeOK4Bhw15CU4JIrX420Hy457hYQQUGzzO7m.jpg', '2024-10-08 00:11:50', '2024-10-08 00:11:50'),
+(40, '17', '5', '10', 'BRG-1728371479100', 'Dell 9CJHL44', 'dell-9cjhl44', '1', '0', 'PlyG8ny7YWzrrf8nvUIyJfug4ZMJGNwQJGDqzq9D.jpg', '2024-10-08 00:12:22', '2024-10-08 00:12:22'),
+(41, '17', '5', '10', 'BRG-1728371553634', 'Dell 5GJHL44', 'dell-5gjhl44', '1', '0', 'ZK3fvKt4ldUAZA3bhFtWEpTZPFVMIAzxaL3tUYyZ.jpg', '2024-10-08 00:16:38', '2024-10-08 00:16:38'),
+(42, '17', '5', '10', 'BRG-1728371761072', 'Dell 5BJHL44', 'dell-5bjhl44', '1', '0', 'SB8I27AoZ3rOzP6ywQbB36fFUIDZkZPYvnm3Mw0v.jpg', '2024-10-08 00:16:45', '2024-10-08 00:16:45'),
+(43, '17', '5', '10', 'BRG-1728371737041', 'Dell B9JHL44', 'dell-b9jhl44', '1', '0', 'J7PPjMJWHRgXIrA9miDHQYQZtFVuV7wzclP2WCsT.jpg', '2024-10-08 00:16:56', '2024-10-08 00:16:56'),
+(44, '17', '5', '10', 'BRG-1728371768490', 'Dell 4DJHL44', 'dell-4djhl44', '1', '0', 'SjEhk35hJabZy8PjXkeXKwkG2ClhRMaPZ7uf63KR.jpg', '2024-10-08 00:16:56', '2024-10-08 00:16:56'),
+(45, '17', '5', '10', 'BRG-1728371738427', 'Dell 7Q48B44', 'dell-7q48b44', '1', '0', 'ieqWxxK9xIpHhAJoSe66fnwZKUOAcZ7y25qJZ7sI.jpg', '2024-10-08 00:17:03', '2024-10-08 00:17:03'),
+(46, '17', '5', '10', 'BRG-1728371760741', 'Dell 2FJHL44', 'dell-2fjhl44', '1', '0', '4W9cwIEZWnIn37xboowC4s6uMQgaQVTF6jlGruWg.jpg', '2024-10-08 00:17:15', '2024-10-08 00:17:15'),
+(47, '17', '5', '10', 'BRG-1728371806739', 'Dell 5CJHL44', 'dell-5cjhl44', '1', '0', 'JPlt0JZDnCqOiHGNlSneNLFOaCyt1pCmoDySHbC7.jpg', '2024-10-08 00:17:28', '2024-10-08 00:17:28'),
+(48, '17', '5', '10', 'BRG-1728371890473', 'Dell 3R48B44', 'dell-3r48b44', '1', '0', 'E3HldZSbYcoVPNmGTfmjIitBJu5hEmkslPkkDMFr.jpg', '2024-10-08 00:18:47', '2024-10-08 00:18:47'),
+(49, '17', '5', '10', 'BRG-1728371837116', 'Dell 6DJHL44', 'dell-6djhl44', '1', '0', 'hHJtjhlNNJTP2XOQo43n6wvkr7e7bqbJwpkKzyTo.jpg', '2024-10-08 00:19:22', '2024-10-08 00:19:22'),
+(50, '17', '5', '10', 'BRG-1728371930232', 'Dell 2P48B44', 'dell-2p48b44', '1', '0', 'eB2M3jqulaoCrc5Mccnqi37qYcJMz7FIBTSta8d9.jpg', '2024-10-08 00:20:33', '2024-10-08 00:20:33'),
+(51, '17', '5', '10', 'BRG-1728371872112', 'Dell JS48B44', 'dell-js48b44', '1', '0', 'neBwJUEeBA7IgRAwrdb375klYuDu69CrCOfZFDRN.jpg', '2024-10-08 00:20:34', '2024-10-08 00:20:34'),
+(52, '17', '5', '10', 'BRG-1728371929080', 'Dell FT48B44', 'dell-ft48b44', '1', '0', 'q6UuwAAx3CqNi4y5jIeHisjyrzBvUQct4e6dDo4v.jpg', '2024-10-08 00:20:48', '2024-10-08 00:20:48'),
+(53, '17', '5', '10', 'BRG-1728371886037', 'Dell 6FJHL44', 'dell-6fjhl44', '1', '0', 'z5YUvLseoVHFhFSsoNtDlruhxXu8QLghFtxvnpCS.jpg', '2024-10-08 00:20:51', '2024-10-08 00:20:51'),
+(54, '17', '5', '10', 'BRG-1728372030105', 'Dell 9FJHL44', 'dell-9fjhl44', '1', '0', 'cbWwM48y8qI3CwHlu7abXHkC9TvI9lXmwrWtqHqS.jpg', '2024-10-08 00:21:08', '2024-10-08 00:21:08'),
+(55, '17', '5', '10', 'BRG-1728371873374', 'Dell FDJHL44', 'dell-fdjhl44', '1', '0', 'IuZgcnT0QsTNTEAE9u7RPLTdshFZWUiCHzUG4A0A.jpg', '2024-10-08 00:21:24', '2024-10-08 00:21:24'),
+(56, '17', '5', '10', 'BRG-1728372077348', 'Dell C9JHL44', 'dell-c9jhl44', '1', '0', '7SzZcoFnNpS2n5O4lGBmKgOthcs5tBGV4Qt0Jdc4.jpg', '2024-10-08 00:22:05', '2024-10-08 00:22:05'),
+(57, '17', '5', '10', 'BRG-1728372036760', 'Dell 99JHL44', 'dell-99jhl44', '1', '0', 'dFzPwMYfMIBrMPO1IsGXFbPNWQqliMl6EUhL4GRV.jpg', '2024-10-08 00:22:58', '2024-10-08 00:22:58'),
+(58, '17', '5', '10', 'BRG-1728372037778', 'Dell BQ48B44', 'dell-bq48b44', '1', '0', 'S8bhrjmhXMHv5b03v6AEj9Ijwqx67WtKV0u9ooUl.jpg', '2024-10-08 00:22:59', '2024-10-08 00:22:59'),
+(59, '17', '5', '10', 'BRG-1728372167445', 'Dell 8DJHL44', 'dell-8djhl44', '1', '0', 'HJKYcvAs28VMtxDgp8uQpQ4qXFXdDLjZUvECT80d.jpg', '2024-10-08 00:23:19', '2024-10-08 00:23:19'),
+(60, '17', '5', '10', 'BRG-1728372211489', 'Dell 9T48B44', 'dell-9t48b44', '1', '0', 'xp4n6Jb5HB7QOxfMRfS9BjEeO0pFrmYE1VMzwFJk.jpg', '2024-10-08 00:25:00', '2024-10-08 00:25:00'),
+(61, '17', '5', '10', 'BRG-1728372271546', 'Dell 9BJHL44', 'dell-9bjhl44', '1', '0', 'RmsSJDh1d9tgHJcvevDBchpNPgBcb4G7NYIkmKOp.jpg', '2024-10-08 00:25:09', '2024-10-08 00:25:09'),
+(62, '17', '5', '10', 'BRG-1728372133808', 'Dell 1DJHL44', 'dell-1djhl44', '1', '0', 'f6umI40pTY2oIOoUJ8JJtlpRirWASs72HbpqZX9c.jpg', '2024-10-08 00:25:17', '2024-10-08 00:25:17'),
+(63, '17', '5', '10', 'BRG-1728372332919', 'Dell CCJHL44', 'dell-ccjhl44', '1', '0', '6aRo3NsC80OXx1HN93V8yVrHLS4DC6gIugPGB7iG.jpg', '2024-10-08 00:26:02', '2024-10-08 00:26:02'),
+(64, '17', '5', '10', 'BRG-1728372194374', 'Dell HFJHL44', 'dell-hfjhl44', '1', '0', 'KcKqenOBqTz4s3vUe74j58OxxY3LaD83NEW8nv6L.jpg', '2024-10-08 00:26:03', '2024-10-08 00:26:03'),
+(65, '17', '5', '10', 'BRG-1728372331915', 'Dell 6CJHL44', 'dell-6cjhl44', '1', '0', 'V51y6zOFE1QvngWoPcmhqYQmfXmtIdFUPnEvKKSX.jpg', '2024-10-08 00:26:07', '2024-10-08 00:26:07'),
+(66, '17', '5', '10', 'BRG-1728372338521', 'Dell  8CJHL44', 'dell-8cjhl44', '1', '0', 'CUlF8rj3KdH4Tlv5oBPESdmKxavWcS4D0raFjqLa.jpg', '2024-10-08 00:26:09', '2024-10-08 00:26:09'),
+(67, '17', '5', '10', 'BRG-1728372054355', 'Del 1GJHL44', 'del-1gjhl44', '1', '0', 'CCFghf8mHshXLshJmzNbzYQCNXMGP7hMtHhfe5Zv.jpg', '2024-10-08 00:26:15', '2024-10-08 00:26:15'),
+(68, '17', '5', '10', 'BRG-1728372344910', 'Dell BDJHL44', 'dell-bdjhl44', '1', '0', 'JMbiwCtCcZGJTbmANxAudX7kW8xZLelbPmjTpDLo.jpg', '2024-10-08 00:26:15', '2024-10-08 00:26:15'),
+(69, '17', '5', '10', 'BRG-1728372381299', 'Dell 7V48B44', 'dell-7v48b44', '1', '0', 'KjVhzwI1m82OpjavbMdX5LJcCz8utptbW5T3cnMt.jpg', '2024-10-08 00:27:56', '2024-10-08 00:27:56'),
+(70, '17', '5', '10', 'BRG-1728372404560', 'Dell BN48B44', 'dell-bn48b44', '1', '0', 'GqUEHSY9umJVVGUNzHJiCcv27KgIf6cRyaJO6JwE.jpg', '2024-10-08 00:28:07', '2024-10-08 00:28:07'),
+(71, '17', '5', '10', 'BRG-1728372462898', 'Dell 89JHL44', 'dell-89jhl44', '1', '0', '1rly21aEWdFWos6TLYGxNFbmcDHs4eq3KfuTPS1Q.jpg', '2024-10-08 00:28:32', '2024-10-08 00:28:32'),
+(72, '17', '5', '10', 'BRG-1728372464854', 'Dell 2GJHL44', 'dell-2gjhl44', '1', '0', 'nDp36yTtuThYHnMvjMfF2gEUthfUrHjLhWiqSIKT.jpg', '2024-10-08 00:28:38', '2024-10-08 00:28:38'),
+(73, '17', '5', '10', 'BRG-1728372480128', 'Dell HCJHL44', 'dell-hcjhl44', '1', '0', '8yZpt1CVL9jLT44SqWnuHNzs2FpGNNGO4UD6geE6.jpg', '2024-10-08 00:29:35', '2024-10-08 00:29:35'),
+(74, '17', '5', '10', 'BRG-1728372533441', 'Dell HT48B44', 'dell-ht48b44', '1', '0', '6KQr6KyrYAlCmswLMPE5LVaWdnQOyRU3J4A2GAnR.jpg', '2024-10-08 00:29:37', '2024-10-08 00:29:37'),
+(75, '17', '5', '10', 'BRG-1728372544898', 'Dell 4T48B44', 'dell-4t48b44', '1', '0', '3CGnP5PQ88m5b1LYF8TRWzSdCw1ZyHQdFDB4m6ft.jpg', '2024-10-08 00:29:39', '2024-10-08 00:29:39'),
+(76, '17', '5', '10', 'BRG-1728372553064', 'Dell 9V48B44', 'dell-9v48b44', '1', '0', 'kkuaQ804YM0UdDWcSJpAhhxzhNtYpwS7TJfesK1V.jpg', '2024-10-08 00:29:52', '2024-10-08 00:29:52'),
+(77, '17', '5', '10', 'BRG-1728372382094', 'Dell 9R48B44', 'dell-9r48b44', '1', '0', 'XYdabDaIEojAZ69HGSh1wTZr9CzdzDTylBJBHofX.jpg', '2024-10-08 00:29:56', '2024-10-08 00:29:56'),
+(78, '17', '5', '10', 'BRG-1728372538222', 'Dell 6T48B44', 'dell-6t48b44', '1', '0', 'CrzAoHIxmesTZ7OXnxIIr0f0j208rHXD3eWqBOWk.jpg', '2024-10-08 00:29:58', '2024-10-08 00:29:58'),
+(79, '17', '5', '10', 'BRG-1728372579625', 'Dell GV48B44', 'dell-gv48b44', '1', '0', 'VVeUjwOhRxTtwGuQHt2aG6J5ZG8Zaa0B0Ll3bZ4s.jpg', '2024-10-08 00:32:11', '2024-10-08 00:32:11'),
+(80, '17', '5', '10', 'BRG-1728372706483', 'Dell 1R48B44', 'dell-1r48b44', '1', '0', 'Gb6D06GMTdaRR1TNFNXl5aoGBA5AqP2jAVm3iJNx.jpg', '2024-10-08 00:32:20', '2024-10-08 00:32:20'),
+(81, '17', '5', '10', 'BRG-1728372711437', 'Dell FQ48B44', 'dell-fq48b44', '1', '0', '0FMq8oBTFQuYKsvYxmcCtuO7bSK5xkOFzuu1GfFn.jpg', '2024-10-08 00:32:24', '2024-10-08 00:32:24'),
+(82, '17', '5', '10', 'BRG-1728372600010', 'Dell 8BJHL44', 'dell-8bjhl44', '1', '0', 'cXIqXK6odM71EfkE3RZ1wrCvZBLX9LdXxmd5SR7I.jpg', '2024-10-08 00:32:33', '2024-10-08 00:32:33'),
+(83, '17', '5', '10', 'BRG-1728372649173', 'Dell FP48B44', 'dell-fp48b44', '1', '0', 'hTDc1WjpzniwdeojmuOdYkKLqI4kYpNrB4LvXzlS.jpg', '2024-10-08 00:32:55', '2024-10-08 00:32:55'),
+(84, '17', '5', '10', 'BRG-1728372762031', 'Dell 8S48B44', 'dell-8s48b44', '1', '0', '8Ub4UBT3BQ5QSSzDZgXMHM9J2bXYqVUqiDWm5tN6.jpg', '2024-10-08 00:33:23', '2024-10-08 00:33:23'),
+(85, '17', '5', '10', 'BRG-1728372790476', 'Dell 4R48B44', 'dell-4r48b44', '1', '0', 'MpZVL9K7ihu6x0CgbVzSKixDKNZtV7S4xGqTkEUw.jpg', '2024-10-08 00:34:05', '2024-10-08 00:34:05'),
+(86, '17', '5', '10', 'BRG-1728372815375', 'Dell HR48B44', 'dell-hr48b44', '1', '0', 'X5wRKCc5YodyWbeQXvKHLhNc2yHnqeCNIX9QL5mO.jpg', '2024-10-08 00:34:09', '2024-10-08 00:34:09'),
+(87, '17', '5', '10', 'BRG-1728372830177', 'Dell GS48B44', 'dell-gs48b44', '1', '0', 'gk9993YpjdjVncbQGxnP1WVRgyzbn9ItkF11Q5id.jpg', '2024-10-08 00:34:29', '2024-10-08 00:34:29'),
+(88, '17', '5', '10', 'BRG-1728372756618', 'Dell FV48B44', 'dell-fv48b44', '1', '0', 'RkCjzq5OkDVHCLMoelT1M6hgZkHVuLMMSAEuykGg.jpg', '2024-10-08 00:34:49', '2024-10-08 00:34:49'),
+(89, '17', '5', '10', 'BRG-1728372842704', 'Dell GDJHL44', 'dell-gdjhl44', '1', '0', 'ciGp7M1cwV0XLqBat1KKDNdjUxAstGydZFHeSv6g.jpg', '2024-10-08 00:34:50', '2024-10-08 00:34:50'),
+(90, '17', '5', '10', 'BRG-1728372849332', 'Dell 4FJHL44', 'dell-4fjhl44', '1', '0', 'wQaD2b1d1Hwfr5YnNWNV0H3G5CFE6XL5ktyz9RQW.jpg', '2024-10-08 00:35:08', '2024-10-08 00:35:08'),
+(91, '17', '5', '10', 'BRG-1728373025147', 'Dell 2BJHL44', 'dell-2bjhl44', '1', '0', 'pHNDN3W70ZXHSntm6xIiAtktaDDSt3nyo7HSIi2q.jpg', '2024-10-08 00:37:42', '2024-10-08 00:37:42'),
+(92, '17', '5', '10', 'BRG-1728374369707', 'Dell 59JHL44', 'dell-59jhl44', '1', '0', 'vVxnADrlmg8bFCQwyAlvlSSUb8bdUc32oN2hhCy2.jpg', '2024-10-08 01:00:06', '2024-10-08 01:00:06'),
+(93, '17', '5', '10', 'BRG-1728374386967', 'Dell 1S48B44', 'dell-1s48b44', '1', '0', 'KIboTbG5mA0YFJ2nnMF5p5B5nStlUyX6v5yMeN7q.jpg', '2024-10-08 01:00:26', '2024-10-08 01:00:26'),
+(94, '17', '5', '10', 'BRG-1728374360783', 'Dell 4V48B44', 'dell-4v48b44', '1', '0', 'iRbkPXUjPTP1gScj6PaZegsS7UJ8zYy5HCtWyAAz.jpg', '2024-10-08 01:00:30', '2024-10-08 01:00:30'),
+(95, '17', '5', '10', 'BRG-1728372747957', 'Dell 1P48B44', 'dell-1p48b44', '1', '0', 'MnpkWqkVzAltMwT80puL7uiLRPo9ZFYTqvcybvaH.jpg', '2024-10-08 01:00:51', '2024-10-08 01:00:51'),
+(96, '17', '5', '10', 'BRG-1728374415274', 'Dell CN48B44', 'dell-cn48b44', '1', '0', '6K1xTPfbukqBEmGcIUnpRiAN8AlAonySnc93yz1m.jpg', '2024-10-08 01:01:19', '2024-10-08 01:01:19'),
+(97, '17', '5', '10', 'BRG-1728374448307', 'Dell 5V48B44', 'dell-5v48b44', '1', '0', '30xlHTyvsWNNmikXvI0ohsCeYZNOAExMFJBvgPuw.jpg', '2024-10-08 01:01:22', '2024-10-08 01:01:22'),
+(98, '17', '5', '10', 'BRG-1728374453979', 'Dell CT48B44', 'dell-ct48b44', '1', '0', 'TZ2DRqTseLrDi2pM8wT7x3LV598ykJhUEA6irlDD.jpg', '2024-10-08 01:01:34', '2024-10-08 01:01:34'),
+(99, '17', '5', '10', 'BRG-1728374466188', 'Dell 8Q48B44', 'dell-8q48b44', '1', '0', 'cv16nBuawnDIiiSB3KmGAPkD4PFU4pbZtWlOs8Hn.jpg', '2024-10-08 01:01:41', '2024-10-08 01:01:41'),
+(100, '17', '5', '10', 'BRG-1728374469507', 'Dell 9Q48B44', 'dell-9q48b44', '1', '0', 'gUvekMdW45bxT5ywFMbL78Q5CcRy0vXFUkxJV37h.jpg', '2024-10-08 01:02:36', '2024-10-08 01:02:36'),
+(101, '17', '5', '10', 'BRG-1728374498522', 'Dell J9JHL44', 'dell-j9jhl44', '1', '0', 'DeANWhkbPJaE5PBfuX8dFz2yCZQHtdVhQPd2OyRb.jpg', '2024-10-08 01:02:46', '2024-10-08 01:02:46'),
+(102, '17', '5', '10', 'BRG-1728374538221', 'Dell DQ48B44', 'dell-dq48b44', '1', '0', 'k8CFAiDX7iWV1W0ZrDZ7gtsUt6X9mbMOV7SQ0OPl.jpg', '2024-10-08 01:02:54', '2024-10-08 01:02:54'),
+(103, '17', '5', '10', 'BRG-1728374546390', 'Dell 3GJHL44', 'dell-3gjhl44', '1', '0', 'OC6lDjfIhnFGCgb99lwwSuAO65Qq0DpcMSxUpXZH.jpg', '2024-10-08 01:02:57', '2024-10-08 01:02:57'),
+(104, '17', '5', '10', 'BRG-1728374516916', 'Dell 1V48B44', 'dell-1v48b44', '1', '0', 'qrrKYcE0boB9ZrmmMny1U13wF8o35K4kceebVPhB.jpg', '2024-10-08 01:03:03', '2024-10-08 01:03:03'),
+(105, '17', '5', '10', 'BRG-1728374498094', 'Dell 8V48B44', 'dell-8v48b44', '1', '0', '0LyYCsyJBAJuQBgjQSfDBF7WwSCCd7Oh44h3ESAJ.jpg', '2024-10-08 01:05:21', '2024-10-08 01:05:21'),
+(106, '17', '5', '10', 'BRG-1728374698932', 'Dell JQ48B44', 'dell-jq48b44', '1', '0', 'yHVZjQYDKmcK6MNe6Cw4OF8dpiqlPapNzYT3i1qN.jpg', '2024-10-08 01:05:40', '2024-10-08 01:05:40'),
+(107, '17', '5', '10', 'BRG-1728374594609', 'Dell CR48B44', 'dell-cr48b44', '1', '0', 't7fMZMVfNi1ywyi3qvd7FtsojRNXIdrHhtvK4uVJ.jpg', '2024-10-08 01:06:03', '2024-10-08 01:06:03'),
+(108, '17', '5', '10', 'BRG-1728374729387', 'Dell 1FJHL44', 'dell-1fjhl44', '1', '0', 'm4prcID2n5gAn0TKPXMO68q4d9bdfQMPnUqWzIHB.jpg', '2024-10-08 01:06:12', '2024-10-08 02:20:52'),
+(109, '17', '5', '10', 'BRG-1728374733715', 'Dell FS48B44', 'dell-fs48b44', '1', '0', '04JxpleA87o0fh2367pM1dcVRlH1czn1fIkJUyd6.jpg', '2024-10-08 01:06:48', '2024-10-08 01:06:48'),
+(110, '17', '5', '10', 'BRG-1728374781743', 'Dell DP48B44', 'dell-dp48b44', '1', '0', 'GJS9BIGYVdsVuIVE0ARK1kt33BgVb4AqkTa6yrKM.jpg', '2024-10-08 01:06:52', '2024-10-08 01:06:52'),
+(111, '17', '5', '10', 'BRG-1728374778392', 'Dell 6S48B44', 'dell-6s48b44', '1', '0', 'GZH6gUffCKAaNJKwvIpSkJjADGaaRQCJmOVFrdUl.jpg', '2024-10-08 01:07:09', '2024-10-08 01:07:09'),
+(112, '17', '5', '10', 'BRG-1728374788842', 'Dell 8P48B44', 'dell-8p48b44', '1', '0', 'aVCmswwnxSANqvVAuZrVzyOvHKwptAhVYdthnjYi.jpg', '2024-10-08 01:07:28', '2024-10-08 01:07:28'),
+(113, '17', '5', '10', 'BRG-1728374562106', 'Dell 9P48B44', 'dell-9p48b44', '1', '0', 'XSoPXRbihYQeZWaITPke7NofiRScpdINWnjPFniV.jpg', '2024-10-08 01:07:32', '2024-10-08 01:07:32'),
+(114, '17', '5', '10', 'BRG-1728374725650', 'Dell FN48B44', 'dell-fn48b44', '1', '0', 'yBAcuuvCjjO1okQNzF0noOAPfmSKv6cB9s1qg09O.jpg', '2024-10-08 01:08:53', '2024-10-08 01:08:53'),
+(115, '17', '5', '10', 'BRG-1728374912539', 'Dell BR48B44', 'dell-br48b44', '1', '0', '8JWNGwRrDTfcUlixK9Jl4HltvyxdbtckevUOX2n2.jpg', '2024-10-08 01:09:15', '2024-10-08 01:09:15'),
+(116, '17', '5', '10', 'BRG-1728374916579', 'Dell 8R48B44', 'dell-8r48b44', '1', '0', 'QbDVjY5lXe4rqUTCIzIpyn8bdHuq041jnsPEJXYb.jpg', '2024-10-08 01:09:24', '2024-10-08 01:09:24'),
+(117, '17', '5', '10', 'BRG-1728374887173', 'Dell CGJHL44', 'dell-cgjhl44', '1', '0', 'egjzHZOrnrA3sPI9yZoZN2i8z0V4RxiOd4Im7G17.jpg', '2024-10-08 01:09:27', '2024-10-08 01:09:27'),
+(118, '17', '5', '10', 'BRG-1728374842474', 'Dell 2S48B44', 'dell-2s48b44', '1', '0', 'HJnRG1Ho5zrnB6ihv8nYZiyOxp7xPpGwCAMagv8Q.jpg', '2024-10-08 01:10:47', '2024-10-08 01:10:47'),
+(119, '17', '5', '10', 'BRG-1728375020668', 'Dell HQ48B44', 'dell-hq48b44', '1', '0', 'jqiDhwUyTNGVsT29tGvZJizuSQAkSZDgSGQFJFbk.jpg', '2024-10-08 01:10:51', '2024-10-08 01:10:51'),
+(120, '17', '5', '10', 'BRG-1728375034661', 'Dell GP48B44', 'dell-gp48b44', '1', '0', 'qDUrNO74MfETA5MHIyhNCfmZ5tEBNjx9XrK8pRmj.jpg', '2024-10-08 01:11:09', '2024-10-08 02:19:13'),
+(121, '17', '5', '10', 'BRG-1728375022011', 'Dell GN48B44', 'dell-gn48b44', '1', '0', '4OLK10jQZW4k6ymwMG21q6kdqhgB7NpMYlNlh3wO.jpg', '2024-10-08 01:11:16', '2024-10-08 01:11:16'),
+(122, '17', '5', '10', 'BRG-1728375025801', 'Dell 2Q48B44', 'dell-2q48b44', '1', '0', 'oeaS1HJ5q6J4lWvKn0NqsVi2Fwf4p30kX2r9xYjn.jpg', '2024-10-08 01:11:17', '2024-10-08 01:11:17'),
+(123, '17', '5', '10', 'BRG-1728374936391', 'Dell 3FJHL44', 'dell-3fjhl44', '1', '0', '85X0Q1RCnL2VjLTMtTrv3aT94oG6klo4gHFXXVaS.jpg', '2024-10-08 01:13:37', '2024-10-08 01:13:37'),
+(124, '17', '5', '10', 'BRG-1728375212081', 'Dell 3DJHL44', 'dell-3djhl44', '1', '0', 'L0xiQAbMfZfghckGtkajn46xAmdlamiFtOqzyjB6.jpg', '2024-10-08 01:14:07', '2024-10-08 02:19:39'),
+(125, '17', '5', '10', 'BRG-1728375209747', 'Dell CV48B44', 'dell-cv48b44', '1', '0', 'SeMGHUSdD0XT5ypfW1Tj9HvKfG5aG81Mao4JqJ0M.jpg', '2024-10-08 01:14:31', '2024-10-08 01:14:31'),
+(126, '17', '5', '10', 'BRG-1728375252675', 'Dell GCJHL44', 'dell-gcjhl44', '1', '0', '9Rip7qQhoNCRRzFG5oyiIXzHBXUXD9NXqVw4YmGr.jpg', '2024-10-08 01:14:45', '2024-10-08 01:14:45'),
+(127, '17', '5', '10', 'BRG-1728375299025', 'Dell BGJHL44', 'dell-bgjhl44', '1', '0', 'jz2dHT46HotcyiJK2GFqoogcM83VbqilucTMO9YJ.jpg', '2024-10-08 01:16:13', '2024-10-08 01:16:13'),
+(128, '17', '5', '10', 'BRG-1728375108240', 'Dell JP48B44', 'dell-jp48b44', '1', '0', 'KlwDPI7Hqc8KcJ4yNDN6fkCPgW1cybcl3oii5dCv.jpg', '2024-10-08 01:16:29', '2024-10-08 01:16:29'),
+(129, '17', '5', '10', 'BRG-1728375221338', 'Dell DT48B44', 'dell-dt48b44', '1', '0', 'FtY07hyiHrMXsrZotJFtjUUQV4heZdDxC0vo053d.jpg', '2024-10-08 01:16:29', '2024-10-08 01:16:29'),
+(130, '17', '5', '10', 'BRG-1728375365491', 'Dell GR48B44', 'dell-gr48b44', '1', '0', 'NeYo2zvvOBbSR01Zr5iBxWT74E2T2nB7DEHWwaqz.jpg', '2024-10-08 01:16:50', '2024-10-08 01:16:50'),
+(131, '17', '5', '10', 'BRG-1728375393621', 'Dell 7T48B44', 'dell-7t48b44', '1', '0', 'fQBzzkvK84Fk0R5PvBjcUCvuiALbH2po6U7fy6g7.jpg', '2024-10-08 01:18:28', '2024-10-08 01:18:28'),
+(132, '17', '5', '10', 'BRG-1728375483605', 'Dell 3S48B44', 'dell-3s48b44', '1', '0', 'JW5CWCIxqOrxDc8A7WEVee2xSSdXilRyNembpHcz.jpg', '2024-10-08 01:18:43', '2024-10-08 01:18:43'),
+(133, '17', '5', '10', 'BRG-1728375499669', 'Dell 8T48B44', 'dell-8t48b44', '1', '0', 'tf81B7dBDy4CPCuJ41rg3995RysW66iYwZ7IhDcI.jpg', '2024-10-08 01:18:53', '2024-10-08 01:18:53'),
+(134, '17', '5', '10', 'BRG-1728375499360', 'Dell 4Q48B44', 'dell-4q48b44', '1', '0', 'mqYZzEmdOPPNOxOeNlScS1COlZOA3ROUcsP2xyve.jpg', '2024-10-08 01:18:56', '2024-10-08 01:18:56'),
+(135, '17', '5', '10', 'BRG-1728375544077', 'Dell BT48B44', 'dell-bt48b44', '1', '0', 'X8Gdpq3fHzHzLqHdUiH5gszAzcRuWA7g8DLMzpb7.jpg', '2024-10-08 01:19:43', '2024-10-08 01:19:43'),
+(136, '17', '5', '10', 'BRG-1728375557127', 'Dell 3P48B44', 'dell-3p48b44', '1', '0', '239p1OtYpglLWd2QtWUx7ItJIzN5fFKBxGJguY1G.jpg', '2024-10-08 01:19:51', '2024-10-08 01:19:51'),
+(137, '17', '5', '10', 'BRG-1728375521875', 'Dell HN48B44', 'dell-hn48b44', '1', '0', 'zHZ9QFj25gxZq49fxl2K8BVuJSnEjzOXIkbr28BK.jpg', '2024-10-08 01:21:11', '2024-10-08 01:21:11'),
+(138, '17', '5', '10', 'BRG-1728375671797', 'Dell 3CJHL44', 'dell-3cjhl44', '1', '0', 'ovFdiwsu6EWz1z2KfOIZbNHZFbQBTxaUEENFHCao.jpg', '2024-10-08 01:21:42', '2024-10-08 01:21:42'),
+(139, '17', '5', '10', 'BRG-1728375663167', 'Dell 9DJHL44', 'dell-9djhl44', '1', '0', 'bUqb2p3J5rtDaJ3E6gmg2GwunfHdoFgKnoxiWYOu.jpg', '2024-10-08 01:22:05', '2024-10-08 01:22:05'),
+(140, '17', '5', '10', 'BRG-1728375679319', 'Dell 5P48B44', 'dell-5p48b44', '1', '0', 'RY12wxAxYTmvYmyrw6e77lqMfit0fXj0p0Ol6Ikg.jpg', '2024-10-08 01:23:28', '2024-10-08 01:23:28'),
+(141, '17', '5', '10', 'BRG-1728375798153', 'Dell 49JHL44', 'dell-49jhl44', '1', '0', 'dhPe4xYZ5PNIe0w9u4CZuVkJACg70I5N5wEOO6zu.jpg', '2024-10-08 01:23:52', '2024-10-08 01:23:52'),
+(142, '17', '5', '10', 'BRG-1728375799259', 'Dell 79JHL44', 'dell-79jhl44', '1', '0', '3QvvjDJFOoQkPo1QSUxemoGwfgozyc9YdfmJgQdN.jpg', '2024-10-08 01:24:16', '2024-10-08 01:24:16'),
+(143, '17', '5', '10', 'BRG-1728375648334', 'Dell BCJHL44', 'dell-bcjhl44', '1', '0', 'ELUY0vT2ymcyyNFgyi4zFLQjeJLu42LbJXNoBePS.jpg', '2024-10-08 01:25:42', '2024-10-08 01:25:42'),
+(144, '17', '5', '10', 'BRG-1728375904042', 'Dell 9GJHL44', 'dell-9gjhl44', '1', '0', 'REtrXIdkKQTRvg9wWT5nSiSGQJVSfWGkAN35wOXJ.jpg', '2024-10-08 01:26:24', '2024-10-08 01:26:24'),
+(145, '17', '5', '10', 'BRG-1728376418850', 'Dell 8GJHL44', 'dell-8gjhl44', '1', '0', 'PTRZpsHcJNuSQcg7DIC8NZro9xFr0qFJ91j4TNFk.jpg', '2024-10-08 01:34:03', '2024-10-08 01:34:03'),
+(146, '17', '5', '10', 'BRG-1728375814763', 'Dell 4S48B44', 'dell-4s48b44', '1', '0', 'AqucUUHCnjngHeIbrWxIlbNEySciP3PzR7SVFHH2.jpg', '2024-10-08 01:34:04', '2024-10-08 01:34:04'),
+(147, '17', '5', '10', 'BRG-1728376428147', 'Dell CDJHL44', 'dell-cdjhl44', '1', '0', 'UmLTdPfhITeQzhyGJvlPL34PFavoHtRte2HiZoly.jpg', '2024-10-08 01:34:22', '2024-10-08 01:34:22'),
+(148, '17', '5', '10', 'BRG-1728376432637', 'Dell GQ48B44', 'dell-gq48b44', '1', '0', '0pEpWscvBngr3abzKU47Y9SphMKfZlI0vseusf6F.jpg', '2024-10-08 01:34:30', '2024-10-08 01:34:30'),
+(149, '17', '5', '10', 'BRG-1728376438714', 'Dell 7BJHL44', 'dell-7bjhl44', '1', '0', 'eqhnlfPFpgrZgDUnNsIxD23GPaqH8xT7XaeHKdd1.jpg', '2024-10-08 01:34:34', '2024-10-08 01:34:34'),
+(150, '17', '5', '10', 'BRG-1728376452903', 'Dell 3V48B44', 'dell-3v48b44', '1', '0', 'WNM0NzVDFLGxjWbaY1hc1YDOsfvTKrp5nNYK88Ky.jpg', '2024-10-08 01:34:46', '2024-10-08 01:34:46'),
+(151, '17', '5', '10', 'BRG-1728380187339', 'Dell BFJHL44', 'dell-bfjhl44', '1', '0', 'LYfYiLYqa8sQd3v9BXS28Ew69Sf7Ol6YJMziJDv7.jpg', '2024-10-08 02:37:02', '2024-10-08 02:37:02'),
+(152, '17', '5', '10', 'BRG-1728440518217', 'Dell 5S48B44', 'dell-5s48b44', '1', '0', '4Zgdedic4tCWttOQAtj8qxEBAxh6IT7zuDeiQ0EL.jpg', '2024-10-08 19:27:28', '2024-10-08 19:27:28'),
+(153, '17', '5', '10', 'BRG-1728440806466', 'Dell 9S48B44', 'dell-9s48b44', '1', '0', 'EQfTZS46mRAjwGkNjy01LxQvcexq8ttcOpdDN8dQ.jpg', '2024-10-08 19:27:56', '2024-10-08 19:27:56'),
+(154, '17', '5', '10', 'BRG-1728440858070', 'Dell 69JHL44', 'dell-69jhl44', '1', '0', 'gj9sjYjtC7iK6WRN0ZOE9FYUowOrvD1ftjcGNJNb.jpg', '2024-10-08 19:28:29', '2024-10-08 19:28:29'),
+(155, '17', '5', '10', 'BRG-1728440874895', 'Dell 6BJHL44', 'dell-6bjhl44', '1', '0', 'VO72RAGqJAg0bNfGLjAHvpdKsaOwbFQN9bLjoea6.jpg', '2024-10-08 19:29:21', '2024-10-08 19:29:21'),
+(156, '17', '5', '10', 'BRG-1728441212682', 'Dell DDJHL44', 'dell-ddjhl44', '1', '0', '4mTMyZEKCVZi6ZE6f9x6iYzvR69AqqRsEb2tfReg.jpg', '2024-10-08 19:34:09', '2024-10-08 19:34:09'),
+(157, '17', '5', '10', 'BRG-1728440951617', 'Dell 5R48B44', 'dell-5r48b44', '1', '0', '5HNIPoCTektSUysAbnv5ubnyIgzHkJfeXBylfjHd.jpg', '2024-10-08 19:34:24', '2024-10-08 19:34:24'),
+(158, '17', '5', '10', 'BRG-1728441276151', 'Dell 2V48B44', 'dell-2v48b44', '1', '0', 'HGmv21HQ6lYi6C6S4JewDAhEl5yDvmFqLvM0OEkd.jpg', '2024-10-08 19:35:13', '2024-10-08 19:35:13'),
+(159, '17', '5', '10', 'BRG-1728441273474', 'Dell DV48B44', 'dell-dv48b44', '1', '0', 'OvOQ9PocthS1M4tRio7MOaO6DHTZD5pisGBvV7xC.jpg', '2024-10-08 19:35:13', '2024-10-08 19:35:13'),
+(160, '17', '5', '10', 'BRG-1728441258753', 'Dell 4BJHL44', 'dell-4bjhl44', '1', '0', 'CRhfnfx9sCeDr2wGszJdXeXhS6Bu1plJfP9lAOD1.jpg', '2024-10-08 19:35:14', '2024-10-08 19:35:14'),
+(161, '17', '5', '10', 'BRG-1728441328064', 'Dell 1BJHL44', 'dell-1bjhl44', '1', '0', 'Qti6Jza2keQODZwHcZgnVm50BmCADga4sQQyy8JT.jpg', '2024-10-08 19:36:09', '2024-10-08 19:36:09'),
+(162, '17', '5', '10', 'BRG-1728441328470', 'Dell 6P48B44', 'dell-6p48b44', '1', '0', 'f5CivpVlL5lwNKx1vcwRE1d7SnqGYRIRwUxswise.jpg', '2024-10-08 19:36:15', '2024-10-08 19:36:15'),
+(163, '17', '5', '10', 'BRG-1728441338208', 'Dell JN48B44', 'dell-jn48b44', '1', '0', '7VT0C1G3sP6YMPpczlxaeSiaC5qhh5WTqz5Gjqtt.jpg', '2024-10-08 19:36:16', '2024-10-08 19:36:16'),
+(164, '17', '5', '10', 'BRG-1728441401395', 'Dell BV48B44', 'dell-bv48b44', '1', '0', 'CRWuTGAzCyXafqijJd8XqCmlXezbExBwv8o22e4g.jpg', '2024-10-08 19:37:36', '2024-10-08 19:37:36'),
+(165, '17', '5', '10', 'BRG-1728441413644', 'Dell HV48B44', 'dell-hv48b44', '1', '0', 'nxDaMn1DFcgVQz3PKNtvQZ6YMkBLOJAoYVJ2vEmA.jpg', '2024-10-08 19:37:42', '2024-10-08 19:37:42'),
+(166, '17', '5', '10', 'BRG-1728441417107', 'Dell JDJHL44', 'dell-jdjhl44', '1', '0', 'j6qHuzTCbGNQLFh8IzvMOO2bFvCTCs2aCGOpireD.jpg', '2024-10-08 19:37:46', '2024-10-08 19:37:46'),
+(167, '17', '5', '10', 'BRG-1728441486530', 'Dell JFJHL44', 'dell-jfjhl44', '1', '0', 'kmTwax7NDofe4ZKwOLzs99jPgJLYaCWOIk6MQECr.jpg', '2024-10-08 19:38:46', '2024-10-08 19:38:46'),
+(168, '17', '5', '10', 'BRG-1728441485611', 'Dell 7R48B44', 'dell-7r48b44', '1', '0', 'UfpFnscBkiWrzQnEt753SPWfYvabwF44rbsBUyJe.jpg', '2024-10-08 19:38:46', '2024-10-08 19:38:46'),
+(169, '17', '5', '10', 'BRG-1728441488572', 'Dell 4P48B44', 'dell-4p48b44', '1', '0', 'Bnn7BWM9vEeQIYdXNRjD5wcA45ULjxLSWHqhT7Xc.jpg', '2024-10-08 19:38:50', '2024-10-08 19:38:50'),
+(170, '17', '5', '10', 'BRG-1728441534949', 'Dell 8FJHL44', 'dell-8fjhl44', '1', '0', 'RSIuHLwGJCO5I8XSoFjnB2UAWGW8jbeQXX7y3zBI.jpg', '2024-10-08 19:39:39', '2024-10-08 19:39:39'),
+(171, '17', '5', '10', 'BRG-1728441542732', 'Dell 5FJHL44', 'dell-5fjhl44', '1', '0', '7EM4NPy83px1QpuHnepgfO9Ap2ZB7AdHFfjfFpHn.jpg', '2024-10-08 19:39:41', '2024-10-08 19:39:41'),
+(172, '17', '5', '10', 'BRG-1728441536703', 'Dell G9JHL44', 'dell-g9jhl44', '1', '0', 'RJth55pdWk6QrmxG8I8qQ2GsfhtrkadzcsUz467l.jpg', '2024-10-08 19:39:52', '2024-10-08 19:39:52'),
+(173, '17', '5', '10', 'BRG-1728441593943', 'Dell 1T48B44', 'dell-1t48b44', '1', '0', 'LU0pGND1svN9EFoSQMGVNkNKazl7A3Fx3ecNf3Ds.jpg', '2024-10-08 19:40:29', '2024-10-08 19:40:29'),
+(174, '17', '5', '10', 'BRG-1728441596628', 'Dell HDJHL44', 'dell-hdjhl44', '1', '0', 'K2NEVqiYzGsfVi7208wcEVm1RJjlAbeTDc7ggy6j.jpg', '2024-10-08 19:40:30', '2024-10-08 19:40:30'),
+(175, '17', '5', '10', 'BRG-1728441611759', 'Dell 7S48B44', 'dell-7s48b44', '1', '0', '7abMNaQu40j7yk5LXpip8hRzbXu3oKdqbJEiV47x.jpg', '2024-10-08 19:40:50', '2024-10-08 19:40:50'),
+(176, '17', '5', '10', 'BRG-1728441600190', 'Dell 1Q48B44', 'dell-1q48b44', '1', '0', '2myfQmTmjAkTZEbhgYdxnqW4PdWzRhRGLyxMMX4n.jpg', '2024-10-08 19:40:51', '2024-10-08 19:40:51'),
+(177, '17', '5', '10', 'BRG-1728441626212', 'Dell DN48B44', 'dell-dn48b44', '1', '0', 'nXZ0Blrc6viMDv9oJECcoomIzuz7HVE9J3lGycs6.jpg', '2024-10-08 19:41:14', '2024-10-08 19:41:14'),
+(178, '17', '5', '10', 'BRG-1728441658762', 'Dell 1CJHL44', 'dell-1cjhl44', '1', '0', '4DeFLmQJgewvxMJSuFsF6qgy2LMsIFTxHQua4kuf.jpg', '2024-10-08 19:41:33', '2024-10-08 19:41:33'),
+(179, '17', '5', '10', 'BRG-1728441659775', 'Dell 2DJHL44', 'dell-2djhl44', '1', '0', '8a8u9d9BHsqEpd9UAo0a4gL1AgD3Pla59uMmv6m4.jpg', '2024-10-08 19:41:52', '2024-10-08 19:41:52'),
+(180, '17', '5', '10', 'BRG-1728441661223', 'Dell 5Q48B44', 'dell-5q48b44', '1', '0', 'EWkK0BLif99fgGjHWPkGO9upbRPEqlrbBLgwLyPv.jpg', '2024-10-08 19:42:03', '2024-10-08 19:42:03'),
+(181, '17', '5', '10', 'BRG-1728441654016', 'Dell GT48B44', 'dell-gt48b44', '1', '0', '6mn3NhTG0FpeRlzGi5dUhBsm998WPvvVifK19SiT.jpg', '2024-10-08 19:42:09', '2024-10-08 19:42:09'),
+(182, '17', '5', '10', 'BRG-1728441687552', 'Dell FFJHL44', 'dell-ffjhl44', '1', '0', '5vgKRE9QnQUlhg5ofIylOAQGtJ1fdGNclJQUlMoJ.jpg', '2024-10-08 19:42:18', '2024-10-08 19:42:18'),
+(183, '17', '5', '10', 'BRG-1728441716966', 'Dell 7DJHL44', 'dell-7djhl44', '1', '0', 'qOIP3B3EuCvEZjLFDPqtEXK1vxRWYiJ8vkdMaUdj.jpg', '2024-10-08 19:42:36', '2024-10-08 19:42:36'),
+(184, '17', '5', '10', 'BRG-1728441717973', 'Dell JT48B44', 'dell-jt48b44', '1', '0', 'WxSnZCxPJiEfqBHXfmtqOBO3QFuFOR1qelk0qmUd.jpg', '2024-10-08 19:42:38', '2024-10-08 19:42:38'),
+(185, '17', '5', '10', 'BRG-1728441731095', 'Dell HS48B44', 'dell-hs48b44', '1', '0', '9DAgtr20oFYVRTUjz1Sbhr3UU8rQjcnxN9SLHU2w.jpg', '2024-10-08 19:42:44', '2024-10-08 19:42:44'),
+(186, '17', '5', '10', 'BRG-1728441732039', 'Dell 6Q48B44', 'dell-6q48b44', '1', '0', 'Ftrxz06eTtCJeiGrJWadrtM0up3aHZyrznlJ6V6I.jpg', '2024-10-08 19:43:12', '2024-10-08 19:43:12'),
+(187, '17', '5', '10', 'BRG-1728441741259', 'Dell 3T48B44', 'dell-3t48b44', '1', '0', 'M0uPvdI2UCkEmYto9dedDMcSj3J0rZ1opyA6LIkB.jpg', '2024-10-08 19:43:14', '2024-10-08 19:43:14'),
+(188, '17', '5', '10', 'BRG-1728441788218', 'Dell 7GJHL44', 'dell-7gjhl44', '1', '0', 'DEzT1cK9UIURs4liVFs4S6STKjJKnt5gsNQKbM8l.jpg', '2024-10-08 19:43:44', '2024-10-08 19:43:44'),
+(189, '17', '5', '10', 'BRG-1728441788798', 'Dell 6GJHL44', 'dell-6gjhl44', '1', '0', 'jan3AS2P2OpZqSyL0L96G2ND09p5qjOL6OKC8epX.jpg', '2024-10-08 19:43:47', '2024-10-08 19:43:47'),
+(190, '17', '5', '10', 'BRG-1728441788487', 'Dell DE48B44', 'dell-de48b44', '1', '0', 'JXAtjoCumbxybpk3qDbn3tAFvbQTyQcF2TFiaDGE.jpg', '2024-10-08 19:43:51', '2024-10-08 19:43:51'),
+(191, '17', '5', '10', 'BRG-1728441828953', 'Dell JBJHL44', 'dell-jbjhl44', '1', '0', 'NIT4jeZJDc4NC6jC0oWP2j2UVQcVrNESQAohPb5Q.jpg', '2024-10-08 19:44:04', '2024-10-08 19:44:04'),
+(192, '17', '5', '10', 'BRG-1728441808585', 'Dell 2R48B44', 'dell-2r48b44', '1', '0', 'qV6aBGey7mBSSmZbBRIoPLwUZaLIF9og4pj0YyeF.jpg', '2024-10-08 19:44:24', '2024-10-08 19:44:24'),
+(193, '17', '5', '10', 'BRG-1728441796494', 'Dell 4GJHL44', 'dell-4gjhl44', '1', '0', 'trH6P1QVlkmZ8TTGmLpkJJWIuTxdiMQomiRyyLsN.jpg', '2024-10-08 19:44:28', '2024-10-08 19:44:28'),
+(194, '17', '5', '10', 'BRG-1728441846825', 'Dell JCJHL44', 'dell-jcjhl44', '1', '0', 'wFNUtr2Is2VE9DdOHI19ggTLZJwLzfMuBhxBjJW0.jpg', '2024-10-08 19:44:50', '2024-10-08 19:44:50'),
+(195, '17', '5', '10', 'BRG-1728441832758', 'Dell CS48B44', 'dell-cs48b44', '1', '0', '9vJS7PdhWHH7WeWsAojMBEQCn5l5GsLxM2EO4LVW.jpg', '2024-10-08 19:44:55', '2024-10-08 19:44:55'),
+(196, '17', '5', '10', 'BRG-1728441899627', 'Dell CQ48B44', 'dell-cq48b44', '1', '0', 'cLBjbL7W8IBlRaKAlWJRPwddwT0HlvAXm0LqH005.jpg', '2024-10-08 19:45:41', '2024-10-08 19:45:41'),
+(197, '17', '5', '10', 'BRG-1728441902383', 'Dell JR48B44', 'dell-jr48b44', '1', '0', 'oFSByHC4wl1yiXNLwEMJeDrsekJru6zuzb0cWiXD.jpg', '2024-10-08 19:45:44', '2024-10-08 19:45:44'),
+(198, '17', '5', '10', 'BRG-1728441898396', 'Dell BS48B44', 'dell-bs48b44', '1', '0', 'nX1BdhTVxycFUEa86zWZHpWANz2cwQ8CyFLzIbll.jpg', '2024-10-08 19:45:45', '2024-10-08 19:45:45'),
+(199, '17', '5', '10', 'BRG-1728441911288', 'Dell BP48B44', 'dell-bp48b44', '1', '0', 'KGlO2CrfgVJynlUPPaMygO0zqKmGc3t61EkO4uWg.jpg', '2024-10-08 19:45:51', '2024-10-08 19:45:51'),
+(200, '17', '5', '10', 'BRG-1728441870554', 'Dell 3Q48B44', 'dell-3q48b44', '1', '0', '62cosYhwMM3qBIhgbcOb90BxjUYUtnDOa2taNnms.jpg', '2024-10-08 19:45:56', '2024-10-08 19:45:56'),
+(201, '17', '5', '10', 'BRG-1728441948683', 'Dell HBJHL44', 'dell-hbjhl44', '1', '0', 'PT4nS59p1pb1en9H92jWhilt7KbCmVcEGS5bmKQL.jpg', '2024-10-08 19:46:23', '2024-10-08 19:46:23'),
+(202, '17', '5', '10', 'BRG-1728441674629', 'Dell CP48B44', 'dell-cp48b44', '1', '0', 'JRU6siJgfSeqi0JwqPa02h71maBqh5RqdXoxI4In.jpg', '2024-10-08 19:50:33', '2024-10-08 19:50:33'),
+(203, '17', '5', '10', 'BRG-1728442044189', 'Dell GFJHL44', 'dell-gfjhl44', '1', '0', 'hZ4ZG4kqCeUvHJowDUJzbH1EjoREtPeqbeGt2dPT.jpg', '2024-10-08 19:50:43', '2024-10-08 19:50:43'),
+(204, '17', '5', '10', 'BRG-1728441947259', 'Dell 2CJHL44', 'dell-2cjhl44', '1', '0', 'NjNaTZRc06oDIJkQpr5kirnrG5ZBO7lRi5xiULOx.jpg', '2024-10-08 19:51:03', '2024-10-08 19:51:03'),
+(205, '17', '5', '10', 'BRG-1728442246604', 'Dell 7P48B44', 'dell-7p48b44', '1', '0', 'OdCbxMeku9qreRBIyZJnLjn1emf9CKKp3EMqyOy4.jpg', '2024-10-08 19:51:18', '2024-10-08 19:51:18'),
+(206, '17', '5', '10', 'BRG-1728441961534', 'Dell FCJHL44', 'dell-fcjhl44', '1', '0', 'QicdOapeHD291GlWtFqkyBQEHQE9x1oVhlef8hYn.jpg', '2024-10-08 19:51:26', '2024-10-08 19:51:26'),
+(207, '17', '5', '10', 'BRG-1728442236375', 'Dell 6V48B44', 'dell-6v48b44', '1', '0', 'K3z3HXAbBTcUDJTPlhYamaIwvyAMLOlbre45j06C.jpg', '2024-10-08 19:51:42', '2024-10-08 19:51:42'),
+(208, '17', '5', '10', 'BRG-1728442244991', 'Dell 2T48B44', 'dell-2t48b44', '1', '0', 'f2xyrAtgkzu4PPGelrVycOGF02qo8fJurpWW7i9F.jpg', '2024-10-08 19:51:42', '2024-10-08 19:51:42'),
+(209, '17', '5', '10', 'BRG-1728442306158', 'Dell D9JHL44', 'dell-d9jhl44', '1', '0', 'ozqFnN0qPMzjBx76UDSvRiboxQrYXBMGsyQq8BQS.jpg', '2024-10-08 19:52:17', '2024-10-08 19:52:17'),
+(210, '17', '5', '10', 'BRG-1728442300838', 'Dell 5T48B44', 'dell-5t48b44', '1', '0', 'c0WLFQ4VL3Klob9poL2FWgANYchUBHS1ZOXHhblO.jpg', '2024-10-08 19:52:18', '2024-10-08 19:52:18'),
+(211, '17', '5', '10', 'BRG-1728442318735', 'Dell HP48B44', 'dell-hp48b44', '1', '0', 'y5EFlq7NkpkgaBo3mosoiJeM3dzNMb1pNNfMbUZI.jpg', '2024-10-08 19:52:30', '2024-10-08 19:52:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_barangkeluar`
+-- Struktur dari tabel `tbl_barangkeluar`
 --
 
 CREATE TABLE `tbl_barangkeluar` (
@@ -264,27 +759,26 @@ CREATE TABLE `tbl_barangkeluar` (
   `bk_kode` varchar(255) NOT NULL,
   `barang_kode` varchar(255) NOT NULL,
   `bk_tanggal` varchar(255) NOT NULL,
-  `bk_tujuan` varchar(255) DEFAULT NULL,
+  `bk_bagian` bigint(20) UNSIGNED DEFAULT NULL,
+  `bk_namakaryawan` varchar(255) DEFAULT NULL,
   `bk_jumlah` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_barangkeluar`
+-- Dumping data untuk tabel `tbl_barangkeluar`
 --
 
-INSERT INTO `tbl_barangkeluar` (`bk_id`, `bk_kode`, `barang_kode`, `bk_tanggal`, `bk_tujuan`, `bk_jumlah`, `created_at`, `updated_at`) VALUES
-(2, 'BK-1669811950758', 'BRG-1669390220236', '2024-06-30', 'Gudang Rapat', '20', '2024-06-18 01:39:22', '2024-06-18 01:39:22'),
-(3, 'BK-1669812439198', 'BRG-1721217257018', '2024-06-28', 'Gudang Venue', '5', '2024-06-18 02:39:02', '2024-06-18 02:39:02'),
-(4, 'BK-1721289016909', 'BRG-1721288827193', '2024-07-18', 'Kerani kebun', '25', '2024-07-18 00:50:41', '2024-07-18 00:50:41'),
-(5, 'BK-1721359291044', 'BRG-1721359204719', '2024-07-19', 'SDM', '1', '2024-07-18 20:21:48', '2024-07-18 20:21:48'),
-(6, 'BK-1722238980168', 'BRG-1722238904383', '2024-07-26', 'trdst', '3', '2024-07-29 00:43:14', '2024-07-29 00:43:14');
+INSERT INTO `tbl_barangkeluar` (`bk_id`, `bk_kode`, `barang_kode`, `bk_tanggal`, `bk_bagian`, `bk_namakaryawan`, `bk_jumlah`, `created_at`, `updated_at`) VALUES
+(14, 'BK-1728623635462', 'BRG-1728371768490', '2024-10-11', NULL, NULL, '1', '2024-10-10 22:19:55', '2024-10-10 22:19:55'),
+(15, 'BK-1728984339841', 'BRG-1728375025801', '2024-10-15', 44, 'Yuda', '1', '2024-10-15 02:30:33', '2024-10-16 01:06:06'),
+(17, 'BK-1729066013432', 'BRG-1728442300838', '2024-10-15', 15, 'dsfdsf', '1', '2024-10-16 01:07:18', '2024-10-16 01:07:18');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_barangmasuk`
+-- Struktur dari tabel `tbl_barangmasuk`
 --
 
 CREATE TABLE `tbl_barangmasuk` (
@@ -296,54 +790,38 @@ CREATE TABLE `tbl_barangmasuk` (
   `bm_jumlah` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_barangmasuk`
---
-
-INSERT INTO `tbl_barangmasuk` (`bm_id`, `bm_kode`, `barang_kode`, `unit_id`, `bm_tanggal`, `bm_jumlah`, `created_at`, `updated_at`) VALUES
-(1, 'BM-1669730554623', 'BRG-1669390220236', '2', '2024-06-26', '50', '2024-06-18 02:39:02', '2024-06-18 02:39:02'),
-(2, 'BM-1669731639801', 'BRG-1721217257018', '2', '2024-06-20', '10', '2024-06-18 02:39:02', '2024-07-18 01:33:15'),
-(3, 'BM-1721217289601', 'BRG-1721217257018', '2', '2024-07-11', '46', '2024-07-17 04:55:18', '2024-07-17 04:55:18'),
-(4, 'BM-1721267832524', 'BRG-1721217257018', '2', '2024-07-17', '20', '2024-07-17 18:57:31', '2024-07-17 18:57:31'),
-(5, 'BM-1721288982176', 'BRG-1721288827193', '2', '2024-07-18', '30', '2024-07-18 00:50:03', '2024-07-18 00:50:03'),
-(6, 'BM-1721291599121', 'BRG-1721273721761', '2', '2024-07-15', '1', '2024-07-18 01:33:33', '2024-07-18 01:33:33'),
-(7, 'BM-1721359267187', 'BRG-1721359204719', '2', '2024-07-19', '1', '2024-07-18 20:21:21', '2024-07-18 20:21:21'),
-(8, 'BM-1721879111479', 'BRG-1721805262779', '2', '2024-07-24', '3', '2024-07-24 20:45:30', '2024-07-24 20:45:30'),
-(9, 'BM-1721880049811', 'BRG-1721792031094', '4', '2024-07-18', '2', '2024-07-24 21:01:05', '2024-07-24 21:01:05'),
-(10, 'BM-1721958698333', 'BRG-1721958641990', '2', '2024-07-10', '12', '2024-07-25 18:52:06', '2024-07-25 18:52:06'),
-(13, 'BM-1722238939629', 'BRG-1722238904383', '2', '2024-07-24', '6', '2024-07-29 00:42:38', '2024-07-29 00:42:38');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_jenisbarang`
+-- Struktur dari tabel `tbl_jenisbarang`
 --
 
 CREATE TABLE `tbl_jenisbarang` (
-  `jenisbarang_id` int(255) UNSIGNED NOT NULL,
+  `jenisbarang_id` int(10) UNSIGNED NOT NULL,
   `jenisbarang_nama` varchar(255) NOT NULL,
   `jenisbarang_slug` varchar(255) NOT NULL,
   `jenisbarang_ket` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_jenisbarang`
+-- Dumping data untuk tabel `tbl_jenisbarang`
 --
 
 INSERT INTO `tbl_jenisbarang` (`jenisbarang_id`, `jenisbarang_nama`, `jenisbarang_slug`, `jenisbarang_ket`, `created_at`, `updated_at`) VALUES
-(11, 'Elektronik', 'elektronik', NULL, '2024-06-24 08:24:18', '2024-06-24 08:24:18'),
-(12, 'Perangkat Komputer', 'perangkat-komputer', NULL, '2024-06-24 08:24:18', '2024-06-24 08:24:18'),
-(13, 'Hardware', 'hardware', NULL, '2024-06-24 08:24:18', '2024-06-24 08:24:18'),
-(14, 'lain-lainnya', 'lain-lainnya', NULL, '2024-07-22 03:18:43', '2024-07-25 00:57:15');
+(11, 'Elektronik', 'elektronik', '-', '2024-06-24 08:24:18', '2024-10-06 20:03:08'),
+(14, 'Lain-lainnya', 'lain-lainnya', '-', '2024-07-22 03:18:43', '2024-10-06 20:02:07'),
+(16, 'Perangkat CCTV', 'perangkat-cctv', '-', '2024-10-06 19:59:52', '2024-10-06 19:59:52'),
+(17, 'Komputer & Laptop', 'komputer-laptop', '-', '2024-10-06 20:02:51', '2024-10-06 20:02:51'),
+(18, 'Perangkat Pendukung Komputer', 'perangkat-pendukung-komputer', '-', '2024-10-06 20:03:30', '2024-10-06 20:03:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lokasi`
+-- Struktur dari tabel `tbl_lokasi`
 --
 
 CREATE TABLE `tbl_lokasi` (
@@ -353,21 +831,21 @@ CREATE TABLE `tbl_lokasi` (
   `lokasi_keterangan` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_lokasi`
+-- Dumping data untuk tabel `tbl_lokasi`
 --
 
 INSERT INTO `tbl_lokasi` (`lokasi_id`, `lokasi_nama`, `lokasi_slug`, `lokasi_keterangan`, `created_at`, `updated_at`) VALUES
-(1, 'Gudang Rapat', 'gudang rapat', NULL, '2024-06-18 02:39:02', '2024-06-18 02:39:02'),
 (2, 'Gudang Melati', 'gudang melati', NULL, '2024-06-18 02:39:02', '2024-06-18 02:39:02'),
-(7, 'Gudang Venue', 'gudang venue', NULL, '2024-06-18 02:39:02', '2024-06-18 02:39:02');
+(7, 'Gudang Venue', 'gudang venue', NULL, '2024-06-18 02:39:02', '2024-06-18 02:39:02'),
+(10, 'Ruang Rapat', 'ruang-rapat', '-', '2024-10-06 20:06:12', '2024-10-06 20:06:12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_menu`
+-- Struktur dari tabel `tbl_menu`
 --
 
 CREATE TABLE `tbl_menu` (
@@ -380,10 +858,10 @@ CREATE TABLE `tbl_menu` (
   `menu_type` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_menu`
+-- Dumping data untuk tabel `tbl_menu`
 --
 
 INSERT INTO `tbl_menu` (`menu_id`, `menu_judul`, `menu_slug`, `menu_icon`, `menu_redirect`, `menu_sort`, `menu_type`, `created_at`, `updated_at`) VALUES
@@ -396,17 +874,17 @@ INSERT INTO `tbl_menu` (`menu_id`, `menu_judul`, `menu_slug`, `menu_icon`, `menu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_requestberitaacara`
+-- Struktur dari tabel `tbl_requestberitaacara`
 --
 
 CREATE TABLE `tbl_requestberitaacara` (
   `Tanggal` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_role`
+-- Struktur dari tabel `tbl_role`
 --
 
 CREATE TABLE `tbl_role` (
@@ -416,10 +894,10 @@ CREATE TABLE `tbl_role` (
   `role_desc` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_role`
+-- Dumping data untuk tabel `tbl_role`
 --
 
 INSERT INTO `tbl_role` (`role_id`, `role_title`, `role_slug`, `role_desc`, `created_at`, `updated_at`) VALUES
@@ -429,7 +907,7 @@ INSERT INTO `tbl_role` (`role_id`, `role_title`, `role_slug`, `role_desc`, `crea
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_satuan`
+-- Struktur dari tabel `tbl_satuan`
 --
 
 CREATE TABLE `tbl_satuan` (
@@ -439,21 +917,22 @@ CREATE TABLE `tbl_satuan` (
   `satuan_keterangan` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_satuan`
+-- Dumping data untuk tabel `tbl_satuan`
 --
 
 INSERT INTO `tbl_satuan` (`satuan_id`, `satuan_nama`, `satuan_slug`, `satuan_keterangan`, `created_at`, `updated_at`) VALUES
 (1, 'Kg', 'kg', NULL, '2024-06-17 02:50:38', '2024-06-17 02:50:38'),
 (5, 'Pcs', 'pcs', NULL, '2024-06-17 02:39:15', '2024-06-17 02:39:15'),
-(7, 'Box', 'box', NULL, '2024-06-17 05:39:59', '2024-06-17 05:39:59');
+(7, 'Box', 'box', NULL, '2024-06-17 05:39:59', '2024-06-17 05:39:59'),
+(9, 'Roll', 'roll', '-', '2024-10-06 20:04:15', '2024-10-06 20:04:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_submenu`
+-- Struktur dari tabel `tbl_submenu`
 --
 
 CREATE TABLE `tbl_submenu` (
@@ -465,10 +944,10 @@ CREATE TABLE `tbl_submenu` (
   `submenu_sort` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_submenu`
+-- Dumping data untuk tabel `tbl_submenu`
 --
 
 INSERT INTO `tbl_submenu` (`submenu_id`, `menu_id`, `submenu_judul`, `submenu_slug`, `submenu_redirect`, `submenu_sort`, `created_at`, `updated_at`) VALUES
@@ -485,7 +964,7 @@ INSERT INTO `tbl_submenu` (`submenu_id`, `menu_id`, `submenu_judul`, `submenu_sl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_unit`
+-- Struktur dari tabel `tbl_unit`
 --
 
 CREATE TABLE `tbl_unit` (
@@ -496,20 +975,21 @@ CREATE TABLE `tbl_unit` (
   `unit_notelp` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_unit`
+-- Dumping data untuk tabel `tbl_unit`
 --
 
 INSERT INTO `tbl_unit` (`unit_id`, `unit_nama`, `unit_slug`, `unit_alamat`, `unit_notelp`, `created_at`, `updated_at`) VALUES
 (2, 'Satria', 'satria', 'Riau', '0812345678', '2024-06-18 08:39:02', '2024-06-18 08:39:02'),
-(4, 'Elni', 'elni', 'Riau', '0821345678', '2024-07-22 03:15:35', '2024-07-22 03:15:35');
+(4, 'Elni', 'elni', 'Riau', '0821345678', '2024-07-22 03:15:35', '2024-07-22 03:15:35'),
+(6, 'Reiza', 'reiza', 'Riau', '085156411971', '2024-10-06 20:09:24', '2024-10-06 20:09:24');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_user`
+-- Struktur dari tabel `tbl_user`
 --
 
 CREATE TABLE `tbl_user` (
@@ -522,10 +1002,10 @@ CREATE TABLE `tbl_user` (
   `user_password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_user`
+-- Dumping data untuk tabel `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`user_id`, `role_id`, `user_nmlengkap`, `user_nama`, `user_email`, `user_foto`, `user_password`, `created_at`, `updated_at`) VALUES
@@ -535,7 +1015,7 @@ INSERT INTO `tbl_user` (`user_id`, `role_id`, `user_nmlengkap`, `user_nama`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_web`
+-- Struktur dari tabel `tbl_web`
 --
 
 CREATE TABLE `tbl_web` (
@@ -545,10 +1025,10 @@ CREATE TABLE `tbl_web` (
   `web_deskripsi` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `tbl_web`
+-- Dumping data untuk tabel `tbl_web`
 --
 
 INSERT INTO `tbl_web` (`web_id`, `web_nama`, `web_logo`, `web_deskripsi`, `created_at`, `updated_at`) VALUES
@@ -559,215 +1039,238 @@ INSERT INTO `tbl_web` (`web_id`, `web_nama`, `web_logo`, `web_deskripsi`, `creat
 --
 
 --
--- Indexes for table `failed_jobs`
+-- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`) USING BTREE;
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indexes for table `personal_access_tokens`
+-- Indeks untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`) USING BTREE,
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_akses`
+-- Indeks untuk tabel `tbl_akses`
 --
 ALTER TABLE `tbl_akses`
-  ADD PRIMARY KEY (`akses_id`);
+  ADD PRIMARY KEY (`akses_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_appreance`
+-- Indeks untuk tabel `tbl_appreance`
 --
 ALTER TABLE `tbl_appreance`
-  ADD PRIMARY KEY (`appreance_id`);
+  ADD PRIMARY KEY (`appreance_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_barang`
+-- Indeks untuk tabel `tbl_bagian`
+--
+ALTER TABLE `tbl_bagian`
+  ADD PRIMARY KEY (`id_bagian`);
+
+--
+-- Indeks untuk tabel `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
-  ADD PRIMARY KEY (`barang_id`,`barang_kode`,`barang_nama`,`barang_jumlah`,`barang_stok`);
+  ADD PRIMARY KEY (`barang_id`,`barang_kode`,`barang_nama`,`barang_jumlah`,`barang_stok`) USING BTREE;
 
 --
--- Indexes for table `tbl_barangkeluar`
+-- Indeks untuk tabel `tbl_barangkeluar`
 --
 ALTER TABLE `tbl_barangkeluar`
-  ADD PRIMARY KEY (`bk_id`);
+  ADD PRIMARY KEY (`bk_id`) USING BTREE,
+  ADD KEY `tbl_barangkeluar_bk_bagian_foreign` (`bk_bagian`);
 
 --
--- Indexes for table `tbl_barangmasuk`
+-- Indeks untuk tabel `tbl_barangmasuk`
 --
 ALTER TABLE `tbl_barangmasuk`
-  ADD PRIMARY KEY (`bm_id`);
+  ADD PRIMARY KEY (`bm_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_jenisbarang`
+-- Indeks untuk tabel `tbl_jenisbarang`
 --
 ALTER TABLE `tbl_jenisbarang`
-  ADD PRIMARY KEY (`jenisbarang_id`);
+  ADD PRIMARY KEY (`jenisbarang_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_lokasi`
+-- Indeks untuk tabel `tbl_lokasi`
 --
 ALTER TABLE `tbl_lokasi`
-  ADD PRIMARY KEY (`lokasi_id`);
+  ADD PRIMARY KEY (`lokasi_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_menu`
+-- Indeks untuk tabel `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  ADD PRIMARY KEY (`menu_id`);
+  ADD PRIMARY KEY (`menu_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_role`
+-- Indeks untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
-  ADD PRIMARY KEY (`role_id`);
+  ADD PRIMARY KEY (`role_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_satuan`
+-- Indeks untuk tabel `tbl_satuan`
 --
 ALTER TABLE `tbl_satuan`
-  ADD PRIMARY KEY (`satuan_id`);
+  ADD PRIMARY KEY (`satuan_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_submenu`
+-- Indeks untuk tabel `tbl_submenu`
 --
 ALTER TABLE `tbl_submenu`
-  ADD PRIMARY KEY (`submenu_id`);
+  ADD PRIMARY KEY (`submenu_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_unit`
+-- Indeks untuk tabel `tbl_unit`
 --
 ALTER TABLE `tbl_unit`
-  ADD PRIMARY KEY (`unit_id`);
+  ADD PRIMARY KEY (`unit_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_user`
+-- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`) USING BTREE;
 
 --
--- Indexes for table `tbl_web`
+-- Indeks untuk tabel `tbl_web`
 --
 ALTER TABLE `tbl_web`
-  ADD PRIMARY KEY (`web_id`);
+  ADD PRIMARY KEY (`web_id`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- AUTO_INCREMENT untuk tabel `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tbl_akses`
+-- AUTO_INCREMENT untuk tabel `tbl_akses`
 --
 ALTER TABLE `tbl_akses`
   MODIFY `akses_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
 
 --
--- AUTO_INCREMENT for table `tbl_appreance`
+-- AUTO_INCREMENT untuk tabel `tbl_appreance`
 --
 ALTER TABLE `tbl_appreance`
   MODIFY `appreance_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tbl_barang`
+-- AUTO_INCREMENT untuk tabel `tbl_bagian`
+--
+ALTER TABLE `tbl_bagian`
+  MODIFY `id_bagian` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
-  MODIFY `barang_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `barang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
 
 --
--- AUTO_INCREMENT for table `tbl_barangkeluar`
+-- AUTO_INCREMENT untuk tabel `tbl_barangkeluar`
 --
 ALTER TABLE `tbl_barangkeluar`
-  MODIFY `bk_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `bk_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `tbl_barangmasuk`
+-- AUTO_INCREMENT untuk tabel `tbl_barangmasuk`
 --
 ALTER TABLE `tbl_barangmasuk`
-  MODIFY `bm_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `bm_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `tbl_jenisbarang`
+-- AUTO_INCREMENT untuk tabel `tbl_jenisbarang`
 --
 ALTER TABLE `tbl_jenisbarang`
-  MODIFY `jenisbarang_id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `jenisbarang_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `tbl_lokasi`
+-- AUTO_INCREMENT untuk tabel `tbl_lokasi`
 --
 ALTER TABLE `tbl_lokasi`
-  MODIFY `lokasi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `lokasi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tbl_menu`
+-- AUTO_INCREMENT untuk tabel `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
   MODIFY `menu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1721699344;
 
 --
--- AUTO_INCREMENT for table `tbl_role`
+-- AUTO_INCREMENT untuk tabel `tbl_role`
 --
 ALTER TABLE `tbl_role`
   MODIFY `role_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbl_satuan`
+-- AUTO_INCREMENT untuk tabel `tbl_satuan`
 --
 ALTER TABLE `tbl_satuan`
-  MODIFY `satuan_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `satuan_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tbl_submenu`
+-- AUTO_INCREMENT untuk tabel `tbl_submenu`
 --
 ALTER TABLE `tbl_submenu`
   MODIFY `submenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `tbl_unit`
+-- AUTO_INCREMENT untuk tabel `tbl_unit`
 --
 ALTER TABLE `tbl_unit`
-  MODIFY `unit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `unit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tbl_user`
+-- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
   MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbl_web`
+-- AUTO_INCREMENT untuk tabel `tbl_web`
 --
 ALTER TABLE `tbl_web`
   MODIFY `web_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `tbl_barangkeluar`
+--
+ALTER TABLE `tbl_barangkeluar`
+  ADD CONSTRAINT `tbl_barangkeluar_bk_bagian_foreign` FOREIGN KEY (`bk_bagian`) REFERENCES `tbl_bagian` (`id_bagian`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

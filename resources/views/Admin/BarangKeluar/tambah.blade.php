@@ -135,8 +135,8 @@
     function checkForm() {
         const tglkeluar = $("input[name='tglkeluar']").val();
         const status = $("#status").val();
-        const bk_bagian = $("select[name='bk_bagian']").val(); // Bagian
-        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); // Nama Karyawan
+        const bk_bagian = $("select[name='bk_bagian']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); 
         const jml = $("input[name='jml']").val();
         setLoading(true);
         resetValid();

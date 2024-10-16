@@ -138,8 +138,8 @@
         const tglkeluar = $("input[name='tglkeluarU']").val();
         const status = $("#statusU").val();
         const kdbarang = $("input[name='kdbarangU']").val();
-        const bk_bagian = $("select[name='bk_bagianU']").val(); // Bagian
-        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val(); // Nama Karyawan
+        const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
         const jml = $("input[name='jmlU']").val();
         setLoadingU(true);
         resetValidU();
@@ -174,18 +174,9 @@
         const bkkode = $("input[name='bkkodeU']").val();
         const tglkeluar = $("input[name='tglkeluarU']").val();
         const kdbarang = $("input[name='kdbarangU']").val();
-        const bk_bagian = $("select[name='bk_bagianU']").val(); // Bagian
-        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val(); // Nama Karyawan
+        const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
         const jml = $("input[name='jmlU']").val();
-
-        console.log({
-            bkkode: $("input[name='bkkodeU']").val(),
-            tglkeluar: $("input[name='tglkeluarU']").val(),
-            kdbarang: $("input[name='kdbarangU']").val(),
-            bk_bagian: $("select[name='bk_bagianU']").val(),
-            bk_namakaryawan: $("input[name='bk_namakaryawanU']").val(),
-            jml: $("input[name='jmlU']").val()
-        });
 
         $.ajax({
             type: 'POST',
@@ -225,8 +216,8 @@
         $("input[name='bkkodeU']").val('');
         $("input[name='tglkeluarU']").val('');
         $("input[name='kdbarangU']").val('');
-        $("select[name='bk_bagianU']").val(''); // Reset Bagian
-        $("input[name='bk_namakaryawanU']").val(''); // Reset Nama Karyawan
+        $("select[name='bk_bagianU']").val('');
+        $("input[name='bk_namakaryawanU']").val('');
         $("input[name='jmlU']").val('0');
         $("#nmbarangU").val('');
         $("#satuanU").val('');
