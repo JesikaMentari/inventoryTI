@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_akses')) {
         Schema::create('tbl_akses', function (Blueprint $table) {
             $table->increments('akses_id');
             $table->string('menu_id')->nullable();
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->string('akses_type');
             $table->timestamps();
         });
-        }
     }
 
     /**

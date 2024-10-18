@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_jenisbarang')) {
         Schema::create('tbl_jenisbarang', function (Blueprint $table) {
             $table->increments('jenisbarang_id');
             $table->string('jenisbarang_nama');
@@ -21,7 +20,6 @@ return new class extends Migration
             $table->string('jenisbarang_keterangan')->nullable();
             $table->timestamps();
         });
-        }
     }
 
     /**

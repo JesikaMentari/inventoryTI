@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_menu')) {
         Schema::create('tbl_menu', function (Blueprint $table) {
             $table->increments('menu_id');
             $table->string('menu_judul');
@@ -24,7 +23,6 @@ return new class extends Migration
             $table->string('menu_type');
             $table->timestamps();
         });
-        }
     }
 
     /**

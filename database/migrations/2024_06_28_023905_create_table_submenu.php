@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_submenu')) {
         Schema::create('tbl_submenu', function (Blueprint $table) {
             $table->increments('submenu_id');
             $table->string('menu_id');
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->string('submenu_sort');
             $table->timestamps();
         });
-        }
     }
 
     /**

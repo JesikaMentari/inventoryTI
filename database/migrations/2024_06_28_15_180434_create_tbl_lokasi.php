@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_lokasi')) {
         Schema::create('tbl_lokasi', function (Blueprint $table) {
             $table->increments('lokasi_id');
             $table->string('lokasi_nama');
@@ -21,7 +20,6 @@ return new class extends Migration
             $table->string('lokasi_keterangan')->nullable();
             $table->timestamps();
         });
-        }
     }
 
     /**
