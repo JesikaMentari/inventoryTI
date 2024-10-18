@@ -17,9 +17,20 @@
                             <label for="tglkeluarU" class="form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                             <input type="text" name="tglkeluarU" class="form-control datepicker-date" placeholder="">
                         </div>
+                        <!-- Tambahkan dropdown untuk memilih bagian -->
                         <div class="form-group">
-                            <label for="tujuanU" class="form-label">Tujuan</label>
-                            <input type="text" name="tujuanU" class="form-control" placeholder="">
+                            <label for="bk_bagianU" class="form-label">Bagian <span class="text-danger">*</span></label>
+                            <select name="bk_bagianU" class="form-control">
+                                <option value="">Pilih Bagian</option>
+                                @foreach($bagians as $bagian)
+                                    <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- Tambahkan input untuk Nama Karyawan -->
+                        <div class="form-group">
+                            <label for="bk_namakaryawanU" class="form-label">Nama Karyawan</label>
+                            <input type="text" name="bk_namakaryawanU" class="form-control" placeholder="Masukkan Nama Karyawan">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -126,8 +137,9 @@
     function checkFormU() {
         const tglkeluar = $("input[name='tglkeluarU']").val();
         const status = $("#statusU").val();
-        const kdbarang = $("input[name='kdbarangU").val();
-        const tujuan = $("input[name='tujuanU']").val();
+        const kdbarang = $("input[name='kdbarangU']").val();
+        const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
         const jml = $("input[name='jmlU']").val();
         setLoadingU(true);
         resetValidU();
@@ -135,15 +147,20 @@
         if (tglkeluar == "") {
             validasi('Tanggal Keluar wajib di isi!', 'warning');
             $("input[name='tglkeluarU']").addClass('is-invalid');
-            setLoading(Ufalse);
+            setLoadingU(false);
             return false;
         } else if (status == "false" || kdbarang == '') {
             validasi('Barang wajib di pilih!', 'warning');
             $("input[name='kdbarangU']").addClass('is-invalid');
             setLoadingU(false);
             return false;
-        }  else if (jml == "" || jml == "0") {
-            validasi('Jumlah Masuk wajib di isi!', 'warning');
+        } else if (bk_bagian == "") {
+            validasi('Bagian wajib dipilih!', 'warning');
+            $("select[name='bk_bagianU']").addClass('is-invalid');
+            setLoadingU(false);
+            return false;
+        } else if (jml == "" || jml == "0") {
+            validasi('Jumlah Keluar wajib di isi!', 'warning');
             $("input[name='jmlU']").addClass('is-invalid');
             setLoadingU(false);
             return false;
@@ -157,7 +174,8 @@
         const bkkode = $("input[name='bkkodeU']").val();
         const tglkeluar = $("input[name='tglkeluarU']").val();
         const kdbarang = $("input[name='kdbarangU']").val();
-        const tujuan = $("input[name='tujuanU']").val();
+        const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
         const jml = $("input[name='jmlU']").val();
 
         $.ajax({
@@ -168,7 +186,8 @@
                 bkkode: bkkode,
                 tglkeluar: tglkeluar,
                 barang: kdbarang,
-                tujuan: tujuan,
+                bk_bagian: bk_bagian, 
+                bk_namakaryawan: bk_namakaryawan, 
                 jml: jml
             },
             success: function(data) {
@@ -186,7 +205,8 @@
     function resetValidU() {
         $("input[name='tglkeluarU']").removeClass('is-invalid');
         $("input[name='kdbarangU']").removeClass('is-invalid');
-        $("input[name='tujuanU']").removeClass('is-invalid');
+        $("select[name='bk_bagianU']").removeClass('is-invalid');
+        $("input[name='bk_namakaryawanU']").removeClass('is-invalid');
         $("input[name='jmlU']").removeClass('is-invalid');
     };
 
@@ -196,7 +216,8 @@
         $("input[name='bkkodeU']").val('');
         $("input[name='tglkeluarU']").val('');
         $("input[name='kdbarangU']").val('');
-        $("input[name='tujuanU']").val('');
+        $("select[name='bk_bagianU']").val('');
+        $("input[name='bk_namakaryawanU']").val('');
         $("input[name='jmlU']").val('0');
         $("#nmbarangU").val('');
         $("#satuanU").val('');

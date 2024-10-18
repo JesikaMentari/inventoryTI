@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_akses', function (Blueprint $table) {
-            $table->increments('akses_id');
-            $table->string('menu_id')->nullable();
-            $table->string('submenu_id')->nullable();
-            $table->string('othermenu_id')->nullable();
-            $table->string('role_id');
-            $table->string('akses_type');
+        if (!Schema::hasTable('tbl_web')) {
+        Schema::create('tbl_web', function (Blueprint $table) {
+            $table->increments('web_id');
+            $table->string('web_nama');
+            $table->string('web_logo');
+            $table->string('web_deskripsi')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_akses');
+        Schema::dropIfExists('tbl_web');
     }
 };

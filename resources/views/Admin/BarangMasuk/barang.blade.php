@@ -122,8 +122,8 @@
                     name: 'satuan_nama',
                 },
                 {
-                    data: 'merk',
-                    name: 'merk_nama'
+                    data: 'lokasi',
+                    name: 'lokasi_nama'
                 },
                 {
                     data: 'totalstok',

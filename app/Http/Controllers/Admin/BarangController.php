@@ -68,11 +68,11 @@ class BarangController extends Controller
                     return $lokasi;
                 })
                 ->addColumn('currency', function ($row) {
-                    $currency = $row->barang_jumlah == '' ? '-' : number_format($row->barang_jumlah, 0);
-                
+                    $currency = $row->barang_jumlah == '' ? '-' : number_format((int)$row->barang_jumlah, 0,',','.');
+
                     return $currency;
                 })
-                
+
                 ->addColumn('totalstok', function ($row) use ($request) {
                     if ($request->tglawal == '') {
                         $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
@@ -95,7 +95,7 @@ class BarangController extends Controller
                     }else{
                         $result = '<span class="text-danger">'.$totalstok.'</span>';
                     }
-                    
+
 
                     return $result;
                 })
@@ -105,7 +105,6 @@ class BarangController extends Controller
                         "jenisbarang_id" => $row->jenisbarang_id,
                         "satuan_id" => $row->satuan_id,
                         "lokasi_id" => $row->lokasi_id,
-                        "barang_id" => $row->barang_id,
                         "barang_kode" => $row->barang_kode,
                         "barang_nama" => trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $row->barang_nama)),
                         "barang_jumlah" => $row->barang_jumlah,
@@ -176,10 +175,10 @@ class BarangController extends Controller
                 })
                 ->addColumn('currency', function ($row) {
                     $currency = $row->barang_jumlah == '' ? '-' : number_format($row->barang_jumlah, 0);
-                
+
                     return $currency;
                 })
-                
+
                 ->addColumn('totalstok', function ($row) use ($request) {
                     if ($request->tglawal == '') {
                         $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
@@ -202,7 +201,7 @@ class BarangController extends Controller
                     }else{
                         $result = '<span class="text-danger">'.$totalstok.'</span>';
                     }
-                    
+
 
                     return $result;
                 })

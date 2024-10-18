@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_satuan', function (Blueprint $table) {
-            $table->increments('satuan_id');
-            $table->string('satuan_nama');
-            $table->string('satuan_slug');
-            $table->string('satuan_keterangan')->nullable();
+        if (!Schema::hasTable('tbl_barangmasuk')) {
+        Schema::create('tbl_barangmasuk', function (Blueprint $table) {
+            $table->increments('bm_id');
+            $table->string('bm_kode');
+            $table->string('barang_kode');
+            $table->string('customer_id');
+            $table->string('bm_tanggal');
+            $table->string('bm_jumlah');
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_satuan');
+        Schema::dropIfExists('tbl_barangmasuk');
     }
 };

@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">Ubah Unit Ti</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title">Ubah Karyawan Ti</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" name="idunitU">
                 <div class="form-group">
-                    <label for="unitU" class="form-label">Unit Ti Barang <span class="text-danger">*</span></label>
+                    <label for="unitU" class="form-label">Karyawan Ti Barang <span class="text-danger">*</span></label>
                     <input type="text" name="unitU" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">

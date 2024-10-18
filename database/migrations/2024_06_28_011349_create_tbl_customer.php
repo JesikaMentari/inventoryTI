@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_jenisbarang', function (Blueprint $table) {
-            $table->increments('jenisbarang_id');
-            $table->string('jenisbarang_nama');
-            $table->string('jenisbarang_slug');
-            $table->string('jenisbarang_keterangan')->nullable();
+        if (!Schema::hasTable('tbl_unit')) {
+        Schema::create('tbl_unit', function (Blueprint $table) {
+            $table->increments('unit_id');
+            $table->string('unit_nama');
+            $table->string('unit_slug');
+            $table->text('unit_alamat')->nullable();
+            $table->string('unit_notelp')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_jenisbarang');
+        Schema::dropIfExists('tbl_unit');
     }
 };

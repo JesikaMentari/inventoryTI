@@ -16,9 +16,20 @@
                             <label for="tglkeluar" class="form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                             <input type="text" name="tglkeluar" class="form-control datepicker-date" placeholder="">
                         </div>
+                        <!-- Dropdown untuk memilih Bagian -->
                         <div class="form-group">
-                            <label for="tujuan" class="form-label">Tujuan</label>
-                            <input type="text" name="tujuan" class="form-control" placeholder="">
+                            <label for="bk_bagian" class="form-label">Bagian <span class="text-danger">*</span></label>
+                            <select name="bk_bagian" class="form-control">
+                                <option value="">Pilih Bagian</option>
+                                @foreach($bagians as $bagian)
+                                    <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- Input untuk Nama Karyawan -->
+                        <div class="form-group">
+                            <label for="bk_namakaryawan" class="form-label">Nama Karyawan</label>
+                            <input type="text" name="bk_namakaryawan" class="form-control" placeholder="Masukkan Nama Karyawan">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -73,7 +84,6 @@
     </div>
 </div>
 
-
 @section('formTambahJS')
 <script>
     $('input[name="kdbarang"]').keypress(function(event) {
@@ -125,6 +135,8 @@
     function checkForm() {
         const tglkeluar = $("input[name='tglkeluar']").val();
         const status = $("#status").val();
+        const bk_bagian = $("select[name='bk_bagian']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); 
         const jml = $("input[name='jml']").val();
         setLoading(true);
         resetValid();
@@ -137,6 +149,11 @@
         } else if (status == "false") {
             validasi('Barang wajib di pilih!', 'warning');
             $("input[name='kdbarang']").addClass('is-invalid');
+            setLoading(false);
+            return false;
+        } else if (bk_bagian == "") {
+            validasi('Bagian wajib dipilih!', 'warning');
+            $("select[name='bk_bagian']").addClass('is-invalid');
             setLoading(false);
             return false;
         } else if (jml == "" || jml == "0") {
@@ -154,7 +171,8 @@
         const bkkode = $("input[name='bkkode']").val();
         const tglkeluar = $("input[name='tglkeluar']").val();
         const kdbarang = $("input[name='kdbarang']").val();
-        const tujuan = $("input[name='tujuan']").val();
+        const bk_bagian = $("select[name='bk_bagian']").val(); // Bagian
+        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); // Nama Karyawan
         const jml = $("input[name='jml']").val();
 
         $.ajax({
@@ -165,7 +183,8 @@
                 bkkode: bkkode,
                 tglkeluar: tglkeluar,
                 barang: kdbarang,
-                tujuan: tujuan,
+                bk_bagian: bk_bagian, // Bagian
+                bk_namakaryawan: bk_namakaryawan, // Nama Karyawan
                 jml: jml
             },
             success: function(data) {
@@ -184,7 +203,8 @@
     function resetValid() {
         $("input[name='tglkeluar']").removeClass('is-invalid');
         $("input[name='kdbarang']").removeClass('is-invalid');
-        $("input[name='tujuan']").removeClass('is-invalid');
+        $("select[name='bk_bagian']").removeClass('is-invalid'); // Bagian
+        $("input[name='bk_namakaryawan']").removeClass('is-invalid'); // Nama Karyawan
         $("input[name='jml']").removeClass('is-invalid');
     };
 
@@ -193,7 +213,8 @@
         $("input[name='bkkode']").val('');
         $("input[name='tglkeluar']").val('');
         $("input[name='kdbarang']").val('');
-        $("input[name='tujuan']").val('');
+        $("select[name='bk_bagian']").val(''); // Reset Bagian
+        $("input[name='bk_namakaryawan']").val(''); // Reset Nama Karyawan
         $("input[name='jml']").val('0');
         $("#nmbarang").val('');
         $("#satuan").val('');
