@@ -13,7 +13,6 @@
 </div>
 <!-- PAGE-HEADER END -->
 
-
 <!-- ROW -->
 <div class="row row-sm">
     <div class="col-lg-12">
@@ -35,13 +34,16 @@
                             <th class="border-bottom-0">Tanggal Masuk</th>
                             <th class="border-bottom-0">Kode Barang Masuk</th>
                             <th class="border-bottom-0">Kode Barang</th>
-                            <th class="border-bottom-0">Unit TI</th>
+                            <th class="border-bottom-0">Nama Pihak Pertama</th>
+                            <th class="border-bottom-0">Nama Pihak Kedua</th>
                             <th class="border-bottom-0">Barang</th>
                             <th class="border-bottom-0">Jumlah Masuk</th>
+                            <th class="border-bottom-0">Lampiran</th> <!-- Kolom Lampiran Baru -->
                             <th class="border-bottom-0" width="1%">Action</th>
                         </thead>
                         <tbody></tbody>
                     </table>
+                    
                 </div>
             </div>
         </div>
@@ -121,41 +123,25 @@
                 "url": "{{ route('barang-masuk.getbarang-masuk') }}",
             },
 
-            "columns": [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    searchable: false
-                },
-                {
-                    data: 'tgl',
-                    name: 'bm_tanggal',
-                },
-                {
-                    data: 'bm_kode',
-                    name: 'bm_kode',
-                },
-                {
-                    data: 'barang_kode',
-                    name: 'barang_kode',
-                },
-                {
-                    data: 'unit',
-                    name: 'unit_nama',
-                },
-                {
-                    data: 'barang',
-                    name: 'barang_nama',
-                },
-                {
-                    data: 'bm_jumlah',
-                    name: 'bm_jumlah',
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
+            "columns": [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false },
+                { data: 'tgl', name: 'bm_tanggal' },
+                { data: 'bm_kode', name: 'bm_kode' },
+                { data: 'barang_kode', name: 'barang_kode' },
+                { data: 'unit', name: 'unit_nama' },
+                { data: 'namaPihakKedua', name: 'namaPihakKedua' },
+                { data: 'barang', name: 'barang_nama' },
+                { data: 'bm_jumlah', name: 'bm_jumlah' },
+                { 
+                    data: 'bm_lampiran', 
+                    name: 'lampiran', 
+                    render: function(data) {
+                        return data ? `<a href="{{ asset('storage') }}/${data}" target="_blank">Lihat Lampiran</a>` : 'Tidak Ada Lampiran';
+                    },
+                    orderable: false, 
+                    searchable: false 
+                }, <!-- Kolom Lampiran Baru -->
+                { data: 'action', name: 'action', orderable: false, searchable: false },
             ],
 
         });

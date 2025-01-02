@@ -3,7 +3,10 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">Tambah Barang Masuk</h6><button onclick="reset()" aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title">Tambah Barang Masuk</h6>
+                <button onclick="reset()" aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -62,9 +65,13 @@
                             <label for="jml" class="form-label">Jumlah Masuk <span class="text-danger">*</span></label>
                             <input type="text" name="jml" value="0" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" placeholder="">
                         </div>
+                        <!-- Tambahkan input untuk lampiran -->
+                        <div class="form-group">
+                            <label for="lampiran" class="form-label">Lampiran</label>
+                            <input type="file" name="lampiran" class="form-control">
+                        </div>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary d-none" id="btnLoader" type="button" disabled="">
@@ -77,7 +84,6 @@
         </div>
     </div>
 </div>
-
 
 @section('formTambahJS')
 <script>
@@ -141,7 +147,7 @@
             setLoading(false);
             return false;
         } else if (unit == "") {
-            validasi('Unit Ti wajib di pilih!', 'warning');
+            validasi('Unit TI wajib di pilih!', 'warning');
             $("select[name='unit']").addClass('is-invalid');
             setLoading(false);
             return false;
@@ -158,27 +164,29 @@
         } else {
             submitForm();
         }
-
     }
 
     function submitForm() {
-        const bmkode = $("input[name='bmkode']").val();
-        const tglmasuk = $("input[name='tglmasuk']").val();
-        const kdbarang = $("input[name='kdbarang']").val();
-        const unit = $("select[name='unit']").val();
-        const jml = $("input[name='jml']").val();
+        const formData = new FormData();
+        formData.append('bmkode', $("input[name='bmkode']").val());
+        formData.append('tglmasuk', $("input[name='tglmasuk']").val());
+        formData.append('barang', $("input[name='kdbarang']").val());
+        formData.append('unit', $("select[name='unit']").val());
+        formData.append('jml', $("input[name='jml']").val());
+
+        // Tambahkan lampiran jika ada
+        const lampiranFile = $("input[name='lampiran']")[0].files[0];
+        if (lampiranFile) {
+            formData.append('lampiran', lampiranFile);
+        }
 
         $.ajax({
             type: 'POST',
             url: "{{ route('barang-masuk.store') }}",
             enctype: 'multipart/form-data',
-            data: {
-                bmkode: bmkode,
-                tglmasuk: tglmasuk,
-                barang: kdbarang,
-                unit: unit,
-                jml: jml
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(data) {
                 $('#modaldemo8').modal('toggle');
                 swal({
@@ -187,7 +195,6 @@
                 });
                 table.ajax.reload(null, false);
                 reset();
-
             }
         });
     }
@@ -206,6 +213,7 @@
         $("input[name='kdbarang']").val('');
         $("select[name='unit']").val('');
         $("input[name='jml']").val('0');
+        $("input[name='lampiran']").val(''); // Reset lampiran input
         $("#nmbarang").val('');
         $("#satuan").val('');
         $("#jenis").val('');

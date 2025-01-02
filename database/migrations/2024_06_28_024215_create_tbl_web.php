@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_web')) {
         Schema::create('tbl_web', function (Blueprint $table) {
             $table->increments('web_id');
             $table->string('web_nama');
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('web_deskripsi')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
