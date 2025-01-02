@@ -1,0 +1,272 @@
+<!-- MODAL TAMBAH -->
+<div class="modal fade" data-bs-backdrop="static" id="modaldemo8">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+                <h6 class="modal-title">Tambah Barang Keluar</h6><button aria-label="Close" onclick="reset()" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="bkkode" class="form-label">Kode Barang Keluar <span class="text-danger">*</span></label>
+                            <input type="text" name="bkkode" readonly class="form-control" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="tglkeluar" class="form-label">Tanggal Keluar <span class="text-danger">*</span></label>
+                            <input type="text" name="tglkeluar" class="form-control datepicker-date" placeholder="">
+                        </div>
+                        <!-- Dropdown untuk memilih Bagian -->
+                        
+                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+                        
+
+                    <div class="form-group">
+                        <label for="bk_bagian" class="form-label">Bagian <span class="text-danger">*</span></label>
+                        <select name="bk_bagian" id="bk_bagian" class="form-control select2">
+                            <option value="">Pilih Bagian</option>
+                            @foreach($bagians as $bagian)
+                                <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
+                            @endforeach
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#bk_bagian').select2({
+                                        placeholder: 'Pilih Bagian',
+                                        allowClear: true,
+                                        width: '100%'
+                                    });
+                                });
+                            </script>
+                        </select>
+                    </div>
+                        <!-- Input untuk Nama Karyawan -->
+                        <div class="form-group">
+                            <label for="bk_namakaryawan" class="form-label">Nama Karyawan</label>
+                            <input type="text" name="bk_namakaryawan" class="form-control" placeholder="Masukkan Nama Karyawan">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Kode Barang <span class="text-danger me-1">*</span>
+                                <input type="hidden" id="status" value="false">
+                                <div class="spinner-border spinner-border-sm d-none" id="loaderkd" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" autocomplete="off" name="kdbarang" placeholder="">
+                                <button class="btn btn-primary-light" onclick="searchBarang()" type="button"><i class="fe fe-search"></i></button>
+                                <button class="btn btn-success-light" onclick="modalBarang()" type="button"><i class="fe fe-box"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Barang</label>
+                            <input type="text" class="form-control" id="nmbarang" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <input type="text" class="form-control" id="satuan" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Jenis</label>
+                                    <input type="text" class="form-control" id="jenis" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jml" class="form-label">Jumlah Keluar <span class="text-danger">*</span></label>
+                            <input type="text" name="jml" value="0" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary d-none" id="btnLoader" type="button" disabled="">
+                    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+                <a href="javascript:void(0)" onclick="checkForm()" id="btnSimpan" class="btn btn-primary">Simpan <i class="fe fe-check"></i></a>
+                <a href="javascript:void(0)" class="btn btn-light" onclick="reset()" data-bs-dismiss="modal">Batal <i class="fe fe-x"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section('formTambahJS')
+<script>
+$(document).ready(function() {
+    $('#bk_bagian').on('select2:open', function() {
+        // Event 'open' akan dipicu saat Select2 membuka dropdown
+
+        // Mendapatkan elemen input pencarian Select2 yang baru dibuat
+        var $searchInput = $('.select2-search__field');
+
+        // Menambahkan event focus dan blur pada input pencarian Select2
+        $searchInput.on('focus', function() {
+            console.log('Input Select2 mendapatkan fokus!');
+        }).on('blur', function() {
+            console.log('Input Select2 kehilangan fokus!');
+        });
+    });
+    $('#bk_bagian').select2({
+            placeholder: 'Pilih Bagian', // Placeholder untuk dropdown
+            allowClear: true,           // Izinkan pengguna menghapus pilihan
+            width: '100%'               // Pastikan dropdown menyesuaikan lebar elemen form
+        });
+    });
+    $('input[name="kdbarang"]').keypress(function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            getbarangbyid($('input[name="kdbarang"]').val());
+        }
+    });
+
+    function modalBarang() {
+        $('#modalBarang').modal('show');
+        $('#modaldemo8').addClass('d-none');
+        $('input[name="param"]').val('tambah');
+        resetValid();
+        table2.ajax.reload();
+    }
+
+    function searchBarang() {
+        getbarangbyid($('input[name="kdbarang"]').val());
+        resetValid();
+    }
+
+    function getbarangbyid(id) {
+        $("#loaderkd").removeClass('d-none');
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('admin/barang/getbarang') }}/" + id,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(data) {
+                if (data.length > 0) {
+                    $("#loaderkd").addClass('d-none');
+                    $("#status").val("true");
+                    $("#nmbarang").val(data[0].barang_nama);
+                    $("#satuan").val(data[0].satuan_nama);
+                    $("#jenis").val(data[0].jenisbarang_nama);
+                } else {
+                    $("#loaderkd").addClass('d-none');
+                    $("#status").val("false");
+                    $("#nmbarang").val('');
+                    $("#satuan").val('');
+                    $("#jenis").val('');
+                }
+            }
+        });
+    }
+
+    function checkForm() {
+        const tglkeluar = $("input[name='tglkeluar']").val();
+        const status = $("#status").val();
+        const bk_bagian = $("select[name='bk_bagian']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); 
+        const jml = $("input[name='jml']").val();
+        setLoading(true);
+        resetValid();
+
+        if (tglkeluar == "") {
+            validasi('Tanggal Keluar wajib di isi!', 'warning');
+            $("input[name='tglkeluar']").addClass('is-invalid');
+            setLoading(false);
+            return false;
+        } else if (status == "false") {
+            validasi('Barang wajib di pilih!', 'warning');
+            $("input[name='kdbarang']").addClass('is-invalid');
+            setLoading(false);
+            return false;
+        } else if (bk_bagian == "") {
+            validasi('Bagian wajib dipilih!', 'warning');
+            $("select[name='bk_bagian']").addClass('is-invalid');
+            setLoading(false);
+            return false;
+        } else if (jml == "" || jml == "0") {
+            validasi('Jumlah Keluar wajib di isi!', 'warning');
+            $("input[name='jml']").addClass('is-invalid');
+            setLoading(false);
+            return false;
+        } else {
+            submitForm();
+        }
+
+    }
+
+    function submitForm() {
+        const bkkode = $("input[name='bkkode']").val();
+        const tglkeluar = $("input[name='tglkeluar']").val();
+        const kdbarang = $("input[name='kdbarang']").val();
+        const bk_bagian = $("select[name='bk_bagian']").val(); // Bagian
+        const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); // Nama Karyawan
+        const jml = $("input[name='jml']").val();
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('barang-keluar.store') }}",
+            enctype: 'multipart/form-data',
+            data: {
+                bkkode: bkkode,
+                tglkeluar: tglkeluar,
+                barang: kdbarang,
+                bk_bagian: bk_bagian, // Bagian
+                bk_namakaryawan: bk_namakaryawan, // Nama Karyawan
+                jml: jml
+            },
+            success: function(data) {
+                $('#modaldemo8').modal('toggle');
+                swal({
+                    title: "Berhasil ditambah!",
+                    type: "success"
+                });
+                table.ajax.reload(null, false);
+                reset();
+
+            }
+        });
+    }
+
+    function resetValid() {
+        $("input[name='tglkeluar']").removeClass('is-invalid');
+        $("input[name='kdbarang']").removeClass('is-invalid');
+        $("select[name='bk_bagian']").removeClass('is-invalid'); // Bagian
+        $("input[name='bk_namakaryawan']").removeClass('is-invalid'); // Nama Karyawan
+        $("input[name='jml']").removeClass('is-invalid');
+    };
+
+    function reset() {
+        resetValid();
+        $("input[name='bkkode']").val('');
+        $("input[name='tglkeluar']").val('');
+        $("input[name='kdbarang']").val('');
+        $("select[name='bk_bagian']").val(''); // Reset Bagian
+        $("input[name='bk_namakaryawan']").val(''); // Reset Nama Karyawan
+        $("input[name='jml']").val('0');
+        $("#nmbarang").val('');
+        $("#satuan").val('');
+        $("#jenis").val('');
+        $("#status").val('false');
+        setLoading(false);
+    }
+
+    function setLoading(bool) {
+        if (bool == true) {
+            $('#btnLoader').removeClass('d-none');
+            $('#btnSimpan').addClass('d-none');
+        } else {
+            $('#btnSimpan').removeClass('d-none');
+            $('#btnLoader').addClass('d-none');
+        }
+    }
+</script>
+@endsection
+

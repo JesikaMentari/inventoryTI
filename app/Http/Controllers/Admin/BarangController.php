@@ -248,6 +248,30 @@ class BarangController extends Controller
         }
     }
 
+<<<<<<< HEAD
+    public function store(Request $request)
+{
+    $request->validate([
+        'kode' => 'required',
+        'nama' => 'required',
+        'jumlah' => 'required|integer',
+        // Validasi lainnya
+    ]);
+
+    $barang = new BarangModel();
+    $barang->kode = $request->kode;
+    $barang->nama = $request->nama;
+    $barang->jenisbarang_id = $request->jenisbarang;
+    $barang->satuan_id = $request->satuan;
+    $barang->lokasi_id = $request->lokasi;
+    $barang->vendor = $request->vendor;
+    $barang->jumlah = $request->jumlah;
+
+    // Jika file diupload
+    if ($request->hasFile('foto')) {
+        $path = $request->file('foto')->store('barang_images');
+        $barang->foto = $path;
+=======
     public function proses_tambah(Request $request)
     {
         $img = "";
@@ -290,8 +314,15 @@ class BarangController extends Controller
         ]);
     
         return response()->json(['success' => 'Berhasil']);
+>>>>>>> 5bd76ee88b7e4793bcf1d3aec2d9eea57f57af34
     }
     
+
+    $barang->save();
+
+    return response()->json(['success' => true]);
+}
+
 
     public function proses_ubah(Request $request, BarangModel $barang)
     {

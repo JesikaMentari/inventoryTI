@@ -72,7 +72,11 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
+                            <div class="col-md-6">
+=======
                         <div class="col-md-6">
+>>>>>>> 5bd76ee88b7e4793bcf1d3aec2d9eea57f57af34
                             <h4>II. Data Pihak Kedua</h4>
                             <div class="form-group">
                                 <label for="namaPihakKedua">Nama</label>
@@ -130,7 +134,11 @@
 
                     <p class="mt-4">Sejak penandatanganan berita acara ini, maka barang tersebut menjadi tanggung jawab PIHAK KEDUA untuk dipergunakan sebagai alat kerja.</p>
 
+<<<<<<< HEAD
+                        <div class="row mt-5">
+=======
                     <div class="row mt-5">
+>>>>>>> 5bd76ee88b7e4793bcf1d3aec2d9eea57f57af34
                         <div class="col-md-6 text-center">
                             <p>PIHAK PERTAMA</p>
                             <br><br>
