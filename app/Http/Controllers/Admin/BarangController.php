@@ -233,37 +233,35 @@ class BarangController extends Controller
         }
     }
 
-    public function proses_tambah(Request $request)
-    {
-        $img = "";
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->nama)));
+    public function store(Request $request)
+{
+    $request->validate([
+        'kode' => 'required',
+        'nama' => 'required',
+        'jumlah' => 'required|integer',
+        // Validasi lainnya
+    ]);
 
-        //upload image
-        if ($request->file('foto') == null) {
-            $img = "image.png";
-        } else {
-            $image = $request->file('foto');
-            $image->storeAs('public/barang/', $image->hashName());
-            $img = $image->hashName();
-        }
+    $barang = new BarangModel();
+    $barang->kode = $request->kode;
+    $barang->nama = $request->nama;
+    $barang->jenisbarang_id = $request->jenisbarang;
+    $barang->satuan_id = $request->satuan;
+    $barang->lokasi_id = $request->lokasi;
+    $barang->vendor = $request->vendor;
+    $barang->jumlah = $request->jumlah;
 
-
-        //create
-        BarangModel::create([
-            'barang_gambar' => $img,
-            'jenisbarang_id' => $request->jenisbarang,
-            'satuan_id' => $request->satuan,
-            'lokasi_id' => $request->lokasi,
-            'barang_kode' => $request->kode,
-            'barang_nama' => $request->nama,
-            'barang_slug' => $slug,
-            'barang_jumlah' => $request->jumlah,
-            'barang_stok' => 0,
-
-        ]);
-
-        return response()->json(['success' => 'Berhasil']);
+    // Jika file diupload
+    if ($request->hasFile('foto')) {
+        $path = $request->file('foto')->store('barang_images');
+        $barang->foto = $path;
     }
+
+    $barang->save();
+
+    return response()->json(['success' => true]);
+}
+
 
     public function proses_ubah(Request $request, BarangModel $barang)
     {
