@@ -91,6 +91,34 @@ $appreance = AppreanceModel::where('user_id', '=', Session::get('user')->user_id
         ::-webkit-scrollbar-thumb {
             background-color: #777 !important;
         }
+
+        /* Pastikan dropdown Select2 muncul di atas modal dan elemen lain */
+        .select2-dropdown {
+            z-index: 10500 !important; /* Meningkatkan z-index untuk memastikan dropdown Select2 di atas elemen lainnya */
+        }
+
+        /* Pastikan modal berada di bawah dropdown Select2 */
+        .modal {
+            z-index: 10499 !important;  /* Modal harus berada di bawah dropdown Select2 */
+            overflow: visible !important;  /* Pastikan modal tidak memotong dropdown */
+        }
+
+        /* Menangani pointer-events agar Select2 dapat berinteraksi dengan benar */
+        .select2-container, .select2-dropdown {
+            pointer-events: auto !important;  /* Pastikan Select2 dapat berinteraksi dengan benar */
+        }
+
+        /* Cegah elemen lainnya memiliki pointer-events none */
+        .modal-overlay, .other-element {
+            pointer-events: auto !important;
+        }
+
+        /* Cegah modal dari pemotongan dropdown */
+        .modal-dialog {
+            max-height: 80vh;
+            overflow-y: auto   
+        }
+        
     </style>
 </head>
 
