@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('tbl_satuan')) {
-        Schema::create('tbl_satuan', function (Blueprint $table) {
-            $table->increments('satuan_id');
-            $table->string('satuan_nama');
-            $table->string('satuan_slug');
-            $table->string('satuan_keterangan')->nullable();
+        if (!Schema::hasTable('tbl_vendor')) {
+        Schema::create('tbl_vendor', function (Blueprint $table): void {
+            $table->increments('id_vendor');
+            $table->string('vendor_nama');
+            $table->string('vendorslug');
+            $table->text('vendor_keterangan')->nullable();
             $table->timestamps();
         });
-    }
+        }
     }
 
     /**
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_satuan');
+        Schema::dropIfExists('tbl_vendor');
     }
 };

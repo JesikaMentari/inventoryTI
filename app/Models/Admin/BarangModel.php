@@ -20,5 +20,6 @@ class BarangModel extends Model
         'barang_jumlah',
         'barang_stok',
         'barang_gambar',
+        'barang_vendor',
     ]; 
 }

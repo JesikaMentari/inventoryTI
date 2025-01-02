@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_unit')) {
         Schema::create('tbl_unit', function (Blueprint $table) {
             $table->increments('unit_id');
             $table->string('unit_nama');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('unit_notelp')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**

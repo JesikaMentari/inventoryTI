@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_barangkeluar')) {
         Schema::create('tbl_barangkeluar', function (Blueprint $table) {
             $table->increments('bk_id');
             $table->string('bk_kode');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('bk_jumlah');
             $table->timestamps();
         });
+        }
     }
 
     /**

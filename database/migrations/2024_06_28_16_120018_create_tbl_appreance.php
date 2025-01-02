@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_appreance')) {
         Schema::create('tbl_appreance', function (Blueprint $table) {
             $table->increments('appreance_id');
             $table->string('user_id');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('appreance_sidestyle')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**

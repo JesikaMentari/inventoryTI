@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('tbl_role')) {
         Schema::create('tbl_role', function (Blueprint $table) {
             $table->increments('role_id');
             $table->string('role_title');
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->text('role_desc')->nullable();
             $table->timestamps();
         });
+        }
     }
 
     /**
