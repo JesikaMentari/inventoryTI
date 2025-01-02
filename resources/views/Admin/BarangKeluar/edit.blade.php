@@ -17,6 +17,7 @@
                             <label for="tglkeluarU" class="form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                             <input type="text" name="tglkeluarU" class="form-control datepicker-date" placeholder="">
                         </div>
+                        <!-- Tambahkan dropdown untuk memilih bagian -->
                         <div class="form-group">
                             <label for="bk_bagianU" class="form-label">Bagian <span class="text-danger">*</span></label>
                             <select name="bk_bagianU" class="form-control">
@@ -26,6 +27,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        <!-- Tambahkan input untuk Nama Karyawan -->
                         <div class="form-group">
                             <label for="bk_namakaryawanU" class="form-label">Nama Karyawan</label>
                             <input type="text" name="bk_namakaryawanU" class="form-control" placeholder="Masukkan Nama Karyawan">
@@ -66,12 +68,6 @@
                         <div class="form-group">
                             <label for="jmlU" class="form-label">Jumlah Keluar <span class="text-danger">*</span></label>
                             <input type="text" name="jmlU" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" placeholder="">
-                        </div>
-                        <!-- Tambahkan input untuk Lampiran -->
-                        <div class="form-group">
-                            <label for="lampiranU" class="form-label">Lampiran</label>
-                            <input type="file" name="lampiranU" class="form-control">
-                            <small id="lampiranLink"></small> <!-- Untuk link lampiran -->
                         </div>
                     </div>
                 </div>
@@ -143,6 +139,7 @@
         const status = $("#statusU").val();
         const kdbarang = $("input[name='kdbarangU']").val();
         const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
         const jml = $("input[name='jmlU']").val();
         setLoadingU(true);
         resetValidU();
@@ -173,22 +170,26 @@
     }
 
     function submitFormU() {
-        const formData = new FormData();
-        formData.append('id', $("input[name='idbkU']").val());
-        formData.append('bkkode', $("input[name='bkkodeU']").val());
-        formData.append('tglkeluar', $("input[name='tglkeluarU']").val());
-        formData.append('barang', $("input[name='kdbarangU']").val());
-        formData.append('bk_bagian', $("select[name='bk_bagianU']").val());
-        formData.append('bk_namakaryawan', $("input[name='bk_namakaryawanU']").val());
-        formData.append('jml', $("input[name='jmlU']").val());
-        formData.append('lampiran', $("input[name='lampiranU']")[0].files[0]);
+        const id = $("input[name='idbkU']").val();
+        const bkkode = $("input[name='bkkodeU']").val();
+        const tglkeluar = $("input[name='tglkeluarU']").val();
+        const kdbarang = $("input[name='kdbarangU']").val();
+        const bk_bagian = $("select[name='bk_bagianU']").val();
+        const bk_namakaryawan = $("input[name='bk_namakaryawanU']").val();
+        const jml = $("input[name='jmlU']").val();
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('admin/barang-keluar/proses_ubah') }}/" + $("input[name='idbkU']").val(),
-            data: formData,
-            processData: false,
-            contentType: false,
+            url: "{{ url('admin/barang-keluar/proses_ubah') }}/" + id,
+            enctype: 'multipart/form-data',
+            data: {
+                bkkode: bkkode,
+                tglkeluar: tglkeluar,
+                barang: kdbarang,
+                bk_bagian: bk_bagian, 
+                bk_namakaryawan: bk_namakaryawan, 
+                jml: jml
+            },
             success: function(data) {
                 swal({
                     title: "Berhasil diubah!",
@@ -205,6 +206,7 @@
         $("input[name='tglkeluarU']").removeClass('is-invalid');
         $("input[name='kdbarangU']").removeClass('is-invalid');
         $("select[name='bk_bagianU']").removeClass('is-invalid');
+        $("input[name='bk_namakaryawanU']").removeClass('is-invalid');
         $("input[name='jmlU']").removeClass('is-invalid');
     };
 
@@ -217,7 +219,6 @@
         $("select[name='bk_bagianU']").val('');
         $("input[name='bk_namakaryawanU']").val('');
         $("input[name='jmlU']").val('0');
-        $("input[name='lampiranU']").val('');
         $("#nmbarangU").val('');
         $("#satuanU").val('');
         $("#jenisU").val('');
@@ -235,4 +236,4 @@
         }
     }
 </script>
-@endsection 
+@endsection

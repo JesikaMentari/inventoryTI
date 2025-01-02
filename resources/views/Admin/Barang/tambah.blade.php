@@ -43,6 +43,28 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Kolom Vendor -->
+                        <div class="form-group">
+                            <label for="vendor_dropdown" class="form-label">Vendor</label>
+                            <select name="vendor_dropdown" class="form-control" id="vendor_dropdown">
+                                <option value="">-- Pilih Vendor dari Database --</option>
+                                @if(!empty($vendors) && $vendors->count())
+                                @foreach ($vendors as $vendor)
+                                <option value="{{$vendor->vendor_nama}}">{{$vendor->vendor_nama}}</option>
+                                @endforeach
+                                @else
+                                <option value="lainnya">Lainnya</option> <!-- Opsi Lainnya -->
+                                @endif
+                            </select>
+                        </div>
+
+                        <!-- Kolom Free Text Vendor -->
+                        <div class="form-group d-none" id="vendor_freetext_container">
+                            <label for="vendor_freetext" class="form-label">Masukkan Vendor Baru</label>
+                            <input type="text" name="vendor_freetext" id="vendor_freetext" class="form-control" placeholder="Masukkan vendor baru">
+                        </div>
+
                         <div class="form-group">
                             <label for="jumlah" class="form-label">Jumlah <span class="text-danger">*</span></label>
                             <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1').replace(/^0[^.]/, '0');" name="jumlah" class="form-control">
@@ -73,6 +95,16 @@
 
 @section('formTambahJS')
 <script>
+    $(document).ready(function() {
+        $('#vendor_dropdown').change(function() {
+            if ($(this).val() == 'lainnya') {
+                $('#vendor_freetext_container').removeClass('d-none');
+            } else {
+                $('#vendor_freetext_container').addClass('d-none');
+            }
+        });
+    });
+
     function checkForm() {
         const kode = $("input[name='kode']").val();
         const nama = $("input[name='nama']").val();
@@ -90,7 +122,7 @@
             setLoading(false);
             return false;
         } else if (jumlah == "") {
-            validasi('Harga Barang wajib di isi!', 'warning');
+            validasi('Jumlah Barang wajib di isi!', 'warning');
             $("input[name='jumlah']").addClass('is-invalid');
             setLoading(false);
             return false;
@@ -98,14 +130,18 @@
             submitForm();
         }
     }
+
     function submitForm() {
         const kode = $("input[name='kode']").val();
         const nama = $("input[name='nama']").val();
         const jenisbarang = $("select[name='jenisbarang']").val();
         const satuan = $("select[name='satuan']").val();
         const lokasi = $("select[name='lokasi']").val();
+        const vendor_dropdown = $("select[name='vendor_dropdown']").val();
+        const vendor_freetext = $("input[name='vendor_freetext']").val();
         const jumlah = $("input[name='jumlah']").val();
         const foto = $('#GetFile')[0].files;
+        
         var fd = new FormData();
         // Append data 
         fd.append('foto', foto[0]);
@@ -115,6 +151,10 @@
         fd.append('satuan', satuan);
         fd.append('lokasi', lokasi);
         fd.append('jumlah', jumlah);
+
+        // Logika Vendor: jika vendor dropdown dipilih, gunakan itu. Jika free text diisi, gunakan free text.
+        fd.append('vendor', vendor_dropdown == 'lainnya' ? vendor_freetext : vendor_dropdown);
+
         $.ajax({
             type: 'POST',
             url: "{{route('barang.store')}}",
@@ -123,16 +163,19 @@
             dataType: 'json',
             data: fd,
             success: function(data) {
-                $('#modaldemo8').modal('toggle');
-                swal({
-                    title: "Berhasil ditambah!",
-                    type: "success"
-                });
-                table.ajax.reload(null, false);
-                reset();
+            console.log(data);  // Log data untuk memverifikasi hasilnya
+            $('#modaldemo8').modal('toggle');
+            swal({
+            title: "Berhasil ditambah!",
+            type: "success"
+            });
+            table.ajax.reload(null, false);
+            reset();
             }
+
         });
     }
+
     function resetValid() {
         $("input[name='kode']").removeClass('is-invalid');
         $("input[name='nama']").removeClass('is-invalid');
@@ -140,7 +183,10 @@
         $("select[name='satuan']").removeClass('is-invalid');
         $("select[name='lokasi']").removeClass('is-invalid');
         $("input[name='jumlah']").removeClass('is-invalid');
+        $("select[name='vendor_dropdown']").removeClass('is-invalid');
+        $("input[name='vendor_freetext']").removeClass('is-invalid');
     };
+
     function reset() {
         resetValid();
         $("input[name='kode']").val('');
@@ -149,10 +195,13 @@
         $("select[name='satuan']").val('');
         $("select[name='lokasi']").val('');
         $("input[name='jumlah']").val('');
+        $("input[name='vendor_freetext']").val(''); // Reset vendor free text
+        $("select[name='vendor_dropdown']").val(''); // Reset vendor dropdown
         $("#outputImg").attr("src", "{{url('/assets/default/barang/image.png')}}");
         $("#GetFile").val('');
         setLoading(false);
     }
+
     function setLoading(bool) {
         if (bool == true) {
             $('#btnLoader').removeClass('d-none');
@@ -162,6 +211,7 @@
             $('#btnLoader').addClass('d-none');
         }
     }
+
     function fileIsValid(fileName) {
         var ext = fileName.match(/\.([^\.]+)$/)[1];
         ext = ext.toLowerCase();
@@ -178,6 +228,7 @@
         }
         return isValid;
     }
+
     function VerifyFileNameAndFileSize() {
         var file = document.getElementById('GetFile').files[0];
         if (file != null) {
@@ -196,7 +247,6 @@
             }
             var ext = fileName.match(/\.([^\.]+)$/)[1];
             ext = ext.toLowerCase();
-            // $(".custom-file-label").addClass("selected").html(file.name);
             document.getElementById('outputImg').src = window.URL.createObjectURL(file);
             return true;
         } else

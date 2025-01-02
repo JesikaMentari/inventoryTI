@@ -36,6 +36,7 @@
                             <th class="border-bottom-0">Jenis</th>
                             <th class="border-bottom-0">Satuan</th>
                             <th class="border-bottom-0">Lokasi</th>
+                            <th class="border-bottom-0">Vendor</th> <!-- Kolom vendor ditambahkan di sini -->
                             <th class="border-bottom-0">Stok</th>
                             <th class="border-bottom-0">Jumlah</th>
                             <th class="border-bottom-0" width="1%">Action</th>
@@ -149,6 +150,10 @@
                 {
                     data: 'lokasi',
                     name: 'lokasi_nama',
+                },
+                {
+                    data: 'vendor', // Menambahkan kolom vendor di sini
+                    name: 'barang_vendor',
                 },
                 {
                     data: 'totalstok',

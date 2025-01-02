@@ -31,49 +31,29 @@ class VendorController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('ket', function ($row) {
-                    return $row->vendor_keterangan == '' ? '-' : $row->vendor_keterangan;
+                    return $row->vendor_keterangan ?: '-';
                 })
                 ->addColumn('action', function ($row) {
-                    $array = array(
+                    $array = [
                         "id_vendor" => $row->id_vendor,
-                        "vendor_nama" => trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $row->vendor_nama)),
-                        "vendor_keterangan" => trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $row->vendor_keterangan))
-                    );
+                        "vendor_nama" => $row->vendor_nama,
+                        "vendor_keterangan" => $row->vendor_keterangan
+                    ];
+
                     $button = '';
-                    $hakEdit = AksesModel::leftJoin('tbl_submenu', 'tbl_submenu.submenu_id', '=', 'tbl_akses.submenu_id')
-                        ->where([
-                            'tbl_akses.role_id' => Session::get('user')->role_id, 
-                            'tbl_submenu.submenu_judul' => 'Vendor', 
-                            'tbl_akses.akses_type' => 'update'
-                        ])->count();
-                    $hakDelete = AksesModel::leftJoin('tbl_submenu', 'tbl_submenu.submenu_id', '=', 'tbl_akses.submenu_id')
-                        ->where([
-                            'tbl_akses.role_id' => Session::get('user')->role_id, 
-                            'tbl_submenu.submenu_judul' => 'Vendor', 
-                            'tbl_akses.akses_type' => 'delete'
-                        ])->count();
-                    if ($hakEdit > 0 && $hakDelete > 0) {
-                        $button .= '
-                        <div class="g-2">
-                        <a class="btn modal-effect text-primary btn-sm" data-bs-effect="effect-super-scaled" data-bs-toggle="modal" href="#Umodaldemo8" data-bs-toggle="tooltip" data-bs-original-title="Edit" onclick=update(' . json_encode($array) . ')><span class="fe fe-edit text-success fs-14"></span></a>
-                        <a class="btn modal-effect text-danger btn-sm" data-bs-effect="effect-super-scaled" data-bs-toggle="modal" href="#Hmodaldemo8" onclick=hapus(' . json_encode($array) . ')><span class="fe fe-trash-2 fs-14"></span></a>
-                        </div>';
-                    } elseif ($hakEdit > 0 && $hakDelete == 0) {
-                        $button .= '
-                        <div class="g-2">
-                        <a class="btn modal-effect text-primary btn-sm" data-bs-effect="effect-super-scaled" data-bs-toggle="modal" href="#Umodaldemo8" data-bs-toggle="tooltip" data-bs-original-title="Edit" onclick=update(' . json_encode($array) . ')><span class="fe fe-edit text-success fs-14"></span></a>
-                        </div>';
-                    } elseif ($hakEdit == 0 && $hakDelete > 0) {
-                        $button .= '
-                        <div class="g-2">
-                        <a class="btn modal-effect text-danger btn-sm" data-bs-effect="effect-super-scaled" data-bs-toggle="modal" href="#Hmodaldemo8" onclick=hapus(' . json_encode($array) . ')><span class="fe fe-trash-2 fs-14"></span></a>
-                        </div>';
-                    } else {
-                        $button .= '-';
+                    $hakEdit = AksesModel::whereRoleAccess('Vendor', 'update');
+                    $hakDelete = AksesModel::whereRoleAccess('Vendor', 'delete');
+                    
+                    if ($hakEdit) {
+                        $button .= '<a class="btn btn-sm text-success" data-bs-toggle="modal" href="#modalEditVendor" onclick="update(' . htmlspecialchars(json_encode($array)) . ')"><i class="fe fe-edit"></i></a>';
                     }
-                    return $button;
+                    if ($hakDelete) {
+                        $button .= '<a class="btn btn-sm text-danger" data-bs-toggle="modal" href="#modalHapusVendor" onclick="hapus(' . htmlspecialchars(json_encode($array)) . ')"><i class="fe fe-trash"></i></a>';
+                    }
+                    return $button ?: '-';
                 })
-                ->rawColumns(['action', 'ket'])->make(true);
+                ->rawColumns(['action', 'ket'])
+                ->make(true);
         }
     }
 
@@ -85,7 +65,6 @@ class VendorController extends Controller
 
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->vendor_nama)));
 
-        //insert data
         VendorModel::create([
             'vendor_nama' => $request->vendor_nama,
             'vendorslug' => $slug,
@@ -95,29 +74,37 @@ class VendorController extends Controller
         return response()->json(['success' => 'Berhasil']);
     }
 
-    public function proses_ubah(Request $request, VendorModel $vendor)
+    public function proses_ubah(Request $request)
     {
         $request->validate([
+            'id_vendor' => 'required|integer', // Validasi id_vendor
             'vendor_nama' => 'required|string|max:255',
         ]);
-
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->vendor_nama)));
-
-        //update data
+    
+        $vendor = VendorModel::find($request->id_vendor);
+        if (!$vendor) {
+            return response()->json(['error' => 'Vendor tidak ditemukan'], 404);
+        }
+    
         $vendor->update([
             'vendor_nama' => $request->vendor_nama,
-            'vendorslug' => $slug,
             'vendor_keterangan' => $request->vendor_keterangan,
         ]);
+    
+        return response()->json(['success' => 'Data vendor berhasil diubah']);
+    }    
 
-        return response()->json(['success' => 'Berhasil']);
-    }
-
-    public function proses_hapus(Request $request, VendorModel $vendor)
+    
+    
+    public function proses_hapus($id)
     {
-        //delete
-        $vendor->delete();
-
-        return response()->json(['success' => 'Berhasil']);
+        try {
+            $vendor =VendorModel::findOrFail($id); // Temukan data berdasarkan ID
+            $vendor->delete(); // Hapus data
+    
+            return response()->json(['success' => 'Data vendor berhasil dihapus']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Gagal menghapus data vendor']);
+        }
     }
-}
+}    

@@ -101,11 +101,9 @@ class BagianController extends Controller
         return response()->json(['success' => 'Berhasil']);
     }
 
-    public function destroy(Request $request, BagianModel $bagian)
+    public function proses_hapus(Request $request, BagianModel $bagian)
     {
-        // Delete
         $bagian->delete();
-
-        return response()->json(['success' => 'Berhasil']);
+        return response()->json(['success' => 'Bagian berhasil dihapus!']);
     }
-}
+}    

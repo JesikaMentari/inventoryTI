@@ -17,15 +17,30 @@
                             <input type="text" name="tglkeluar" class="form-control datepicker-date" placeholder="">
                         </div>
                         <!-- Dropdown untuk memilih Bagian -->
-                        <div class="form-group">
-                            <label for="bk_bagian" class="form-label">Bagian <span class="text-danger">*</span></label>
-                            <select name="bk_bagian" class="form-control">
-                                <option value="">Pilih Bagian</option>
-                                @foreach($bagians as $bagian)
-                                    <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
+                        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+                        
+
+                    <div class="form-group">
+                        <label for="bk_bagian" class="form-label">Bagian <span class="text-danger">*</span></label>
+                        <select name="bk_bagian" id="bk_bagian" class="form-control select2">
+                            <option value="">Pilih Bagian</option>
+                            @foreach($bagians as $bagian)
+                                <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
+                            @endforeach
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#bk_bagian').select2({
+                                        placeholder: 'Pilih Bagian',
+                                        allowClear: true,
+                                        width: '100%'
+                                    });
+                                });
+                            </script>
+                        </select>
+                    </div>
                         <!-- Input untuk Nama Karyawan -->
                         <div class="form-group">
                             <label for="bk_namakaryawan" class="form-label">Nama Karyawan</label>
@@ -86,6 +101,26 @@
 
 @section('formTambahJS')
 <script>
+$(document).ready(function() {
+    $('#bk_bagian').on('select2:open', function() {
+        // Event 'open' akan dipicu saat Select2 membuka dropdown
+
+        // Mendapatkan elemen input pencarian Select2 yang baru dibuat
+        var $searchInput = $('.select2-search__field');
+
+        // Menambahkan event focus dan blur pada input pencarian Select2
+        $searchInput.on('focus', function() {
+            console.log('Input Select2 mendapatkan fokus!');
+        }).on('blur', function() {
+            console.log('Input Select2 kehilangan fokus!');
+        });
+    });
+    $('#bk_bagian').select2({
+            placeholder: 'Pilih Bagian', // Placeholder untuk dropdown
+            allowClear: true,           // Izinkan pengguna menghapus pilihan
+            width: '100%'               // Pastikan dropdown menyesuaikan lebar elemen form
+        });
+    });
     $('input[name="kdbarang"]').keypress(function(event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
@@ -234,3 +269,4 @@
     }
 </script>
 @endsection
+
