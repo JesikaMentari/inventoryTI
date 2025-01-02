@@ -40,18 +40,13 @@
                                 <th class="border-bottom-0">Barang</th>
                                 <th class="border-bottom-0">Jumlah Keluar</th>
                                 <th class="border-bottom-0">Bagian</th> <!-- Ubah kolom Tujuan ke Bagian -->
-                                <th class="border-bottom-0">Nama Pihak Pertama</th> <!-- Ubah kolom Tujuan ke Bagian -->
-                                <th class="border-bottom-0">Nama Pihak Kedua</th> <!-- Tambah kolom Nama Karyawan -->
-                                <th class="border-bottom-0">Lampiran</th> <!-- Kolom Lampiran Baru -->
+                                <th class="border-bottom-0">Nama Karyawan</th> <!-- Tambah kolom Nama Karyawan -->
                                 <th class="border-bottom-0" width="1%">Action</th>
                             </thead>
                             <tbody></tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- END ROW -->
 
     @include('Admin.BarangKeluar.tambah')
@@ -72,12 +67,6 @@
             $("input[name='jmlU']").val(data.bk_jumlah);
             $("input[name='bk_namakaryawanU']").val(data.bk_namakaryawan); // Tambahkan input nama karyawan
             $("select[name='bk_bagianU']").val(data.bk_bagian); // Pilih bagian di dropdown
-
-            if (data.bk_lampiran) {
-                $("#lampiranLink").html(`<a href="{{ asset('storage') }}/${data.bk_lampiran}" target="_blank">Lihat Lampiran</a>`);
-            } else {
-                $("#lampiranLink").html('Tidak Ada Lampiran');
-            }
 
             getbarangbyidU(data.barang_kode);
 
@@ -102,6 +91,7 @@
     </script>
 @endsection
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 @section('scripts')
     <script>
         $.ajaxSetup({
@@ -111,7 +101,25 @@
         });
 
         var table;
+       
         $(document).ready(function() {
+            $('#bk_bagian').select2({
+            placeholder: 'Pilih Bagian', // Placeholder untuk dropdown
+            allowClear: true,           // Izinkan pengguna menghapus pilihan
+            width: '100%'               // Pastikan dropdown menyesuaikan lebar elemen form
+        });
+
+        // $('#modaldemo8').on('shown.bs.modal', function () {
+        //     $('#bk_bagian').select2({
+        //         placeholder: 'Pilih Bagian',
+        //         allowClear: true,
+                
+        //     });
+        //         $('#modaldemo8').on('shown.bs.modal', function () {
+        //             $('#bk_bagian').select2('open');
+        //         });
+            
+        // });
             //datatables
             table = $('#table-1').DataTable({
 
@@ -120,7 +128,7 @@
                 "info": true,
                 "order": [],
                 "scrollX": true,
-                "stateSave": true,
+                "stateSave":true,
                 "lengthMenu": [
                     [5, 10, 25, 50, 100],
                     [5, 10, 25, 50, 100]
@@ -133,30 +141,50 @@
                     "url": "{{ route('barang-keluar.getbarang-keluar') }}",
                 },
 
-                "columns": [
-                    { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false },
-                    { data: 'tgl', name: 'bk_tanggal' },
-                    { data: 'bk_kode', name: 'bk_kode' },
-                    { data: 'barang_kode', name: 'barang_kode' },
-                    { data: 'barang', name: 'barang_nama' },
-                    { data: 'bk_jumlah', name: 'bk_jumlah' },
-                    { data: 'bagian', name: 'bagian.nama_bagian' },
-                    { data: 'unit', name: 'unit_nama' },
-                    { data: 'bk_namakaryawan', name: 'bk_namakaryawan' },
-                    { 
-                        data: 'bk_lampiran', 
-                        name: 'lampiran', 
-                        render: function(data) {
-                            return data ? `<a href="{{ asset('storage') }}/${data}" target="_blank">Lihat Lampiran</a>` : 'Tidak Ada Lampiran';
-                        },
-                        orderable: false, 
-                        searchable: false 
+                "columns": [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        searchable: false
                     },
-                    { data: 'action', name: 'action', orderable: false, searchable: false },
+                    {
+                        data: 'tgl',
+                        name: 'bk_tanggal',
+                    },
+                    {
+                        data: 'bk_kode',
+                        name: 'bk_kode',
+                    },
+                    {
+                        data: 'barang_kode',
+                        name: 'barang_kode',
+                    },
+                    {
+                        data: 'barang',
+                        name: 'barang_nama',
+                    },
+                    {
+                        data: 'bk_jumlah',
+                        name: 'bk_jumlah',
+                    },
+                    {
+                        data: 'bagian', 
+                        name: 'bagian.nama_bagian',
+                    },
+                    {
+                        data: 'bk_namakaryawan', 
+                        name: 'bk_namakaryawan',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
                 ],
 
             });
         });
+        
     </script>
 </div>
 <!-- END ROW -->
@@ -201,14 +229,35 @@
                 }
             },
 
-            "columns": [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false },
-                { data: 'tgl', name: 'bm_tanggal' },
-                { data: 'bm_kode', name: 'bm_kode' },
-                { data: 'barang_kode', name: 'barang_kode' },
-                { data: 'unit', name: 'unit_nama' },
-                { data: 'barang', name: 'barang_nama' },
-                { data: 'bm_jumlah', name: 'bm_jumlah' },
+            "columns": [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    searchable: false
+                },
+                {
+                    data: 'tgl',
+                    name: 'bm_tanggal',
+                },
+                {
+                    data: 'bm_kode',
+                    name: 'bm_kode',
+                },
+                {
+                    data: 'barang_kode',
+                    name: 'barang_kode',
+                },
+                {
+                    data: 'unit',
+                    name: 'unit_nama',
+                },
+                {
+                    data: 'barang',
+                    name: 'barang_nama',
+                },
+                {
+                    data: 'bm_jumlah',
+                    name: 'bm_jumlah',
+                },
             ],
 
         });
@@ -222,6 +271,7 @@
         } else {
             validasi("Isi dulu Form Filter Tanggal!", 'warning');
         }
+
     }
 
     function reset() {
@@ -230,4 +280,5 @@
         table.ajax.reload(null, false);
     }
 </script>
-@endsection  
+
+@endsection
