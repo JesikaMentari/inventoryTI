@@ -211,7 +211,7 @@
         $("#satuanU").val('');
         $("#jenisU").val('');
         $("#statusU").val('false');
-        
+
         setLoadingU(false);
     }
 

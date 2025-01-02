@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\RequestBeritaAcaraController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\SatuanController;
+use App\Http\Controllers\Admin\VendorController;
+use App\Http\Controllers\Admin\BagianController;
 use App\Http\Controllers\Master\AksesController;
 use App\Http\Controllers\Master\AppreanceController;
 use App\Http\Controllers\Master\MenuController;
@@ -89,6 +91,24 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/barang/proses_hapus/{barang}', [BarangController::class, 'proses_hapus']);
     });
 
+    Route::middleware(['checkRoleUser:/bagian,submenu'])->group(function () {
+        // Bagian
+        Route::resource('/admin/bagian', \App\Http\Controllers\Admin\BagianController::class);
+        Route::get('/admin/bagian/show/', [BagianController::class, 'show'])->name('bagian.getbagian');
+        Route::post('/admin/bagian/proses_tambah/', [BagianController::class, 'proses_tambah'])->name('bagian.store');
+        Route::post('/admin/bagian/proses_ubah/{bagian}', [BagianController::class, 'proses_ubah']);
+        Route::post('/admin/bagian/proses_hapus/{bagian}', [BagianController::class, 'proses_hapus']);
+    });
+
+    Route::middleware(['checkRoleUser:/vendor,submenu'])->group(function () {
+        // Vendor
+        Route::resource('/admin/vendor', \App\Http\Controllers\Admin\VendorController::class);
+        Route::get('/admin/vendor/show/', [VendorController::class, 'show'])->name('vendor.getvendor');
+        Route::post('/admin/vendor/proses_tambah/', [VendorController::class, 'proses_tambah'])->name('vendor.store');
+        Route::post('/admin/vendor/proses_ubah/{vendor}', [VendorController::class, 'proses_ubah']);
+        Route::post('/admin/vendor/proses_hapus/{vendor}', [VendorController::class, 'proses_hapus']);
+    });
+
     Route::middleware(['checkRoleUser:/unit,menu'])->group(function () {
         // Unit TI
         Route::resource('/admin/unit', \App\Http\Controllers\Admin\UnitController::class);
@@ -107,7 +127,7 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/barang-masuk/proses_hapus/{barangmasuk}', [BarangmasukController::class, 'proses_hapus']);
         Route::get('/admin/barang/getbarang/{id}', [BarangController::class, 'getbarang']);
         Route::get('/admin/barang/listbarang/{param}', [BarangController::class, 'listbarang']);
-    }); 
+    });
 
     Route::middleware(['checkRoleUser:/barang-keluar,submenu'])->group(function () {
         // Barang Keluar
@@ -127,12 +147,26 @@ Route::group(['middleware' => 'userlogin'], function () {
     });
 
     Route::middleware(['checkRoleUser:/request-berita-acara,submenu'])->group(function () {
-        // Request Berita
-        Route::resource('/admin/request-berita-acara', \App\Http\Controllers\Admin\RequestBeritaAcaraController::class);
+        // Request Berita Acara
+        Route::resource('/admin/request-berita-acara', \App\Http\Controllers\Admin\RequestBeritaAcaraController::class)
+            ->names([
+                'index' => 'request.beritaacara.index',
+                'create' => 'request.beritaacara.create',
+                'store' => 'request.beritaacara.store',
+                'show' => 'request.beritaacara.show',
+                'edit' => 'request.beritaacara.edit',
+                'update' => 'request.beritaacara.update',
+                'destroy' => 'request.beritaacara.destroy',
+            ]);
+
+        // Tambahan Route Manual
         Route::post('/admin/request-berita-acara/print', [RequestBeritaAcaraController::class, 'print'])->name('req-ba.print');
         Route::post('/admin/request-berita-acara/pdf', [RequestBeritaAcaraController::class, 'pdf'])->name('req-ba.pdf');
+        Route::post('/request-beritaacara/store-masuk', [RequestBeritaAcaraController::class, 'storeMasuk'])->name('request.beritaacara.storeMasuk');
+        Route::post('/request-beritaacara/store-keluar', [RequestBeritaAcaraController::class, 'storeKeluar'])->name('request.beritaacara.storeKeluar');
     });
     
+
     Route::middleware(['checkRoleUser:/lap-stok-barang,submenu'])->group(function () {
         // Laporan Stok Barang
         Route::resource('/admin/lap-stok-barang', \App\Http\Controllers\Admin\LapStokBarangController::class);
