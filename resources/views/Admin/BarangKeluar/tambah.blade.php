@@ -17,7 +17,7 @@
                             <input type="text" name="tglkeluar" class="form-control datepicker-date" placeholder="">
                         </div>
                         <!-- Dropdown untuk memilih Bagian -->
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="bk_bagian" class="form-label">Bagian <span class="text-danger">*</span></label>
                             <select name="bk_bagian" class="form-control">
                                 <option value="">Pilih Bagian</option>
@@ -25,7 +25,7 @@
                                     <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <!-- Input untuk Nama Karyawan -->
                         <div class="form-group">
                             <label for="bk_namakaryawan" class="form-label">Nama Karyawan</label>
@@ -135,7 +135,7 @@
     function checkForm() {
         const tglkeluar = $("input[name='tglkeluar']").val();
         const status = $("#status").val();
-        const bk_bagian = $("select[name='bk_bagian']").val();
+        // const bk_bagian = $("select[name='bk_bagian']").val();
         const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); 
         const jml = $("input[name='jml']").val();
         setLoading(true);
@@ -151,12 +151,14 @@
             $("input[name='kdbarang']").addClass('is-invalid');
             setLoading(false);
             return false;
-        } else if (bk_bagian == "") {
-            validasi('Bagian wajib dipilih!', 'warning');
-            $("select[name='bk_bagian']").addClass('is-invalid');
-            setLoading(false);
-            return false;
-        } else if (jml == "" || jml == "0") {
+        } 
+        // else if (bk_bagian == "") {
+        //     validasi('Bagian wajib dipilih!', 'warning');
+        //     $("select[name='bk_bagian']").addClass('is-invalid');
+        //     setLoading(false);
+        //     return false;
+        // } 
+        else if (jml == "" || jml == "0") {
             validasi('Jumlah Keluar wajib di isi!', 'warning');
             $("input[name='jml']").addClass('is-invalid');
             setLoading(false);
@@ -171,7 +173,7 @@
         const bkkode = $("input[name='bkkode']").val();
         const tglkeluar = $("input[name='tglkeluar']").val();
         const kdbarang = $("input[name='kdbarang']").val();
-        const bk_bagian = $("select[name='bk_bagian']").val(); // Bagian
+        // const bk_bagian = $("select[name='bk_bagian']").val(); // Bagian
         const bk_namakaryawan = $("input[name='bk_namakaryawan']").val(); // Nama Karyawan
         const jml = $("input[name='jml']").val();
 
@@ -183,7 +185,7 @@
                 bkkode: bkkode,
                 tglkeluar: tglkeluar,
                 barang: kdbarang,
-                bk_bagian: bk_bagian, // Bagian
+                // bk_bagian: bk_bagian, // Bagian
                 bk_namakaryawan: bk_namakaryawan, // Nama Karyawan
                 jml: jml
             },
@@ -203,7 +205,7 @@
     function resetValid() {
         $("input[name='tglkeluar']").removeClass('is-invalid');
         $("input[name='kdbarang']").removeClass('is-invalid');
-        $("select[name='bk_bagian']").removeClass('is-invalid'); // Bagian
+        // $("select[name='bk_bagian']").removeClass('is-invalid'); // Bagian
         $("input[name='bk_namakaryawan']").removeClass('is-invalid'); // Nama Karyawan
         $("input[name='jml']").removeClass('is-invalid');
     };
@@ -213,7 +215,7 @@
         $("input[name='bkkode']").val('');
         $("input[name='tglkeluar']").val('');
         $("input[name='kdbarang']").val('');
-        $("select[name='bk_bagian']").val(''); // Reset Bagian
+        // $("select[name='bk_bagian']").val(''); // Reset Bagian
         $("input[name='bk_namakaryawan']").val(''); // Reset Nama Karyawan
         $("input[name='jml']").val('0');
         $("#nmbarang").val('');

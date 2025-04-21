@@ -1,5 +1,4 @@
-<?php
-
+<!-- 
 namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,4 +15,4 @@ class UnitModel extends Model
         'unit_alamat',
         'unit_notelp',
     ]; 
-}
+} -->

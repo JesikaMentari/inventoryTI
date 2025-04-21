@@ -61,9 +61,13 @@ class LapStokBarangController extends Controller
                 })
                 ->addColumn('jmlmasuk', function ($row) use ($request) {
                     if ($request->tglawal == '') {
-                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
+                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                        //->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
+                        ->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
                     } else {
-                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
+                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                        //->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
+                        ->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
                     }
 
                     $result = '<span class="">'.$jmlmasuk.'</span>';
@@ -83,9 +87,13 @@ class LapStokBarangController extends Controller
                 })
                 ->addColumn('totalstok', function ($row) use ($request) {
                     if ($request->tglawal == '') {
-                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
+                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                        //->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
+                        ->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
                     } else {
-                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
+                        $jmlmasuk = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                        //->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
+                        ->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->where('tbl_barangmasuk.barang_kode', '=', $row->barang_kode)->sum('tbl_barangmasuk.bm_jumlah');
                     }
 
 

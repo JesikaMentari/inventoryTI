@@ -34,8 +34,8 @@
                             <th class="border-bottom-0">Tanggal Masuk</th>
                             <th class="border-bottom-0">Kode Barang Masuk</th>
                             <th class="border-bottom-0">Kode Barang</th>
-                            <th class="border-bottom-0">Nama Pihak Pertama</th>
-                            <th class="border-bottom-0">Nama Pihak Kedua</th>
+                            {{-- <th class="border-bottom-0">Nama Pihak Pertama</th>
+                            <th class="border-bottom-0">Nama Pihak Kedua</th> --}}
                             <th class="border-bottom-0">Barang</th>
                             <th class="border-bottom-0">Jumlah Masuk</th>
                             <th class="border-bottom-0">Lampiran</th> <!-- Kolom Lampiran Baru -->
@@ -66,7 +66,7 @@
         $("input[name='idbmU']").val(data.bm_id);
         $("input[name='bmkodeU']").val(data.bm_kode);
         $("input[name='kdbarangU']").val(data.barang_kode);
-        $("select[name='unitU']").val(data.unit_id);
+        //$("select[name='unitU']").val(data.unit_id);
         $("input[name='jmlU']").val(data.bm_jumlah);
 
         getbarangbyidU(data.barang_kode);
@@ -128,8 +128,8 @@
                 { data: 'tgl', name: 'bm_tanggal' },
                 { data: 'bm_kode', name: 'bm_kode' },
                 { data: 'barang_kode', name: 'barang_kode' },
-                { data: 'unit', name: 'unit_nama' },
-                { data: 'namaPihakKedua', name: 'namaPihakKedua' },
+                // { data: 'unit', name: 'unit_nama' },
+                // { data: 'namaPihakKedua', name: 'namaPihakKedua' },
                 { data: 'barang', name: 'barang_nama' },
                 { data: 'bm_jumlah', name: 'bm_jumlah' },
                 { 

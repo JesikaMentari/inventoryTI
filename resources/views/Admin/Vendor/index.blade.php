@@ -33,7 +33,7 @@
                             class="table table-bordered text-nowrap border-bottom dataTable no-footer dtr-inline collapsed">
                             <thead>
                                 <th class="border-bottom-0" width="1%">No</th>
-                                <th class="border-bottom-0">Nama Vendor</th>
+                                <th class="border-bottom-0">Nama</th>
                                 <th class="border-bottom-0">Keterangan</th>
                                 <th class="border-bottom-0" width="1%">Action</th>
                             </thead>
@@ -52,13 +52,13 @@
 
     <script>
         function update(data) {
-            $("input[name='idvendorU']").val(data.vendor_id);
-            $("input[name='vendorU']").val(data.vendor_nama.replace(/_/g, ' '));
-            $("textarea[name='ketU']").val(data.vendor_keterangan.replace(/_/g, ' '));
+            $("input[name='idvendordanbagianU']").val(data.id_vendordanbagian);
+            $("input[name='vendorU']").val(data.nama.replace(/_/g, ' '));
+            $("textarea[name='ketU']").val(data.keterangan.replace(/_/g, ' '));
         }
 
         function hapus(data) {
-            $("input[name='idvendor']").val(data.vendor_id);
+            $("input[name='idvendordanbagian']").val(data.id_vendordanbagian);
             $("#vmerk").html("Vendor " + "<b>" + data.vendor_nama.replace(/_/g, ' ') + "</b>");
         }
 
@@ -108,12 +108,12 @@
                         searchable: false
                     },
                     {
-                        data: 'vendor_nama',
-                        name: 'vendor_nama',
+                        data: 'nama',
+                        name: 'nama',
                     },
                     {
                         data: 'ket',
-                        name: 'vendor_keterangan',
+                        name: 'keterangan',
                     },
                     {
                         data: 'action',

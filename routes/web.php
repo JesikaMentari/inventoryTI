@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\BarangController;
 use App\Http\Controllers\Admin\BarangkeluarController;
 use App\Http\Controllers\Admin\BarangmasukController;
-use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\TransaksiBarangController;
+// use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JenisBarangController;
 use App\Http\Controllers\Admin\LapBarangMasukController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LokasiController;
 use App\Http\Controllers\Admin\SatuanController;
 use App\Http\Controllers\Admin\VendorController;
-use App\Http\Controllers\Admin\BagianController;
+// use App\Http\Controllers\Admin\BagianController;
 use App\Http\Controllers\Master\AksesController;
 use App\Http\Controllers\Master\AppreanceController;
 use App\Http\Controllers\Master\MenuController;
@@ -91,14 +92,14 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/barang/proses_hapus/{barang}', [BarangController::class, 'proses_hapus']);
     });
 
-    Route::middleware(['checkRoleUser:/bagian,submenu'])->group(function () {
-        // Bagian
-        Route::resource('/admin/bagian', \App\Http\Controllers\Admin\BagianController::class);
-        Route::get('/admin/bagian/show/', [BagianController::class, 'show'])->name('bagian.getbagian');
-        Route::post('/admin/bagian/proses_tambah/', [BagianController::class, 'proses_tambah'])->name('bagian.store');
-        Route::post('/admin/bagian/proses_ubah/{bagian}', [BagianController::class, 'proses_ubah']);
-        Route::post('/admin/bagian/proses_hapus/{bagian}', [BagianController::class, 'proses_hapus']);
-    });
+    // Route::middleware(['checkRoleUser:/bagian,submenu'])->group(function () {
+    //     // Bagian
+    //     Route::resource('/admin/bagian', \App\Http\Controllers\Admin\BagianController::class);
+    //     Route::get('/admin/bagian/show/', [BagianController::class, 'show'])->name('bagian.getbagian');
+    //     Route::post('/admin/bagian/proses_tambah/', [BagianController::class, 'proses_tambah'])->name('bagian.store');
+    //     Route::post('/admin/bagian/proses_ubah/{bagian}', [BagianController::class, 'proses_ubah']);
+    //     Route::post('/admin/bagian/proses_hapus/{bagian}', [BagianController::class, 'proses_hapus']);
+    // });
 
     Route::middleware(['checkRoleUser:/vendor,submenu'])->group(function () {
         // Vendor
@@ -109,14 +110,14 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/vendor/proses_hapus/{vendor}', [VendorController::class, 'proses_hapus']);
     });
 
-    Route::middleware(['checkRoleUser:/unit,menu'])->group(function () {
-        // Unit TI
-        Route::resource('/admin/unit', \App\Http\Controllers\Admin\UnitController::class);
-        Route::get('/admin/unit/show/', [UnitController::class, 'show'])->name('unit.getunit');
-        Route::post('/admin/unit/proses_tambah/', [UnitController::class, 'proses_tambah'])->name('unit.store');
-        Route::post('/admin/unit/proses_ubah/{unit}', [UnitController::class, 'proses_ubah']);
-        Route::post('/admin/unit/proses_hapus/{unit}', [UnitController::class, 'proses_hapus']);
-    });
+    // Route::middleware(['checkRoleUser:/unit,menu'])->group(function () {
+    //     // Unit TI
+    //     Route::resource('/admin/unit', \App\Http\Controllers\Admin\UnitController::class);
+    //     Route::get('/admin/unit/show/', [UnitController::class, 'show'])->name('unit.getunit');
+    //     Route::post('/admin/unit/proses_tambah/', [UnitController::class, 'proses_tambah'])->name('unit.store');
+    //     Route::post('/admin/unit/proses_ubah/{unit}', [UnitController::class, 'proses_ubah']);
+    //     Route::post('/admin/unit/proses_hapus/{unit}', [UnitController::class, 'proses_hapus']);
+    // });
 
     Route::middleware(['checkRoleUser:/barang-masuk,submenu'])->group(function () {
         // Barang Masuk
@@ -137,6 +138,15 @@ Route::group(['middleware' => 'userlogin'], function () {
         Route::post('/admin/barang-keluar/proses_ubah/{barangkeluar}', [BarangkeluarController::class, 'proses_ubah']);
         Route::post('/admin/barang-keluar/proses_hapus/{barangkeluar}', [BarangkeluarController::class, 'proses_hapus']);
     });
+
+    Route::middleware(['checkRoleUser:/transaksi-barang,menu'])->group(function () {
+        Route::get('/transaksi-barang', [TransaksiBarangController::class, 'index']);
+        Route::get('/transaksi-barang/data', [TransaksiBarangController::class, 'show'])->name('transaksi-barang.data');
+        Route::post('/transaksi-barang/tambah', [TransaksiBarangController::class, 'proses_tambah'])->name('transaksi-barang.tambah');
+        Route::post('/transaksi-barang/ubah/{transaksi}', [TransaksiBarangController::class, 'proses_ubah'])->name('transaksi-barang.ubah');
+        Route::post('/transaksi-barang/hapus/{transaksi}', [TransaksiBarangController::class, 'proses_hapus'])->name('transaksi-barang.hapus');
+    });
+    
 
     Route::middleware(['checkRoleUser:/lap-barang-masuk,submenu'])->group(function () {
         // Laporan Barang Masuk

@@ -1,5 +1,4 @@
-<?php
-
+<!-- 
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -106,4 +105,4 @@ class BagianController extends Controller
         $bagian->delete();
         return response()->json(['success' => 'Bagian berhasil dihapus!']);
     }
-}    
+}     -->

@@ -9,12 +9,12 @@ class VendorModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_vendor';
-    protected $primaryKey = 'vendor_id';
+    protected $table = 'tbl_vendordanbagian';
+    protected $primaryKey = 'id_vendordanbagian';
 
     protected $fillable = [
-        'vendor_nama',
+        'nama',
         'vendorslug',
-        'vendor_keterangan'
+        'keterangan'
     ];
 }

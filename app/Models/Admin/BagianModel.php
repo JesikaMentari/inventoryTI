@@ -1,15 +1,13 @@
-<?php
+// namespace App\Models\Admin;
 
-namespace App\Models\Admin;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+// class BagianModel extends Model
+// {
+//     use HasFactory;
 
-class BagianModel extends Model
-{
-    use HasFactory;
-
-    protected $table = 'tbl_bagian';
-    protected $primaryKey = 'id_bagian';
-    protected $fillable = ['nama_bagian'];
-}
+//     protected $table = 'tbl_bagian';
+//     protected $primaryKey = 'id_bagian';
+//     protected $fillable = ['nama_bagian'];
+// }

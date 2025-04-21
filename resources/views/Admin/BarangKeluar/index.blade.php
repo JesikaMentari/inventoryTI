@@ -40,8 +40,8 @@
                                 <th class="border-bottom-0">Barang</th>
                                 <th class="border-bottom-0">Jumlah Keluar</th>
                                 <th class="border-bottom-0">Bagian</th> <!-- Ubah kolom Tujuan ke Bagian -->
-                                <th class="border-bottom-0">Nama Pihak Pertama</th> <!-- Ubah kolom Tujuan ke Bagian -->
-                                <th class="border-bottom-0">Nama Pihak Kedua</th> <!-- Tambah kolom Nama Karyawan -->
+                                {{-- <th class="border-bottom-0">Nama Pihak Pertama</th> <!-- Ubah kolom Tujuan ke Bagian -->
+                                <th class="border-bottom-0">Nama Pihak Kedua</th> <!-- Tambah kolom Nama Karyawan --> --}}
                                 <th class="border-bottom-0">Lampiran</th> <!-- Kolom Lampiran Baru -->
                                 <th class="border-bottom-0" width="1%">Action</th>
                             </thead>
@@ -71,7 +71,7 @@
             $("input[name='kdbarangU']").val(data.barang_kode);
             $("input[name='jmlU']").val(data.bk_jumlah);
             $("input[name='bk_namakaryawanU']").val(data.bk_namakaryawan); // Tambahkan input nama karyawan
-            $("select[name='bk_bagianU']").val(data.bk_bagian); // Pilih bagian di dropdown
+            //$("select[name='bk_bagianU']").val(data.bk_bagian); // Pilih bagian di dropdown
 
             if (data.bk_lampiran) {
                 $("#lampiranLink").html(`<a href="{{ asset('storage') }}/${data.bk_lampiran}" target="_blank">Lihat Lampiran</a>`);
@@ -140,8 +140,8 @@
                     { data: 'barang_kode', name: 'barang_kode' },
                     { data: 'barang', name: 'barang_nama' },
                     { data: 'bk_jumlah', name: 'bk_jumlah' },
-                    { data: 'bagian', name: 'bagian.nama_bagian' },
-                    { data: 'unit', name: 'unit_nama' },
+                    //{ data: 'bagian', name: 'bagian.nama_bagian' },
+                    //{ data: 'unit', name: 'unit_nama' },
                     { data: 'bk_namakaryawan', name: 'bk_namakaryawan' },
                     { 
                         data: 'bk_lampiran', 
@@ -206,7 +206,7 @@
                 { data: 'tgl', name: 'bm_tanggal' },
                 { data: 'bm_kode', name: 'bm_kode' },
                 { data: 'barang_kode', name: 'barang_kode' },
-                { data: 'unit', name: 'unit_nama' },
+                //{ data: 'unit', name: 'unit_nama' },
                 { data: 'barang', name: 'barang_nama' },
                 { data: 'bm_jumlah', name: 'bm_jumlah' },
             ],

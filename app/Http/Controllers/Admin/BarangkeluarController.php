@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AksesModel;
 use App\Models\Admin\BarangkeluarModel;
-use App\Models\Admin\BagianModel;
+//use App\Models\Admin\BagianModel;
 use App\Models\Admin\BarangModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class BarangkeluarController extends Controller
                 'tbl_akses.akses_type' => 'create'
             ))->count();
 
-        $data['bagians'] = BagianModel::all();
+        // $data['bagians'] = BagianModel::all();
 
         return view('Admin.BarangKeluar.index', $data);
     }
@@ -33,23 +33,40 @@ class BarangkeluarController extends Controller
     public function show(Request $request)
     {
         if ($request->ajax()) {
-            $data = BarangkeluarModel::with('bagian')
+
+            // Mengambil data dengan join tabel barang dan unit
+            $data = BarangkeluarModel::select([
+                'tbl_barangkeluar.*',
+                'tbl_barang.barang_nama',
+                // 'tbl_unit.unit_nama'
+            ])
                 ->leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangkeluar.barang_kode')
-                ->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangkeluar.unit_id')
+                // ->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
                 ->orderBy('bk_id', 'DESC')
                 ->get();
+
+            // $data = BarangkeluarModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangkeluar.barang_kode')
+            //     //->select('tbl_barangkeluar.*', 'tbl_barang.barang_nama')
+            //     //->orderBy('bk_id', 'DESC')
+            //     ->distinct()
+            //     ->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl', function ($row) {
                     return $row->bk_tanggal ? Carbon::parse($row->bk_tanggal)->translatedFormat('d F Y') : '-';
                 })
-                ->addColumn('bagian', function ($row) {
-                    return $row->bagian ? $row->bagian->nama_bagian : '-';
-                })
+                //->addColumn('bagian', function ($row) {
+                //    return $row->bagian ? $row->bagian->nama_bagian : '-';
+                //})
                 // Tambahkan kolom unit
-                ->addColumn('unit', function ($row) {
-                    return $row->unit_nama ?? '-';
+                // ->addColumn('unit', function ($row) {
+                //     return $row->unit_nama ?? '-';
+                // })
+
+                // Tambahkan kolom pihak2
+                ->addColumn('namaPihakKedua', function ($row) {
+                    return $row->namaPihakKedua ?? '-';
                 })
                 ->addColumn('barang', function ($row) {
                     return $row->barang_nama ? $row->barang_nama : '-';
@@ -63,8 +80,8 @@ class BarangkeluarController extends Controller
                         "bk_kode" => $row->bk_kode,
                         "barang_kode" => $row->barang_kode,
                         "bk_tanggal" => $row->bk_tanggal,
-                        "bk_bagian" => $row->bk_bagian,
-                        "unit_id" => $row->unit_id,
+                        // "bk_bagian" => $row->bk_bagian,
+                        // "unit_id" => $row->unit_id,
                         "bk_namakaryawan" => trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $row->bk_namakaryawan)),
                         "bk_jumlah" => $row->bk_jumlah,
                         "bk_lampiran" => $row->bk_lampiran
@@ -104,7 +121,7 @@ class BarangkeluarController extends Controller
                     }
                     return $button;
                 })
-                ->rawColumns(['action', 'tgl', 'bagian', 'barang', 'lampiran'])->make(true);
+                ->rawColumns(['action', 'tgl', 'barang', 'lampiran'])->make(true);
         }
     }
 
@@ -116,7 +133,7 @@ class BarangkeluarController extends Controller
             'bk_tanggal' => $request->tglkeluar,
             'bk_kode' => $request->bkkode,
             'barang_kode' => $request->barang,
-            'bk_bagian' => $request->bk_bagian,
+            // 'bk_bagian' => $request->bk_bagian,
             'bk_namakaryawan' => $request->bk_namakaryawan,
             'bk_jumlah' => $request->jml,
             'bk_lampiran' => $lampiranPath
@@ -140,7 +157,7 @@ class BarangkeluarController extends Controller
             'bk_tanggal' => $request->tglkeluar,
             'bk_kode' => $request->bkkode,
             'barang_kode' => $request->barang,
-            'bk_bagian' => $request->bk_bagian,
+            // 'bk_bagian' => $request->bk_bagian,
             'bk_namakaryawan' => $request->bk_namakaryawan,
             'bk_jumlah' => $request->jml,
             'bk_lampiran' => $lampiranPath

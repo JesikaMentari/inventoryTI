@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\AksesModel;
 use App\Models\Admin\BarangmasukModel;
 use App\Models\Admin\BarangModel;
-use App\Models\Admin\UnitModel;
+// use App\Models\Admin\UnitModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +19,7 @@ class BarangmasukController extends Controller
     {
         $data["title"] = "Barang Masuk";
         $data["hakTambah"] = AksesModel::leftJoin('tbl_submenu', 'tbl_submenu.submenu_id', '=', 'tbl_akses.submenu_id')->where(array('tbl_akses.role_id' => Session::get('user')->role_id, 'tbl_submenu.submenu_judul' => 'Barang Masuk', 'tbl_akses.akses_type' => 'create'))->count();
-        $data["unit"] = UnitModel::orderBy('unit_id', 'DESC')->get();
+        // $data["unit"] = UnitModel::orderBy('unit_id', 'DESC')->get();
         return view('Admin.BarangMasuk.index', $data);
     }
 
@@ -30,10 +30,10 @@ class BarangmasukController extends Controller
             $data = BarangmasukModel::select([
                 'tbl_barangmasuk.*',
                 'tbl_barang.barang_nama',
-                'tbl_unit.unit_nama'
+                // 'tbl_unit.unit_nama'
             ])
                 ->leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
-                ->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
+                // ->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')
                 ->orderBy('bm_id', 'DESC')
                 ->get();
 
@@ -46,9 +46,9 @@ class BarangmasukController extends Controller
                         : '-';
                 })
                 // Tambahkan kolom unit
-                ->addColumn('unit', function ($row) {
-                    return $row->unit_nama ?? '-';
-                })
+                // ->addColumn('unit', function ($row) {
+                //     return $row->unit_nama ?? '-';
+                // })
                 // Tambahkan kolom pihak2
                 ->addColumn('namaPihakKedua', function ($row) {
                     return $row->namaPihakKedua ?? '-';
@@ -67,7 +67,7 @@ class BarangmasukController extends Controller
                         "bm_id" => $row->bm_id,
                         "bm_kode" => $row->bm_kode,
                         "barang_kode" => $row->barang_kode,
-                        "unit_id" => $row->unit_id,
+                        // "unit_id" => $row->unit_id,
                         "bm_tanggal" => $row->bm_tanggal,
                         "bm_jumlah" => $row->bm_jumlah,
                         "bm_lampiran" => $row->bm_lampiran,
@@ -126,7 +126,7 @@ class BarangmasukController extends Controller
 
                     return $button;
                 })
-                ->rawColumns(['action', 'lampiran', 'tgl', 'unit', 'barang'])
+                ->rawColumns(['action', 'lampiran', 'tgl', 'barang'])
                 ->make(true);
         }
     }
@@ -141,7 +141,7 @@ class BarangmasukController extends Controller
             'bm_tanggal' => $request->tglmasuk,
             'bm_kode' => $request->bmkode,
             'barang_kode' => $request->barang,
-            'unit_id' => $request->unit,
+            // 'unit_id' => $request->unit,
             'bm_jumlah' => $request->jml,
             'bm_lampiran' => $lampiranPath,
         ]);
@@ -165,7 +165,7 @@ class BarangmasukController extends Controller
         $barangmasuk->update([
             'bm_tanggal' => $request->tglmasuk,
             'barang_kode' => $request->barang,
-            'unit_id' => $request->unit,
+            // 'unit_id' => $request->unit,
             'bm_jumlah' => $request->jml,
             'bm_lampiran' => $lampiranPath,
         ]);

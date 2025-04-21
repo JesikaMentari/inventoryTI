@@ -76,7 +76,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="text-white">
-                        <h2 class="mb-0 number-font">{{$bm}}</h2>
+                        {{-- <h2 class="mb-0 number-font">{{$bm}}</h2> --}}
                         <p class="text-white mb-0">Barang Masuk</p>
                     </div>
                     <div class="ms-auto"> <i class="fe fe-repeat text-white fs-40 me-2 mt-2"></i> </div>
@@ -99,7 +99,7 @@
         </div>
     </div>
     <!-- COL END -->
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
+    {{-- <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
         <div class="card bg-purple img-card box-purple-shadow">
             <div class="card-body">
                 <div class="d-flex">
@@ -111,7 +111,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- COL END -->
     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
         <div class="card bg-warning img-card box-warning-shadow">

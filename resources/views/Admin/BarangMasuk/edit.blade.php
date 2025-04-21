@@ -17,7 +17,7 @@
                             <label for="tglmasukU" class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
                             <input type="text" name="tglmasukU" class="form-control datepicker-date" placeholder="">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="unitU" class="form-label">Pilih Unit Ti <span class="text-danger">*</span></label>
                             <select name="unitU" id="unitU" class="form-control">
                                 <option value="">-- Pilih Unit Ti --</option>
@@ -25,7 +25,7 @@
                                 <option value="{{ $c->unit_id }}">{{ $c->unit_nama }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -130,8 +130,8 @@
     function checkFormU() {
         const tglmasuk = $("input[name='tglmasukU']").val();
         const status = $("#statusU").val();
-        const kdbarang = $("input[name='kdbarangU").val();
-        const unit = $("select[name='unitU']").val();
+        const kdbarang = $("input[name='kdbarangU']").val();
+        // const unit = $("select[name='unitU']").val();
         const jml = $("input[name='jmlU']").val();
         setLoadingU(true);
         resetValidU();
@@ -141,12 +141,14 @@
             $("input[name='tglmasukU']").addClass('is-invalid');
             setLoading(Ufalse);
             return false;
-        } else if (unit == "") {
-            validasi('Unit Ti wajib di pilih!', 'warning');
-            $("select[name='unitU']").addClass('is-invalid');
-            setLoadingU(false);
-            return false;
-        } else if (status == "false" || kdbarang == '') {
+        }
+        //  else if (unit == "") {
+        //     validasi('Unit Ti wajib di pilih!', 'warning');
+        //     $("select[name='unitU']").addClass('is-invalid');
+        //     setLoadingU(false);
+        //     return false;
+        // } 
+        else if (status == "false" || kdbarang == '') {
             validasi('Barang wajib di pilih!', 'warning');
             $("input[name='kdbarangU']").addClass('is-invalid');
             setLoadingU(false);
@@ -166,7 +168,7 @@
         const bmkode = $("input[name='bmkodeU']").val();
         const tglmasuk = $("input[name='tglmasukU']").val();
         const kdbarang = $("input[name='kdbarangU']").val();
-        const unit = $("select[name='unitU']").val();
+        // const unit = $("select[name='unitU']").val();
         const jml = $("input[name='jmlU']").val();
 
         $.ajax({
@@ -177,7 +179,7 @@
                 bmkode: bmkode,
                 tglmasuk: tglmasuk,
                 barang: kdbarang,
-                unit: unit,
+                // unit: unit,
                 jml: jml
             },
             success: function(data) {
@@ -195,7 +197,7 @@
     function resetValidU() {
         $("input[name='tglmasukU']").removeClass('is-invalid');
         $("input[name='kdbarangU']").removeClass('is-invalid');
-        $("select[name='unitU']").removeClass('is-invalid');
+        // $("select[name='unitU']").removeClass('is-invalid');
         $("input[name='jmlU']").removeClass('is-invalid');
     };
 
@@ -205,7 +207,7 @@
         $("input[name='bmkodeU']").val('');
         $("input[name='tglmasukU']").val('');
         $("input[name='kdbarangU']").val('');
-        $("select[name='unitU']").val('');
+        // $("select[name='unitU']").val('');
         $("input[name='jmlU']").val('0');
         $("#nmbarangU").val('');
         $("#satuanU").val('');

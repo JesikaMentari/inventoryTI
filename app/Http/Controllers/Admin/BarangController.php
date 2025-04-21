@@ -28,7 +28,7 @@ class BarangController extends Controller
         $data["jenisbarang"] =  JenisBarangModel::orderBy('jenisbarang_id', 'DESC')->get();
         $data["satuan"] =  SatuanModel::orderBy('satuan_id', 'DESC')->get();
         $data["lokasi"] =  LokasiModel::orderBy('lokasi_id', 'DESC')->get();
-        $data["vendors"] = VendorModel::orderBy('id_vendor', 'DESC')->get(); // Ambil data vendor untuk dropdown
+        $data["vendors"] = VendorModel::whereIn('id_vendordanbagian', [1,2,3])->orderBy('nama', 'DESC')->get(); // Ambil data vendor untuk dropdown
         return view('Admin.Barang.index', $data);
     }
 
@@ -43,7 +43,7 @@ class BarangController extends Controller
     }
 
     public function create() {
-        $vendors = Vendor::all(); // Mengambil semua data vendor
+        $vendors = Vendor::whereIn('id_vendordanbagian', [1,2,3])->get(); // Mengambil semua data vendor
         return view('Admin.Barang.create', compact('vendors'));
     }
 
@@ -54,8 +54,9 @@ class BarangController extends Controller
             $data = BarangModel::leftJoin('tbl_jenisbarang', 'tbl_jenisbarang.jenisbarang_id', '=', 'tbl_barang.jenisbarang_id')
                 ->leftJoin('tbl_satuan', 'tbl_satuan.satuan_id', '=', 'tbl_barang.satuan_id')
                 ->leftJoin('tbl_lokasi', 'tbl_lokasi.lokasi_id', '=', 'tbl_barang.lokasi_id')
+                ->leftJoin('tbl_vendordanbagian', 'tbl_vendordanbagian.nama', '=', 'tbl_barang.barang_vendor') // Tambahkan JOIN ini
                 ->orderBy('barang_id', 'DESC')
-                ->get(['tbl_barang.*', 'tbl_vendor.vendor_nama as vendor'] );
+                ->get(['tbl_barang.*', 'tbl_vendordanbagian.nama as vendor'] );
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -269,17 +270,17 @@ class BarangController extends Controller
         }
     
         // Cek apakah input vendor dari dropdown atau free text
-        $vendor_dropdown = $request->input('vendor_dropdown');
+        $vendor_dropdown = $request->input('vendor');
         $vendor_freetext = $request->input('vendor_freetext');
         $vendor = $vendor_dropdown ?: $vendor_freetext;
     
         // Debug data yang diterima dari form
-        dd([
-            'vendor_dropdown' => $vendor_dropdown,
-            'vendor_freetext' => $vendor_freetext,
-            'final_vendor' => $vendor, // Hasil akhir vendor yang akan digunakan
-            'all_request_data' => $request->all() // Menampilkan semua data form yang dikirim
-        ]);
+        // dd([
+        //     'vendor_dropdown' => $vendor_dropdown,
+        //     'vendor_freetext' => $vendor_freetext,
+        //     'final_vendor' => $vendor, // Hasil akhir vendor yang akan digunakan
+        //     'all_request_data' => $request->all() // Menampilkan semua data form yang dikirim
+        // ]);
     
         //create
         BarangModel::create([

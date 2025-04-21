@@ -14,8 +14,8 @@
                     <input type="text" name="vendor_nama" class="form-control" placeholder="Masukkan Nama Vendor">
                 </div>
                 <div class="form-group">
-                    <label for="vendor_keterangan" class="form-label">Keterangan</label>
-                    <textarea name="vendor_keterangan" class="form-control" rows="4" placeholder="Masukkan Keterangan"></textarea>
+                    <label for="vendor" class="form-label">Keterangan</label>
+                    <textarea name="keterangan" class="form-control" rows="4" placeholder="Masukkan Keterangan"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -51,16 +51,16 @@
     }
 
     function submitForm() {
-        const vendor_nama = $("input[name='vendor_nama']").val();
-        const vendor_keterangan = $("textarea[name='vendor_keterangan']").val();
+        const nama = $("input[name='nama']").val();
+        const keterangan = $("textarea[name='keterangan']").val();
 
         $.ajax({
             type: 'POST',
             url: "{{ route('vendor.store') }}",
             enctype: 'multipart/form-data',
             data: {
-                vendor_nama: vendor_nama,
-                vendor_keterangan: vendor_keterangan
+                nama: vendor_nama,
+                keterangan: keterangan
             },
             success: function(data) {
                 $('#modaldemo8').modal('toggle');
@@ -81,8 +81,8 @@
 
     function reset() {
         resetValid();
-        $("input[name='vendor_nama']").val('');
-        $("textarea[name='vendor_keterangan']").val('');
+        $("input[name='nama']").val('');
+        $("textarea[name='keterangan']").val('');
         setLoading(false);
     }
 

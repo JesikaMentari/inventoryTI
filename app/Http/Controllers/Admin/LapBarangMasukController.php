@@ -21,9 +21,14 @@ class LapBarangMasukController extends Controller
     public function print(Request $request)
     {
         if ($request->tglawal) {
-            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->orderBy('bm_id', 'DESC')->get();
+            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                ->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])
+                ->orderBy('bm_id', 'DESC')
+                ->get();
         } else {
-            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->orderBy('bm_id', 'DESC')->get();
+            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                ->orderBy('bm_id', 'DESC')
+                ->get();
         }
 
         $data["title"] = "Print Barang Masuk";
@@ -36,9 +41,14 @@ class LapBarangMasukController extends Controller
     public function pdf(Request $request)
     {
         if ($request->tglawal) {
-            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->orderBy('bm_id', 'DESC')->get();
+            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                ->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])
+                ->orderBy('bm_id', 'DESC')
+                ->get();
         } else {
-            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->orderBy('bm_id', 'DESC')->get();
+            $data['data'] = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                ->orderBy('bm_id', 'DESC')
+                ->get();
         }
 
         $data["title"] = "PDF Barang Masuk";
@@ -52,35 +62,31 @@ class LapBarangMasukController extends Controller
         }else{
             return $pdf->download('lap-bm-semua-tanggal.pdf');
         }
-        
     }
 
     public function show(Request $request)
     {
         if ($request->ajax()) {
             if ($request->tglawal == '') {
-                $data = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->orderBy('bm_id', 'DESC')->get();
+                $data = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                    ->orderBy('bm_id', 'DESC')
+                    ->get();
             } else {
-                $data = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')->leftJoin('tbl_unit', 'tbl_unit.unit_id', '=', 'tbl_barangmasuk.unit_id')->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])->orderBy('bm_id', 'DESC')->get();
+                $data = BarangmasukModel::leftJoin('tbl_barang', 'tbl_barang.barang_kode', '=', 'tbl_barangmasuk.barang_kode')
+                    ->whereBetween('bm_tanggal', [$request->tglawal, $request->tglakhir])
+                    ->orderBy('bm_id', 'DESC')
+                    ->get();
             }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('tgl', function ($row) {
-                    $tgl = $row->bm_tanggal == '' ? '-' : Carbon::parse($row->bm_tanggal)->translatedFormat('d F Y');
-
-                    return $tgl;
-                })
-                ->addColumn('unit', function ($row) {
-                    $unit = $row->unit_id == '' ? '-' : $row->unit_nama;
-
-                    return $unit;
+                    return $row->bm_tanggal == '' ? '-' : Carbon::parse($row->bm_tanggal)->translatedFormat('d F Y');
                 })
                 ->addColumn('barang', function ($row) {
-                    $barang = $row->barang_id == '' ? '-' : $row->barang_nama;
-
-                    return $barang;
+                    return $row->barang_id == '' ? '-' : $row->barang_nama;
                 })
-                ->rawColumns(['tgl', 'unit', 'barang'])->make(true);
+                ->rawColumns(['tgl', 'barang'])
+                ->make(true);
         }
     }
 }

@@ -17,7 +17,7 @@
                             <label for="tglkeluarU" class="form-label">Tanggal Keluar <span class="text-danger">*</span></label>
                             <input type="text" name="tglkeluarU" class="form-control datepicker-date" placeholder="">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="bk_bagianU" class="form-label">Bagian <span class="text-danger">*</span></label>
                             <select name="bk_bagianU" class="form-control">
                                 <option value="">Pilih Bagian</option>
@@ -25,7 +25,7 @@
                                     <option value="{{ $bagian->id_bagian }}">{{ $bagian->nama_bagian }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="bk_namakaryawanU" class="form-label">Nama Karyawan</label>
                             <input type="text" name="bk_namakaryawanU" class="form-control" placeholder="Masukkan Nama Karyawan">
@@ -142,7 +142,7 @@
         const tglkeluar = $("input[name='tglkeluarU']").val();
         const status = $("#statusU").val();
         const kdbarang = $("input[name='kdbarangU']").val();
-        const bk_bagian = $("select[name='bk_bagianU']").val();
+        // const bk_bagian = $("select[name='bk_bagianU']").val();
         const jml = $("input[name='jmlU']").val();
         setLoadingU(true);
         resetValidU();
@@ -157,12 +157,14 @@
             $("input[name='kdbarangU']").addClass('is-invalid');
             setLoadingU(false);
             return false;
-        } else if (bk_bagian == "") {
-            validasi('Bagian wajib dipilih!', 'warning');
-            $("select[name='bk_bagianU']").addClass('is-invalid');
-            setLoadingU(false);
-            return false;
-        } else if (jml == "" || jml == "0") {
+        } 
+        // else if (bk_bagian == "") {
+        //     validasi('Bagian wajib dipilih!', 'warning');
+        //     $("select[name='bk_bagianU']").addClass('is-invalid');
+        //     setLoadingU(false);
+        //     return false;
+        // } 
+        else if (jml == "" || jml == "0") {
             validasi('Jumlah Keluar wajib di isi!', 'warning');
             $("input[name='jmlU']").addClass('is-invalid');
             setLoadingU(false);
@@ -178,7 +180,7 @@
         formData.append('bkkode', $("input[name='bkkodeU']").val());
         formData.append('tglkeluar', $("input[name='tglkeluarU']").val());
         formData.append('barang', $("input[name='kdbarangU']").val());
-        formData.append('bk_bagian', $("select[name='bk_bagianU']").val());
+        // formData.append('bk_bagian', $("select[name='bk_bagianU']").val());
         formData.append('bk_namakaryawan', $("input[name='bk_namakaryawanU']").val());
         formData.append('jml', $("input[name='jmlU']").val());
         formData.append('lampiran', $("input[name='lampiranU']")[0].files[0]);
@@ -204,7 +206,7 @@
     function resetValidU() {
         $("input[name='tglkeluarU']").removeClass('is-invalid');
         $("input[name='kdbarangU']").removeClass('is-invalid');
-        $("select[name='bk_bagianU']").removeClass('is-invalid');
+        // $("select[name='bk_bagianU']").removeClass('is-invalid');
         $("input[name='jmlU']").removeClass('is-invalid');
     };
 
@@ -214,7 +216,7 @@
         $("input[name='bkkodeU']").val('');
         $("input[name='tglkeluarU']").val('');
         $("input[name='kdbarangU']").val('');
-        $("select[name='bk_bagianU']").val('');
+        // $("select[name='bk_bagianU']").val('');
         $("input[name='bk_namakaryawanU']").val('');
         $("input[name='jmlU']").val('0');
         $("input[name='lampiranU']").val('');

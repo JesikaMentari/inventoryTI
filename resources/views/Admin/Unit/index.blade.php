@@ -1,4 +1,4 @@
-@extends('Master.Layouts.app', ['title' => $title])
+{{-- @extends('Master.Layouts.app', ['title' => $title])
 
 @section('content')
     <!-- PAGE-HEADER -->
@@ -133,4 +133,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

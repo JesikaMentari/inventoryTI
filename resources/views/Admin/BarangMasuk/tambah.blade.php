@@ -19,7 +19,7 @@
                             <label for="tglmasuk" class="form-label">Tanggal Masuk <span class="text-danger">*</span></label>
                             <input type="text" name="tglmasuk" class="form-control datepicker-date" placeholder="">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="unit" class="form-label">Pilih Unit TI <span class="text-danger">*</span></label>
                             <select name="unit" id="unit" class="form-control">
                                 <option value="">-- Pilih Unit TI --</option>
@@ -27,7 +27,7 @@
                                 <option value="{{ $c->unit_id }}">{{ $c->unit_nama }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -136,7 +136,7 @@
     function checkForm() {
         const tglmasuk = $("input[name='tglmasuk']").val();
         const status = $("#status").val();
-        const unit = $("select[name='unit']").val();
+        // const unit = $("select[name='unit']").val();
         const jml = $("input[name='jml']").val();
         setLoading(true);
         resetValid();
@@ -146,12 +146,14 @@
             $("input[name='tglmasuk']").addClass('is-invalid');
             setLoading(false);
             return false;
-        } else if (unit == "") {
-            validasi('Unit TI wajib di pilih!', 'warning');
-            $("select[name='unit']").addClass('is-invalid');
-            setLoading(false);
-            return false;
-        } else if (status == "false") {
+        } 
+        // else if (unit == "") {
+        //     validasi('Unit TI wajib di pilih!', 'warning');
+        //     $("select[name='unit']").addClass('is-invalid');
+        //     setLoading(false);
+        //     return false;
+        // } 
+        else if (status == "false") {
             validasi('Barang wajib di pilih!', 'warning');
             $("input[name='kdbarang']").addClass('is-invalid');
             setLoading(false);
@@ -171,7 +173,7 @@
         formData.append('bmkode', $("input[name='bmkode']").val());
         formData.append('tglmasuk', $("input[name='tglmasuk']").val());
         formData.append('barang', $("input[name='kdbarang']").val());
-        formData.append('unit', $("select[name='unit']").val());
+        // formData.append('unit', $("select[name='unit']").val());
         formData.append('jml', $("input[name='jml']").val());
 
         // Tambahkan lampiran jika ada
@@ -202,7 +204,7 @@
     function resetValid() {
         $("input[name='tglmasuk']").removeClass('is-invalid');
         $("input[name='kdbarang']").removeClass('is-invalid');
-        $("select[name='unit']").removeClass('is-invalid');
+        // $("select[name='unit']").removeClass('is-invalid');
         $("input[name='jml']").removeClass('is-invalid');
     };
 
@@ -211,7 +213,7 @@
         $("input[name='bmkode']").val('');
         $("input[name='tglmasuk']").val('');
         $("input[name='kdbarang']").val('');
-        $("select[name='unit']").val('');
+        // $("select[name='unit']").val('');
         $("input[name='jml']").val('0');
         $("input[name='lampiran']").val(''); // Reset lampiran input
         $("#nmbarang").val('');

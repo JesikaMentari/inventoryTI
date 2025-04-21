@@ -49,7 +49,7 @@
                             <th class="border-bottom-0">Tanggal Masuk</th>
                             <th class="border-bottom-0">Kode Barang Masuk</th>
                             <th class="border-bottom-0">Kode Barang</th>
-                            <th class="border-bottom-0">Unit TI</th>
+                            {{-- <th class="border-bottom-0">Unit TI</th> --}}
                             <th class="border-bottom-0">Barang</th>
                             <th class="border-bottom-0">Jumlah Masuk</th>
                         </thead>
@@ -119,10 +119,10 @@
                     data: 'barang_kode',
                     name: 'barang_kode',
                 },
-                {
-                    data: 'unit',
-                    name: 'unit_nama',
-                },
+                // {
+                //     data: 'unit',
+                //     name: 'unit_nama',
+                // },
                 {
                     data: 'barang',
                     name: 'barang_nama',

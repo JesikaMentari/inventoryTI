@@ -14,15 +14,15 @@ class BarangkeluarModel extends Model
         'bk_kode',
         'barang_kode',
         'bk_tanggal',
-        'bk_bagian',
-        'unit_id',
+        //'bk_bagian',
+        // 'unit_id',
         'bk_namakaryawan',
         'bk_jumlah',
         'bk_lampiran',
     ];
-
-    public function bagian()
-    {
-        return $this->belongsTo(BagianModel::class, 'bk_bagian', 'id_bagian');
-    }
 }
+//     public function bagian()
+//     {
+//         return $this->belongsTo(BagianModel::class, 'bk_bagian', 'id_bagian');
+//     }
+// }

@@ -51,7 +51,7 @@
                                 <option value="">-- Pilih Vendor dari Database --</option>
                                 @if(!empty($vendors) && $vendors->count())
                                 @foreach ($vendors as $vendor)
-                                <option value="{{$vendor->vendor_nama}}">{{$vendor->vendor_nama}}</option>
+                                <option value="{{$vendor->nama}}">{{$vendor->nama}}</option>
                                 @endforeach
                                 @else
                                 <option value="lainnya">Lainnya</option> <!-- Opsi Lainnya -->
@@ -153,7 +153,13 @@
         fd.append('jumlah', jumlah);
 
         // Logika Vendor: jika vendor dropdown dipilih, gunakan itu. Jika free text diisi, gunakan free text.
-        fd.append('vendor', vendor_dropdown == 'lainnya' ? vendor_freetext : vendor_dropdown);
+        fd.append('vendor', vendor_dropdown == 'lainnya' ? vendor_freetext : vendor_dropdown); 
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        });
 
         $.ajax({
             type: 'POST',
@@ -163,14 +169,18 @@
             dataType: 'json',
             data: fd,
             success: function(data) {
-            console.log(data);  // Log data untuk memverifikasi hasilnya
-            $('#modaldemo8').modal('toggle');
-            swal({
-            title: "Berhasil ditambah!",
-            type: "success"
-            });
-            table.ajax.reload(null, false);
-            reset();
+                console.log(data);  // Log data untuk memverifikasi hasilnya
+                $('#modaldemo8').modal('toggle');
+                swal({
+                title: "Berhasil ditambah!",
+                type: "success"
+                });
+                table.ajax.reload(null, false);
+                reset();
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", error);
+                console.error("Status:", status);
             }
 
         });

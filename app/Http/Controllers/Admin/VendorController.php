@@ -27,17 +27,17 @@ class VendorController extends Controller
     public function show(Request $request)
     {
         if ($request->ajax()) {
-            $data = VendorModel::orderBy('id_vendor', 'DESC')->get();
+            $data = VendorModel::orderBy('id_vendordanbagian', 'DESC')->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('ket', function ($row) {
-                    return $row->vendor_keterangan ?: '-';
+                    return $row->keterangan ?: '-';
                 })
                 ->addColumn('action', function ($row) {
                     $array = [
-                        "id_vendor" => $row->id_vendor,
-                        "vendor_nama" => $row->vendor_nama,
-                        "vendor_keterangan" => $row->vendor_keterangan
+                        "id_vendordanbagian" => $row->id_vendordanbagian,
+                        "nama" => $row->nama,
+                        "keterangan" => $row->keterangan
                     ];
 
                     $button = '';
@@ -60,15 +60,15 @@ class VendorController extends Controller
     public function proses_tambah(Request $request)
     {
         $request->validate([
-            'vendor_nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
         ]);
 
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->vendor_nama)));
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->nama)));
 
         VendorModel::create([
-            'vendor_nama' => $request->vendor_nama,
+            'nama' => $request->nama,
             'vendorslug' => $slug,
-            'vendor_keterangan' => $request->vendor_keterangan,
+            'keterangan' => $request->keterangan,
         ]);
 
         return response()->json(['success' => 'Berhasil']);
@@ -77,18 +77,18 @@ class VendorController extends Controller
     public function proses_ubah(Request $request)
     {
         $request->validate([
-            'id_vendor' => 'required|integer', // Validasi id_vendor
-            'vendor_nama' => 'required|string|max:255',
+            'id_vendordanbagian' => 'required|integer', // Validasi id_vendor
+            'nama' => 'required|string|max:255',
         ]);
     
-        $vendor = VendorModel::find($request->id_vendor);
+        $vendor = VendorModel::find($request->id_vendordanbagian);
         if (!$vendor) {
-            return response()->json(['error' => 'Vendor tidak ditemukan'], 404);
+            return response()->json(['error' => 'Vendor dan Bagian tidak ditemukan'], 404);
         }
     
         $vendor->update([
-            'vendor_nama' => $request->vendor_nama,
-            'vendor_keterangan' => $request->vendor_keterangan,
+            'nama' => $request->nama,
+            'keterangan' => $request->keterangan,
         ]);
     
         return response()->json(['success' => 'Data vendor berhasil diubah']);
